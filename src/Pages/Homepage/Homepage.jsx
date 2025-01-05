@@ -1,8 +1,11 @@
 import React from 'react'
+import Testimonials from '../../Components/Testimonials/Testimonials';
 
 function Homepage() {
   return (
-    <div>Homepage</div>
+    <div>
+      <Testimonials />
+    </div>
   )
 }
 
