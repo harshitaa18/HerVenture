@@ -1,4 +1,3 @@
-import React from 'react'
 import Testimonials from '../../Components/Testimonials/Testimonials';
 
 function Homepage() {
@@ -8,5 +7,5 @@ function Homepage() {
     </div>
   )
 }
-
+ 
 export default Homepage
