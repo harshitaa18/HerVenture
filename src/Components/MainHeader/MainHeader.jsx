@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom'
-import imgHeader from '../images/new ladki.jpg';
+import imgHeader from '../Assets/new ladki.jpg';
+import "./MainHeader.css";
 
 const MainHeader = () => {
     return (
@@ -16,7 +17,7 @@ const MainHeader = () => {
             <div className="main_header-right">
                   <div className="main_header-circle"></div>  
                   <div className="main_header-image">
-                    <img src={imgHeader} alt="MainHeader Image" className='circle-img' />
+                    <img src={imgHeader} alt='' className='circle-img' />
                   </div>
                 </div>
         </div>
