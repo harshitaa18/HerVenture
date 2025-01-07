@@ -1,0 +1,71 @@
+.Faqs {
+    display: flex;
+    gap: 20px;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .faq-sidebar {
+    width: 25%;
+    background: linear-gradient(135deg, purple, pink);
+    padding: 15px;
+    border-radius: 8px;
+    color: white;
+  }
+  
+  .faq-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .faq-sidebar li {
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .faq-sidebar li.active,
+  .faq-sidebar li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .faq-content {
+    flex-grow: 1;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  
+  .faq-item {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .faq-item.active {
+    background: rgba(128, 0, 128, 0.1);
+  }
+  
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #4a004a; /* Wine Color */
+  }
+  
+  .faq-toggle {
+    font-size: 1.5rem;
+    color: #d726d7; /* Pinkish color */
+  }
+  
+  .faq-answer {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5;
+  }
+  
