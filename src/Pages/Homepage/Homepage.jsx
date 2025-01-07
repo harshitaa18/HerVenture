@@ -1,14 +1,10 @@
-import React from 'react'
-import './home.css'
-import MainHeader from '../../Components/MainHeader'
+import Testimonials from '../../Components/Testimonials/Testimonials';
 
 function Homepage() {
   return (
-    // <div>Homepage</div>
-    <>
-    <MainHeader/>
-    </>
-
+    <div>
+      <Testimonials />
+    </div>
   )
 }
  
