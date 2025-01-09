@@ -1,7 +1,7 @@
 import React from 'react';
 import './AboutUs.css';
 import HeaderImage from '../../Components/Assets/purple-bg2.webp';
-import Header from '../../Components/Footer/Header';
+import Header from '../../Components/Header';
 
 export const AboutUs = () => {
     return (

@@ -3,8 +3,8 @@ import Homepage from './Pages/Homepage/Homepage'
 import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/Navbar/Navbar";
 import Faqs from './Pages/Faqs/Faqs';
-import AboutUs from './Pages/Aboutus/AboutUs';
-import ContactUs from './Pages/Contactus/ContactUs';
+import AboutUs from './Pages/AboutUs/AboutUs';
+import ContactUs from './Pages/ContactUs/ContactUs';
 import Mentorship from './Pages/Mentorship/Mentorship';
 
 
