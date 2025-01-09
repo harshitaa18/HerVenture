@@ -1,6 +1,6 @@
 import React from 'react'
-import './home.css'
-import MainHeader from '../../Components/MainHeader'
+// import './home.css'
+import MainHeader from '../../Components/MainHeader/MainHeader'
 
 function Homepage() {
   return (

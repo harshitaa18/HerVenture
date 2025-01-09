@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom'
-import imgHeader from '../images/new ladki.jpg';
+import imgHeader from '../Assets/new ladki.jpg';
+import './MainHeader.css' 
 
 const MainHeader = () => {
     return (
