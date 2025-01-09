@@ -1,0 +1,165 @@
+/* General Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    color: #333;
+    overflow-x: hidden;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  /* Header Section */
+  .header h1 {
+    font-size: 3em;
+    font-weight: bold;
+    color: #6a1b9a; /* Softer purple */
+    margin-bottom: 10px;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .header p {
+    font-size: 1.2em;
+    color: #7f8c8d; /* Subtle gray */
+    margin-bottom: 30px;
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  /* Service Boxes Section */
+  .boxes {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .box {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex: 1 1 30%;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .box h3 {
+    font-size: 1.5em;
+    color: #6a1b9a; /* Softer purple */
+    margin-bottom: 10px;
+  }
+  
+  .box p {
+    font-size: 1em;
+  }
+  
+  /* Mentor Cards Section */
+  .mentors {
+    margin-top: 50px;
+  }
+  
+  .mentors h2 {
+    font-size: 2em;
+    color: #6a1b9a;
+    margin-bottom: 20px;
+    animation: fadeIn 1.2s ease-in-out;
+  }
+  
+  .mentor-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .card {
+    background: linear-gradient(to bottom right, #ffe0f0, #ce93d8); /* Softer pink-purple gradient */
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    flex: 1 1 30%;
+    max-width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 1.3s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #ffffff;
+    margin-bottom: 15px;
+  }
+  
+  .card h4 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+    color: #6a1b9a;
+  }
+  
+  .card p {
+    font-size: 1em;
+  }
+  
+  /* Call to Action Section */
+  .cta {
+    margin-top: 50px;
+  }
+  
+  .cta a {
+    display: inline-block;
+    background: linear-gradient(to right, #6a1b9a, #ba68c8); /* Softer purple-pink */
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 15px 30px;
+    border-radius: 50px;
+    transition: transform 0.3s ease, background 0.3s ease;
+    animation: fadeInUp 1.5s ease-in-out;
+  }
+  
+  .cta a:hover {
+    transform: translateY(-3px);
+    background: #6a1b9a;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
