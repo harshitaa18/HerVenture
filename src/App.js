@@ -5,7 +5,7 @@ import Navbar from "./Components/Navbar/Navbar";
 import Faqs from './Pages/Faqs/Faqs';
 import AboutUs from './Pages/AboutUs/AboutUs';
 import ContactUs from './Pages/ContactUs/ContactUs';
-import Mentorship from './Pages/Mentorship/Mentorship';
+import Mentorship from './Pages/Mentorship/TrainingAndWebinars.jsx';
 
 
 function App() {
