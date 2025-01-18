@@ -7,14 +7,13 @@
 }
 
 /* Header */
-.header {
+.policies-container h1{
   font-size: 3rem;
   font-weight: bold;
   text-align: center;
   color: #333;
-  margin-bottom: 0.001px;
+  margin-bottom: 20px;
 }
-
 /* Search Bar */
 .search-container {
   text-align: center;
@@ -26,7 +25,7 @@
   max-width: 500px;
   padding: 10px;
   font-size: 1rem;
-  border: 1px solid #ccc;
+  border: 2.5px solid #b8378d;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
@@ -48,7 +47,7 @@
 /* Policy Card */
 .policy-card {
   background: #fff;
-  border: 1px solid #ddd;
+  border: 2.5px solid #b8378d;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 15px;
@@ -62,7 +61,7 @@
 
 .policy-name {
   font-size: 1.5rem;
-  color: #007bff;
+  color: hsl(0, 0%, 0%);
   margin-bottom: 10px;
 }
 

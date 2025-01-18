@@ -4,9 +4,10 @@ import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/Navbar/Navbar";
 import Faqs from './Pages/Faqs/Faqs';
 import AboutUs from './Pages/AboutUs/AboutUs';
-import ContactUs from './Pages/ContactUs/ContactUs';
-import Mentorship from './Pages/Mentorship/Mentorship';
+import Login from './Pages/Login/Login';
+import Mentorship from './Pages/Mentorship/TrainingAndWebinars';
 import Policy from './Pages/Policy/Policy';
+
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage/>}/>
           <Route path='/aboutUs' element = {<AboutUs/>}/>
-          <Route path='/contact' element = {<ContactUs/>}/>
+          <Route path='/login' element = {<Login/>}/>
           <Route path='/faqs' element = {<Faqs/>}/>
           <Route path='/mentorship' element = {<Mentorship/>}/>
           <Route path='/policy' element = {<Policy/>}/>

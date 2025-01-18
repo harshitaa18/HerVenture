@@ -28,34 +28,8 @@ export const Faqs = () => {
         question: 'Can I provide two mobile numbers in the registration form?',
         answer: 'No, only one mobile number is allowed for registration.',
       },
-      {
-        question: 'What are the documents required by Startups to get recognized under the Startup India initiative?',
-        answer: 'The documents include a Certificate of Incorporation, a detailed business plan, and other proofs of innovation.',
-      },
-      {
-        question: 'What is the time-frame for obtaining a certificate of recognition as a ‘Startup’ in case an entity already exists?',
-        answer: 'It typically takes 2-4 weeks post submission of all required documents.',
-      },
-      {
-        question: 'If my startup gets recognised, would I obtain a certificate for it? If yes, would I be able to download the certificate?',
-        answer: 'Yes, a certificate will be issued and can be downloaded from the Startup India portal.',
-      },
-      {
-        question: 'What is the constitution of the Inter-Ministerial Board?',
-        answer: 'The Inter-Ministerial Board is composed of members from the Ministry of Commerce, Department for Promotion of Industry and Internal Trade, and other government bodies.',
-      },
-      {
-        question: 'How would the Inter-Ministerial Board review the applications received for the purpose of tax exemption?',
-        answer: 'The board reviews applications based on innovation, scalability, and job creation potential.',
-      },
-      {
-        question: 'What is the time-frame for obtaining certification of Inter-Ministerial Board for availing tax exemption post successful application?',
-        answer: 'It generally takes 6-8 weeks after the application is approved.',
-      },
-      {
-        question: 'If a startup has applied for DIPP recognition and the application gets rejected or marked incomplete due to missing documents or insufficient information, should the startup edit the existing application or submit a new one?',
-        answer: 'The startup should edit the existing application and re-submit with complete details.',
-      },
+      
+      
     ],
     'For Mentors/Investors': [
       {
@@ -78,10 +52,7 @@ export const Faqs = () => {
         question: 'Can I get access to additional resources which can further aid my mentorship support to the Startup?',
         answer: 'Yes, the platform provides additional resources like toolkits, case studies, and training programs.',
       },
-      {
-        question: 'Do I get any kind of recognition for being an active mentor/ investor on the portal?',
-        answer: 'Yes, active mentors/investors receive badges and recognition from the community.',
-      },
+      
     ],
     'For Facilitators & Others': [
       {
@@ -113,6 +84,12 @@ export const Faqs = () => {
 
   return (
     <div className="Faqs">
+      <div className='special'>
+        <header>
+          <h1 className='Faqs-title'>FAQs</h1>
+        </header>
+      </div>
+      <div className='faqs-total'>
       <div className="faq-sidebar">
         <ul>
           {Object.keys(faqData).map((category) => (
@@ -140,6 +117,7 @@ export const Faqs = () => {
             {activeIndex === index && <div className="faq-answer">{faq.answer}</div>}
           </div>
         ))}
+      </div>
       </div>
     </div>
   );

@@ -194,7 +194,7 @@ const GovernmentPolicies = () => {
   
   return (
     <div className="policies-container">
-      <h1 className="header">Government Policies for Women Entrepreneurs</h1>
+      <h1>Government Policies for Women Entrepreneurs</h1>
       <div className="search-container">
         <input
           type="text"
