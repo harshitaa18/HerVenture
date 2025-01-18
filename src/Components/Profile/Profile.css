@@ -1,0 +1,62 @@
+.profile-page {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+    font-size: 2.3rem;
+  }
+  
+  .profile-form {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-form section {
+    margin-bottom: 20px;
+  }
+  
+  .profile-form h2 {
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .profile-form input,
+  .profile-form select,
+  .profile-form textarea,
+  .profile-form button {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .file-upload input {
+    margin-top: 5px;
+  }
+  
+  .profile-form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .profile-form button:hover {
+    background-color: #0056b3;
+  }
+  

@@ -1,8 +1,11 @@
 import React from 'react'
+import ProfilePage from '../../Components/Profile/Profile';
 
 export const contact = () => {
     return(
-        <h1>This is ContactUs</h1>
+        <div>
+            <ProfilePage/>
+        </div>
     )
 }
 export default contact;
