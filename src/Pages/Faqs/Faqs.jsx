@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Faqs.css';
 
 export const Faqs = () => {
+  
   const [activeIndex, setActiveIndex] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('For Startups');
 

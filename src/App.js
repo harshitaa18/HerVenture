@@ -6,7 +6,7 @@ import Faqs from './Pages/Faqs/Faqs';
 import AboutUs from './Pages/AboutUs/AboutUs';
 import ContactUs from './Pages/ContactUs/ContactUs';
 import Mentorship from './Pages/Mentorship/Mentorship';
-
+import Policy from './Pages/Policy/Policy';
 
 function App() {
 
@@ -20,6 +20,7 @@ function App() {
           <Route path='/contact' element = {<ContactUs/>}/>
           <Route path='/faqs' element = {<Faqs/>}/>
           <Route path='/mentorship' element = {<Mentorship/>}/>
+          <Route path='/policy' element = {<Policy/>}/>
         </Routes>
       <Footer/>
       </BrowserRouter>
