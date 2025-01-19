@@ -101,27 +101,32 @@ const ProfilePage = () => {
         </section>
 
         {/* Expectations from the Platform */}
-        <section>
+          <section className="expectations-section">
           <h2>Expectations from the Platform</h2>
-          {["Mentorship", "Funding Access", "Networking", "Skill Exchange"].map((goal) => (
-            <label key={goal}>
-              <input
-                type="checkbox"
-                name="platformExpectations"
-                value={goal}
-                onChange={(e) => {
-                  const { value, checked } = e.target;
-                  setFormData((prevState) => ({
-                    ...prevState,
-                    platformExpectations: checked
-                      ? [...prevState.platformExpectations, value]
-                      : prevState.platformExpectations.filter((item) => item !== value),
-                  }));
-                }}
-              />
-              {goal}
-            </label>
-          ))}
+          <div className="checkbox-group">
+            {["Mentorship", "Funding Access", "Networking", "Skill Exchange"].map((goal) => (
+              <label key={goal} className="checkbox-label">
+                <div className="checkbox-wrapper">
+                  <input
+                    type="checkbox"
+                    className="styled-checkbox"
+                    name="platformExpectations"
+                    value={goal}
+                    onChange={(e) => {
+                      const { value, checked } = e.target;
+                      setFormData((prevState) => ({
+                        ...prevState,
+                        platformExpectations: checked
+                          ? [...prevState.platformExpectations, value]
+                          : prevState.platformExpectations.filter((item) => item !== value),
+                      }));
+                    }}
+                  />
+                </div>
+                <span className="checkbox-text">{goal}</span>
+              </label>
+            ))}
+          </div>
         </section>
 
         {/* Business Location */}
