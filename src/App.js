@@ -7,6 +7,7 @@ import AboutUs from './Pages/AboutUs/AboutUs';
 import Login from './Pages/Login/Login';
 import Mentorship from './Pages/Mentorship/TrainingAndWebinars';
 import Policy from './Pages/Policy/Policy';
+import ProfilePage from './Components/Profile/Profile';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path='/faqs' element = {<Faqs/>}/>
           <Route path='/mentorship' element = {<Mentorship/>}/>
           <Route path='/policy' element = {<Policy/>}/>
+          <Route path="/profile" element={<ProfilePage/>} />
         </Routes>
       <Footer/>
       </BrowserRouter>
