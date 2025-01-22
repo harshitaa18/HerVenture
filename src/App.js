@@ -8,6 +8,7 @@ import Login from './Pages/Login/Login';
 import Mentorship from './Pages/Mentorship/TrainingAndWebinars';
 import Policy from './Pages/Policy/Policy';
 import ProfilePage from './Components/Profile/Profile';
+import UserDashboard from './Components/Dashboard/Dashboard';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path='/mentorship' element = {<Mentorship/>}/>
           <Route path='/policy' element = {<Policy/>}/>
           <Route path="/profile" element={<ProfilePage/>} />
+          <Route path="/dashboard" element={<UserDashboard/>} />
         </Routes>
       <Footer/>
       </BrowserRouter>
