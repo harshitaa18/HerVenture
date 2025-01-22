@@ -1,7 +1,7 @@
 /* Navbar.css */
 
 .Navbar {
-    position: sticky; /* Or use position: fixed */
+    position: sticky;
     top: 0;           /* Stick to the top */
     z-index: 1000;
     display: flex;
@@ -52,10 +52,24 @@
   .Navbar-menu li a:hover {
     color: #61dafb;
   }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .Navbar {
+  /* Profile Icon Styling */
+.profile-icon img {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.profile-icon img:hover {
+  transform: scale(1.1);
+  border-color: #61dafb;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .Navbar {
       flex-direction: column;
       align-items: flex-start;
   }
@@ -74,3 +88,20 @@
       width: 35px;
   }
 }
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .Navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .Navbar-menu {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .Navbar-menu li {
+      margin: 10px 0;
+    }
+  }
+  
