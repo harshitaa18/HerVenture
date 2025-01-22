@@ -1,6 +1,9 @@
 /* Navbar.css */
 
 .Navbar {
+    position: sticky; /* Or use position: fixed */
+    top: 0;           /* Stick to the top */
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
