@@ -1,19 +1,20 @@
 /* Overall Container */
-.policies-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: 'Arial', sans-serif;
+.page-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
-/* Header */
-.policies-container h1{
-  font-size: 3rem;
-  font-weight: bold;
-  text-align: center;
-  color: #333;
-  margin-bottom: 20px;
+.policies-container {
+  flex: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  overflow-y: auto;
+  height: 100vh;
 }
+
 /* Search Bar */
 .search-container {
   text-align: center;
@@ -43,7 +44,9 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 40px;
 }
-
+.policies-list hr{
+  color:#b8378d;
+}
 /* Policy Card */
 .policy-card {
   background: #fff;
@@ -88,6 +91,38 @@
   text-align: center;
 }
 
+/* Fixed side images */
+.fixed-images {
+  margin-top: 30px;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.left-side {
+  left: 20px;
+}
+
+.right-side {
+  right: 20px;
+}
+
+.fixed-images img {
+  width: 260px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fixed-images img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .search-input {
@@ -96,5 +131,9 @@
 
   .header {
     font-size: 1.8rem;
+  }
+
+  .fixed-images img {
+    width: 100px;
   }
 }

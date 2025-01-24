@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import './Policy.css'; // Importing the CSS file
+import w1 from "../../Components/Assets/w1.png";
+import w2 from "../../Components/Assets/w2.png";
+import w3 from "../../Components/Assets/w3.jpeg";
+import w4 from "../../Components/Assets/w4.jpeg";
+import w5 from "../../Components/Assets/w5.jpeg";
+import w6 from "../../Components/Assets/w6.webp";
 
 const GovernmentPolicies = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -16,6 +22,7 @@ const GovernmentPolicies = () => {
         'Encouragement for small-scale industries',
         'Low-interest loans',
       ],
+      link: 'https://msme.gov.in/entrepreneurship-and-skill-development-programs',
     },
     {
       id: 2,
@@ -28,6 +35,7 @@ const GovernmentPolicies = () => {
         'Low-interest rates',
         'Support for women-led enterprises',
       ],
+      link: 'https://msme.gov.in/entrepreneurship-and-skill-development-programs',
     },
     {
       id: 3,
@@ -40,6 +48,7 @@ const GovernmentPolicies = () => {
         'Support for purchasing kitchen equipment',
         'Encourages food-related entrepreneurship',
       ],
+      link: 'https://msme.gov.in/entrepreneurship-and-skill-development-programs',
     },
     {
       id: 4,
@@ -52,6 +61,7 @@ const GovernmentPolicies = () => {
         'Focus on greenfield enterprises',
         'Support for innovation and job creation',
       ],
+      link: 'https://msme.gov.in/entrepreneurship-and-skill-development-programs',
     },
     {
       id: 5,
@@ -64,6 +74,7 @@ const GovernmentPolicies = () => {
         'Lower interest rates',
         'Support for large-scale businesses',
       ],
+      link: 'https://msme.gov.in/entrepreneurship-and-skill-development-programs',
     },
     {
       id: 6,
@@ -76,6 +87,7 @@ const GovernmentPolicies = () => {
         'Loans up to ₹50 lakh',
         'Empowers women in business ownership',
       ],
+      link: 'https://msme.gov.in/entrepreneurship-and-skill-development-programs',
     },
     {
       id: 7,
@@ -88,6 +100,7 @@ const GovernmentPolicies = () => {
         'Access to training and counseling',
         'Marketing support for businesses',
       ],
+      link: 'https://msme.gov.in/entrepreneurship-and-skill-development-programs',
     },
     {
       id: 8,
@@ -100,6 +113,7 @@ const GovernmentPolicies = () => {
         'Support for self-employment',
         'Encourages entrepreneurship',
       ],
+      link: 'https://msme.gov.in/entrepreneurship-and-skill-development-programs',
     },
     {
       id: 9,
@@ -112,6 +126,7 @@ const GovernmentPolicies = () => {
         'Encourages small enterprises',
         'Low-interest loans',
       ],
+      link: 'https://msme.gov.in/entrepreneurship-and-skill-development-programs',
     },
     {
       id: 10,
@@ -124,6 +139,7 @@ const GovernmentPolicies = () => {
         'Support for small businesses',
         'Focus on agriculture-related businesses',
       ],
+      link: 'https://msme.gov.in/entrepreneurship-and-skill-development-programs',
     },
     {
       id: 11,
@@ -136,6 +152,7 @@ const GovernmentPolicies = () => {
         'Mentorship opportunities',
         'Skill development support',
       ],
+      link: 'https://msme.gov.in/entrepreneurship-and-skill-development-programs',
     },
     {
       id: 12,
@@ -148,6 +165,7 @@ const GovernmentPolicies = () => {
         'Encourages coir production units',
         'Empowers rural women entrepreneurs',
       ],
+      link: 'https://msme.gov.in/entrepreneurship-and-skill-development-programs',
     },
     {
       id: 13,
@@ -160,6 +178,7 @@ const GovernmentPolicies = () => {
         'Training in agriculture and handicrafts',
         'Promotes economic independence',
       ],
+      link: 'https://msme.gov.in/entrepreneurship-and-skill-development-programs',
     },
     {
       id: 14,
@@ -172,6 +191,7 @@ const GovernmentPolicies = () => {
         'Training programs',
         'Support for business growth',
       ],
+      link: 'https://msme.gov.in/entrepreneurship-and-skill-development-programs',
     },
     {
       id: 15,
@@ -184,6 +204,7 @@ const GovernmentPolicies = () => {
         'Support for manufacturing industries',
         'Encourages service-oriented businesses',
       ],
+      link: 'https://msme.gov.in/entrepreneurship-and-skill-development-programs',
     },
   ];
   
@@ -191,46 +212,56 @@ const GovernmentPolicies = () => {
   const filteredPolicies = policies.filter((policy) =>
     policy.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  
+
   return (
-    <div className="policies-container">
-      <h1>Government Policies for Women Entrepreneurs</h1>
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search policies..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="search-input"
-        />
+    <div className="page-container">
+      <div className="fixed-images left-side">
+        <img src={w1} alt="Policy" />
+        <img src={w2} alt="Policy" />
+        <img src={w6} alt="Policy" />
       </div>
-      <div className="policies-list">
-        {filteredPolicies.length > 0 ? (
-          filteredPolicies.map((policy) => (
-            <div key={policy.id} className="policy-card">
-              <h2 className="policy-name">{policy.name}</h2>
-              <p className="policy-description">{policy.description}</p>
-              <hr />
-              <p>
-                <strong>Eligibility:</strong> {policy.eligibility}
-              </p>
-              <hr />
-              <p>
-                <strong>Benefits:</strong>
-              </p>
-              <ul className="policy-benefits">
-                {policy.benefits.map((benefit, index) => (
-                  <li key={index}>{benefit}</li>
-                ))}
-              </ul>
-            </div>
-          ))
-        ) : (
-          <p className="no-policies">No policies found matching your search.</p>
-        )}
+
+      <div className="policies-container">
+        <h1>Government Policies for Women Entrepreneurs</h1>
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search policies..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-input"
+          />
+        </div>
+        <div className="policies-list">
+          {filteredPolicies.length > 0 ? (
+            filteredPolicies.map((policy) => (
+              <a key={policy.id} href={policy.link} target="_blank" rel="noopener noreferrer" className="policy-card">
+                <h2 className="policy-name">{policy.name}</h2>
+                <p className="policy-description">{policy.description}</p>
+                <hr />
+                <p><strong>Eligibility:</strong> {policy.eligibility}</p>
+                <hr />
+                <p><strong>Benefits:</strong></p>
+                <ul className="policy-benefits">
+                  {policy.benefits.map((benefit, index) => (
+                    <li key={index}>{benefit}</li>
+                  ))}
+                </ul>
+              </a>
+            ))
+          ) : (
+            <p className="no-policies">No policies found matching your search.</p>
+          )}
+        </div>
+      </div>
+
+      <div className="fixed-images right-side">
+        <img src={w5} alt="Policy" />
+        <img src={w4} alt="Policy" />
+        <img src={w3} alt="Policy" />
       </div>
     </div>
   );
-};  
+};
 
 export default GovernmentPolicies;
