@@ -10,7 +10,8 @@ import Policy from './Pages/Policy/Policy';
 import ProfilePage from './Components/Profile/Profile';
 import UserDashboard from './Components/Dashboard/Dashboard';
 import ExplorePage from './Pages/ExplorePage/ExplorePage';
-
+import FundingPage from './Pages/ExplorePage/FundingPage';
+import InvestorDetails from './Pages/ExplorePage/InvestorsDetails';
 
 function App() {
 
@@ -28,7 +29,8 @@ function App() {
           <Route path="/profile" element={<ProfilePage/>} />
           <Route path="/dashboard" element={<UserDashboard/>} />
           <Route path='/explore' element = {<ExplorePage/>}/>
-
+        <Route path="/funding" element={<FundingPage />} />
+        <Route path="/investor/:id" element={<InvestorDetails />} />
         </Routes>
       <Footer/>
       </BrowserRouter>

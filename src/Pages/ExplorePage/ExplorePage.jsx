@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ExplorePage.css';
 
 const ExplorePage = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="explore-page-container">
       <h1>Explore Opportunities</h1>
@@ -22,7 +25,7 @@ const ExplorePage = () => {
       <section className="explore-section">
         <h2>Funding Opportunities</h2>
         <p>Explore curated listings of investors, grants, and accelerator programs based on your startup type.</p>
-        <button className="explore-button">Discover Funding</button>
+        <button className="explore-button" onClick={() => navigate('/funding')}>Discover Funding</button>
       </section>
     </div>
   );

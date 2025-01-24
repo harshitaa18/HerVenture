@@ -1,58 +1,76 @@
 /* Navbar.css */
 
 .Navbar {
-    position: sticky;
-    top: 0;           /* Stick to the top */
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #282c34;
-    padding: 10px 20px;
-    color: white;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  .logo {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo img {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  
-  .logo p {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 0;
-  }
-  
-  .Navbar-menu {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .Navbar-menu li {
-    margin: 0 15px;
-  }
-  
-  .Navbar-menu li a {
-    text-decoration: none;
-    color: white;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-  }
-  
-  .Navbar-menu li a:hover {
-    color: #61dafb;
-  }
-  /* Profile Icon Styling */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #282c34;
+  padding: 15px 30px;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo Section */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.logo p {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+/* Navigation Menu */
+.Navbar-menu {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.Navbar-menu li {
+  margin: 0 20px;
+}
+
+.Navbar-menu li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.Navbar-menu li a:hover {
+  color: #61dafb;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Profile Icon */
+.profile-icon {
+  display: flex;
+  align-items: center;
+}
+
 .profile-icon img {
   height: 45px;
   width: 45px;
@@ -71,37 +89,27 @@
 @media (max-width: 768px) {
   .Navbar {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
+      padding: 15px;
   }
 
   .Navbar-menu {
       flex-direction: column;
       width: 100%;
+      align-items: center;
+      padding: 10px 0;
   }
 
   .Navbar-menu li {
       margin: 10px 0;
   }
 
+  .profile-icon {
+      margin-top: 10px;
+  }
+
   .profile-icon img {
-      height: 35px;
-      width: 35px;
+      height: 40px;
+      width: 40px;
   }
 }
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .Navbar {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .Navbar-menu {
-      flex-direction: column;
-      width: 100%;
-    }
-  
-    .Navbar-menu li {
-      margin: 10px 0;
-    }
-  }
-  
