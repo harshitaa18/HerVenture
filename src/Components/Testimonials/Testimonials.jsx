@@ -5,6 +5,7 @@ import pic2 from "../Assets/pic2.jpeg";
 import pic3 from "../Assets/pic3.jpg";
 import pic4 from "../Assets/pic4.jpeg";
 import pic5 from "../Assets/pic5.jpeg";
+//import pic6 from ".././Assets/pic6.jpeg";
 import pic6 from "../Assets/pic6.jpeg";
 
 const testimonials = [

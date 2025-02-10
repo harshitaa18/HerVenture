@@ -1,4 +1,65 @@
+.main_header {
+    position: relative;
+    width: 100%;
+    height: 50vh; /* Half screen height */
+    background: url("../Assets/background2.jpg") no-repeat center center;
+    background-size: cover; /* Make the image cover the container */
+    display: flex;
+    align-items: flex-start; /* Align content to the top */
+    justify-content: flex-end; /* Align content to the right */
+}
 
+.main_header-overlay {
+    background: rgba(0, 0, 0, 0); /* Semi-transparent overlay for readability */
+    width: 100%;
+    height: 100%;
+    position: absolute; /* Covers the entire header */
+    top: 0;
+    left: 0;
+}
+
+.main_header-container {
+    position: relative; /* To keep the text above the overlay */
+    z-index: 2; /* Ensure it appears on top */
+    text-align: left;
+    color: #282C34;
+    padding: 2rem;
+    max-width: 800px; /* Restrict text width */
+}
+
+.main_header-text h4 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+    color: purple;
+    ; /* Optional: Highlight text */
+}
+
+.main_header-text h1 {
+    font-size: 3rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.main_header-text p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.main_header-btn {
+    background-color: purple;
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.main_header-btn:hover {
+    background-color: rgb(192, 94, 192);
+}
 .header img {
     width: 100%;
     height: 600px;
@@ -6,3 +67,7 @@
     border-radius: 10px; /* Optional rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+  
+  
+  
+
