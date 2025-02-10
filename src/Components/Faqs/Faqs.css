@@ -1,10 +1,29 @@
 .Faqs {
     display: flex;
+    flex-direction: column;
     gap: 20px;
     font-family: Arial, sans-serif;
     padding: 20px;
   }
-  
+  .special {
+    align-items: center;
+  }
+  .Faqs-title{
+    font-size: 3rem;
+    font-weight: bold;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, purple, pink);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .faqs-total{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    font-family: Arial, sans-serif;
+    
+  }
   .faq-sidebar {
     width: 25%;
     background: linear-gradient(135deg, purple, pink);
