@@ -1,17 +1,18 @@
 import {Routes,Route, BrowserRouter} from 'react-router-dom'
+import "./i18n";
 import Homepage from './Pages/Homepage/Homepage'
 import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/Navbar/Navbar";
 import Faqs from './Components/Faqs/Faqs';
 import AboutUs from './Pages/AboutUs/AboutUs';
-import Login from './Pages/Login/Login';
+import Login from './Pages/ExplorePage/Login/Login';
 import Mentorship from './Pages/Mentorship/TrainingAndWebinars';
 import Policy from './Pages/Policy/Policy';
 import ProfilePage from './Components/Profile/Profile';
 import UserDashboard from './Components/Dashboard/Dashboard';
 import ExplorePage from './Pages/ExplorePage/ExplorePage';
-import FundingPage from './Pages/ExplorePage/FundingPage';
-import InvestorDetails from './Pages/ExplorePage/InvestorsDetails';
+import FundingPage from './Pages/ExplorePage/Landowner';
+import InvestorDetails from './Pages/ExplorePage/Entreprenuer';
 
 function App() {
 
