@@ -8,7 +8,6 @@ import Login from './Pages/ExplorePage/Login/Login';
 import Mentorship from './Pages/Mentorship/TrainingAndWebinars';
 import Policy from './Pages/Policy/Policy';
 import UserDashboard from './Components/Dashboard/Dashboard';
-import ExplorePage from './Pages/ExplorePage/ExplorePage';
 import FundingPage from './Pages/ExplorePage/Landowner/Landowner';
 import InvestorDetails from './Pages/ExplorePage/Entrepreneur/Entreprenuer';
 
@@ -25,7 +24,6 @@ function App() {
           <Route path='/mentorship' element = {<Mentorship/>}/>
           <Route path='/policy' element = {<Policy/>}/>
           <Route path="/dashboard" element={<UserDashboard/>} />
-          <Route path='/explore' element = {<ExplorePage/>}/>
         <Route path="/funding" element={<FundingPage />} />
         <Route path="/investor/:id" element={<InvestorDetails />} />
         </Routes>
