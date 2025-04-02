@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Testimonials.css";
-import pic1 from "../Assets/pic1.jpeg";
+import pic1 from "../Assets/images.jpg";
 import pic2 from "../Assets/pic2.jpeg";
-import pic3 from "../Assets/pic3.jpeg";
+import pic3 from "../Assets/pic3.jpg";
 import pic4 from "../Assets/pic4.jpeg";
 import pic5 from "../Assets/pic5.jpeg";
 // import pic6 from "../Assets/pic6.jpeg";

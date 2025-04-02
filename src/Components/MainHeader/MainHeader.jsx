@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import HeaderImage from "../Assets/background2.jpg";
 import "./MainHeader.css";
+<<<<<<< HEAD
 // import post from "../"
 
+=======
+import post from '../Assets/post.webp'
+>>>>>>> 8e931a1e19a247200e7279f13e9b83cfa27e81d9
 const MainHeader = () => {
   return (
 
@@ -25,5 +29,5 @@ const MainHeader = () => {
     </header>
   );
 };
-
 export default MainHeader;
+

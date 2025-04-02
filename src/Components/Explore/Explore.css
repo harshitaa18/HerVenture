@@ -1,0 +1,97 @@
+/* Explore.css */
+
+/* Main container with gradient background */
+.explore-container {
+    display: flex;
+    height: 100vh;
+    background: #ffff;
+    color: linear-gradient(135deg, purple, pink);
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Left section */
+  .explore-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* Scrolling image container */
+  .scrolling-image-container {
+    width: 90%;
+    height: 80%;
+    overflow: hidden;
+    border-radius: 10px;
+    border: linear-gradient(135deg, purple, pink);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+  
+  /* Image with scrolling animation */
+  .scrolling-image {
+    width: 150%; /* Wider than the container to create scrolling effect */
+    height: 100%;
+    animation: scrollImage 10s linear infinite;
+    object-fit: cover;
+  }
+  
+  /* Keyframes for scrolling animation */
+  @keyframes scrollImage {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  /* Right section */
+  .explore-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  /* Heading in right section */
+  .explore-right h2 {
+    font-size: 56px;
+    color: rgb(195, 85, 158);
+    margin-bottom: 20px;
+  }
+  
+  /* Paragraph in right section */
+  .explore-right p {
+    font-size: 21px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    font-weight: 400;
+    margin-bottom: 50px;
+  }
+  
+  /* Button in right section */
+  .explore-button {
+    padding: 20px 25px;
+    height: 70px;
+    width: 265.31px;
+    font-size: 16px;
+    color: white;
+    background: linear-gradient(135deg, purple, pink);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: larger;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .explore-button:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+  }
+  
