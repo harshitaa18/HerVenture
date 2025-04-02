@@ -4,6 +4,7 @@
     background-position: center;
     border-bottom: 2px solid white;
     position: relative;
+    padding-top: 1rem;
     background: linear-gradient(135deg, #6a1b9a, #8e24aa);
     /* margin-bottom: 10rem; */
     color: white; /* To make the text visible on the image */
@@ -38,7 +39,8 @@
     z-index: 1;
     width: 60%;
     padding: 20px;
-    text-align: left;
+    text-align: center;
+    margin: 0 auto;
 }
 .header_content h2{
     margin-bottom: 1rem;
@@ -49,7 +51,7 @@
 }
 .header_content p {
     font-size: 1.1rem;
-    text-align: left;
+    text-align: center;
     margin-bottom: 1rem;
     color: white; /* Ensure the text appears white */
 }
@@ -69,6 +71,7 @@ p{
 .team h2{
     text-align: center;
     font-size: 3rem;
+    margin-top: 4rem;
     font-weight: bold;
     margin-bottom: 3rem;
 }

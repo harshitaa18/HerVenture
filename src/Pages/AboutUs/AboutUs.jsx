@@ -32,31 +32,31 @@ export const AboutUs = () => {
     return (
         <>
             <Header title="About Us" image={HeaderImage}>
-                <p>At HerVenture, we are driven by a simple but powerful mission — to uplift, support, and celebrate women entrepreneurs.Our platform serves as a catalyst for growth, offering mentorship, resources, and a vibrant community where women can connect, collaborate, and succeed.</p>
+                <p>HerVenture empowers women entrepreneurs by providing mentorship, resources, and a supportive community to foster growth, collaboration, and success.</p>
             </Header>
+            
+            {/* Meet the Team section moved before Know More */}
+            <Team />
+            
             <section className="about_story">
                 <div className="container about_story-container">
-                    {/* <div className="about_section-image">
-                        <img src="path_to_your_image.jpg" alt="About Us" /> 
-                    </div> */}
                    <div className="container-2">
-      <h2 className="heading">WANT HELP TO GROW YOUR BUSINESS?</h2>
-      <p className="subtext">We’ve got you covered!</p>
-      <div className="feature-list">
-        {features.map((feature, index) => (
-          <div key={index} className="feature-item">
-            <div className="feature-icon">{feature.icon}</div>
-            <div>
-              <h3 className="feature-title">{feature.title}</h3>
-              <p className="feature-description">{feature.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+                        <h2 className="heading">WANT HELP TO GROW YOUR BUSINESS?</h2>
+                        <p className="subtext">We’ve got you covered!</p>
+                        <div className="feature-list">
+                            {features.map((feature, index) => (
+                                <div key={index} className="feature-item">
+                                    <div className="feature-icon">{feature.icon}</div>
+                                    <div>
+                                        <h3 className="feature-title">{feature.title}</h3>
+                                        <p className="feature-description">{feature.description}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </section>
-            <Team />
         </>
     );
 };
