@@ -10,7 +10,6 @@ const Team = () => {
     {
       img: Harshita,
       name: 'Harshita Sharma',
-      designation: 'Designation 1',
       instagram: 'https://www.instagram.com/harshitaa_184?igsh=MTZvZGdjb3Q3NzEwcg==',
       linkedin: 'https://www.linkedin.com/in/harshita-sharma-473915255/',
       email: '22uec053@lnmiit.ac.in',
@@ -18,7 +17,6 @@ const Team = () => {
     {
       img: Mtree,
       name: 'Maitreyee Kulkarni',
-      designation: 'Designation 2',
       instagram: 'https://www.instagram.com/maitreyee_1102?igsh=MzhoZ2EzbDRmaGFt',
       linkedin: 'https://www.linkedin.com/in/maitreyee-kulkarni-b94141259/',
       email: '22ucc060@lnmiit.ac.in',
@@ -26,7 +24,6 @@ const Team = () => {
     {
       img: PalakImage,
       name: 'Palak Kabra',
-      designation: 'Designation 3',
       instagram: 'https://www.instagram.com/kabra_palak?igsh=MXNyNTZtZGRxZ2N2bw==',
       linkedin: 'https://www.linkedin.com/in/palak-kabra-3a2646275/',
       email: '22uec089@lnmiit.ac.in',

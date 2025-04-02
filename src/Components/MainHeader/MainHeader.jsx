@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import HeaderImage from "../Assets/background2.jpg";
 import "./MainHeader.css";
+// import post from "../"
 
 const MainHeader = () => {
   return (
+
     <header className="main_header">
       <div className="main_header-overlay">
         <div className="container main_header-container">
