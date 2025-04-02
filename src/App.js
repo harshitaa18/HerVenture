@@ -11,8 +11,8 @@ import Policy from './Pages/Policy/Policy';
 import ProfilePage from './Components/Profile/Profile';
 import UserDashboard from './Components/Dashboard/Dashboard';
 import ExplorePage from './Pages/ExplorePage/ExplorePage';
-import FundingPage from './Pages/ExplorePage/Landowner';
-import InvestorDetails from './Pages/ExplorePage/Entreprenuer';
+import FundingPage from './Pages/ExplorePage/Landowner/Landowner';
+import InvestorDetails from './Pages/ExplorePage/Entrepreneur/Entreprenuer';
 
 function App() {
 
