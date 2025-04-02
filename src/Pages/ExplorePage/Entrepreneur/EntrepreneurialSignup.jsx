@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./EntrepreneurialSignup.css";
+import { Link } from "react-router-dom";
 
 const EntrepreneurSignup = () => {
   const [formData, setFormData] = useState({
@@ -31,7 +32,9 @@ const EntrepreneurSignup = () => {
         <input type="text" name="businessLicense" placeholder="Business License (Optional)" value={formData.businessLicense} onChange={handleChange} />
         <textarea name="aboutBusiness" placeholder="About Your Business (100-150 words)" value={formData.aboutBusiness} onChange={handleChange} required />
         <input type="text" name="location" placeholder="Location/Address" value={formData.location} onChange={handleChange} required />
-        <button type="submit" className="signup-button">Sign Up</button>
+        <Link href="">
+          <button type="submit" className="signup-button">Sign Up</button>
+        </Link>
       </form>
     </div>
   );
