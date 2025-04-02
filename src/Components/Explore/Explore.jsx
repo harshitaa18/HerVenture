@@ -34,7 +34,7 @@ const Explore = () => {
         <button className="explore-button">
           Explore Now
         </button>
-      </Link>
+        </Link>
       </div>
     </div>
   );
