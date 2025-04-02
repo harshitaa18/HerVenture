@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import HeaderImage from "../Assets/background2.jpg";
+//import HeaderImage from "../Assets/background2.jpg";
 import "./MainHeader.css";
-import post from '../Assets/post.webp'
+//import post from '../Assets/post.webp'
 const MainHeader = () => {
   return (
     <header className="main_header">
