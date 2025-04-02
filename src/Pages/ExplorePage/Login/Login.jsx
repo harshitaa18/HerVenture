@@ -1,78 +1,57 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import "./Login.css";
 
-const Login = () => {
-  const [isLogin, setIsLogin] = useState(true);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+const SignInPage = () => {
+  const [role, setRole] = useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const roles = ["landowner", "skilled-labour", "entrepreneur", "supplier"];
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSignIn = (e) => {
     e.preventDefault();
-    if (isLogin) {
-      console.log("Login Data:", { email: formData.email, password: formData.password });
-      alert("Logged in successfully!");
-    } else {
-      console.log("Signup Data:", formData);
-      alert("Signed up successfully!");
-    }
+    console.log("Signing in as", role, "with email:", email);
   };
 
   return (
-    <div className="auth-container">
-      <h2>{isLogin ? "Login" : "Sign Up"}</h2>
-      <form onSubmit={handleSubmit}>
-        {!isLogin && (
-          <input
-            type="text"
-            name="name"
-            placeholder="Full Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        )}
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        {isLogin ? (
-            <Link to="/">
-          <button type="submit">Login</button>
-          </Link>
+    <div className="signin-container">
+      <div className="signin-card">
+        {!role ? (
+          <div className="role-selection">
+            <h2>Select Your Role</h2>
+            {roles.map((r) => (
+              <button key={r} className="role-button" onClick={() => setRole(r)}>
+                {r.charAt(0).toUpperCase() + r.slice(1)}
+              </button>
+            ))}
+          </div>
         ) : (
-          <Link to="/profile">
-            <button type="submit">Sign Up</button>
-          </Link>
+          <div className="signin-form">
+            <h2>Sign In as {role}</h2>
+            <form onSubmit={handleSignIn}>
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <button type="submit" className="signin-button">Sign In</button>
+            </form>
+            <button className="change-role-button" onClick={() => setRole(null)}>
+              Change Role
+            </button>
+          </div>
         )}
-      </form>
-      <p>
-        {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
-        <Link to="#" onClick={() => setIsLogin(!isLogin)}>
-          {isLogin ? "Sign Up" : "Login"}
-        </Link>
-      </p>
+      </div>
     </div>
   );
 };
 
-export default Login;
+export default SignInPage;
