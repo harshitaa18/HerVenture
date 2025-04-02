@@ -1,68 +1,172 @@
-.profile-container {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+/* ===== Global Styles ===== */
+:root {
+    --primary-color: #6e8efb;
+    --secondary-color: #a777e3;
+    --text-color: #333;
+    --bg-light: #f8f9fa;
+    --bg-dark: #212529;
+    --card-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   }
   
+  body {
+    font-family: "Poppins", sans-serif;
+    background: var(--bg-light);
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* ===== Profile Container ===== */
+  .profile-container {
+    width: 85%;
+    max-width: 1100px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .profile-container:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* ===== Profile Card ===== */
   .profile-card {
     text-align: center;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border-radius: 15px;
+    position: relative;
   }
   
   .profile-image {
-    width: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
+    border: 5px solid white;
+    margin-bottom: 10px;
   }
   
+  .profile-card h2 {
+    font-size: 24px;
+    margin: 10px 0;
+  }
+  
+  .profile-card p {
+    font-size: 16px;
+    opacity: 0.9;
+  }
+  
+  /* ===== Tabs ===== */
   .tabs {
     display: flex;
-    justify-content: space-around;
-    margin: 20px 0;
+    justify-content: space-between;
+    margin: 30px 0;
+    border-bottom: 2px solid #ddd;
   }
   
   .tabs button {
-    padding: 10px;
+    flex: 1;
+    padding: 15px;
     border: none;
-    background: lightgray;
+    background: none;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
-    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+    color: var(--text-color);
+    position: relative;
   }
   
-  .tabs button.active {
-    background: #007bff;
-    color: white;
+  .tabs button::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 3px;
+    background: var(--primary-color);
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease-in-out;
   }
   
+  .tabs button:hover::after,
+  .tabs .active::after {
+    width: 100%;
+  }
+  
+  /* ===== Sections ===== */
   .section {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
   }
   
+  .section h3 {
+    font-size: 22px;
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+    display: inline-block;
+    padding-bottom: 5px;
+  }
+  
+  /* ===== Cards (Workers, Landowners, Suppliers) ===== */
   .card {
-    display: flex;
-    justify-content: space-between;
-    background: #f8f8f8;
-    padding: 10px;
+    background: white;
+    padding: 15px;
     margin: 10px 0;
-    border-radius: 5px;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   
-  .contact-btn, .inquire-btn {
-    background: #007bff;
+  .card:hover {
+    transform: scale(1.02);
+  }
+  
+  .card p {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-color);
+  }
+  
+  /* ===== Contact/Inquire Buttons ===== */
+  .contact-btn,
+  .inquire-btn {
+    padding: 10px 20px;
+    background: var(--primary-color);
     color: white;
     border: none;
-    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
     cursor: pointer;
-    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
   }
   
-  .contact-btn:hover, .inquire-btn:hover {
-    background: #0056b3;
+  .contact-btn:hover,
+  .inquire-btn:hover {
+    background: var(--secondary-color);
+    transform: scale(1.05);
+  }
+  
+  /* ===== Responsive Design ===== */
+  @media (max-width: 768px) {
+    .profile-container {
+      width: 95%;
+    }
+  
+    .tabs {
+      flex-direction: column;
+    }
+  
+    .tabs button {
+      width: 100%;
+      text-align: center;
+    }
   }
   

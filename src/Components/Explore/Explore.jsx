@@ -1,14 +1,9 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import './Explore.css';
 import img2 from "../../Components/Assets/explore_comp.png";
+import { Link } from 'react-router-dom';
 
 const Explore = () => {
-  const navigate = useNavigate();
-
-  const handleExploreClick = () => {
-    navigate('/explore');
-  };
 
   return (
     <div className="explore-container">
@@ -35,9 +30,11 @@ const Explore = () => {
           <b>Unleash</b> your potential, ignite your passion,
           and transform your startup journey today.
         </p>
-        <button className="explore-button" onClick={handleExploreClick}>
+        <Link to="/login"> 
+        <button className="explore-button">
           Explore Now
         </button>
+      </Link>
       </div>
     </div>
   );
