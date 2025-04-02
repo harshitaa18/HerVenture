@@ -11,6 +11,7 @@ import UserDashboard from './Components/Dashboard/Dashboard';
 import FundingPage from './Pages/ExplorePage/Landowner/Landowner';
 import InvestorDetails from './Pages/ExplorePage/Entrepreneur/Entreprenuer';
 import Signup from './Pages/ExplorePage/LoginOrSignup/Signup'
+import Profile from './Pages/ExplorePage/profile'
 
 function App() {
 
@@ -22,9 +23,10 @@ function App() {
           <Route path="/" element={<Homepage/>}/>
           <Route path='/aboutUs' element = {<AboutUs/>}/>
           <Route path='/login' element = {<Login/>}/>
-          <Route path='signup' element= {<Signup/>}/>
+          <Route path='/signup' element= {<Signup/>}/>
           <Route path='/mentorship' element = {<Mentorship/>}/>
           <Route path='/policy' element = {<Policy/>}/>
+          <Route path='/profile' element = {<Profile/>}/>
           <Route path="/dashboard" element={<UserDashboard/>} />
         <Route path="/funding" element={<FundingPage />} />
         <Route path="/investor/:id" element={<InvestorDetails />} />

@@ -5,14 +5,14 @@ import Testimonials from '../../Components/Testimonials/Testimonials';
 import MainHeader from '../../Components/MainHeader/MainHeader';
 import Faqs from '../../Components/Faqs/Faqs';
 import Explore from '../../Components/Explore/Explore';
-import E_p from '../ExplorePage/Entrepreneur/Entrepreneur_profile'
+import Ep from '../ExplorePage/profile'
 function Homepage() {
   return (
     <div>
       <MainHeader/>
       <Explore/>
       <Testimonials />
-      <E_p/>
+      <Ep/>
       <Faqs/>
     </div>
   )
