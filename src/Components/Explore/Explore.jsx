@@ -30,7 +30,7 @@ const Explore = () => {
           <b>Unleash</b> your potential, ignite your passion,
           and transform your startup journey today.
         </p>
-        <Link to="/login"> 
+        <Link to="/signup"> 
         <button className="explore-button">
           Explore Now
         </button>
