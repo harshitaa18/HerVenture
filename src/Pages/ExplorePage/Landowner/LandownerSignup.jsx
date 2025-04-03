@@ -1,7 +1,12 @@
 import { useState } from "react";
 import "./LandownerSignup.css";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useUser } from "../../../Context/UserContext";
 
 const LandOwnerSignup = () => {
+  const { setUser } = useUser(); // Get function to set user data
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     contact: "",
@@ -26,7 +31,20 @@ const LandOwnerSignup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Land Owner Signup Data:", formData);
+
+    const newUser = {
+      name: formData.name,
+      role: "landowner",
+      landSize: formData.landSize,
+      expectedPayment: formData.expectedPayment,
+      location: formData.location,
+      rentOrSell: formData.rentOrSell,
+    };
+
+    setUser(newUser); // Save user in context
+
+    // Navigate to profile page after signup
+    navigate("/profile");
   };
 
   return (

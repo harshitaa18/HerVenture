@@ -1,7 +1,12 @@
 import { useState } from "react";
 import "./SkilledSignup.css";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useUser } from "../../../Context/UserContext"; 
 
 const SkilledLaborSignup = () => {
+  const { setUser } = useUser(); // Get function to set user data
+  const navigate = useNavigate(); // Initialize navigation
+
   const [formData, setFormData] = useState({
     name: "",
     contact: "",
@@ -10,6 +15,7 @@ const SkilledLaborSignup = () => {
     skillset: "",
     certifications: "",
     location: "",
+    experience: "",
     workSamples: null,
   });
 
@@ -24,7 +30,19 @@ const SkilledLaborSignup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Skilled Labor Signup Data:", formData);
+
+    const newUser = {
+      name: formData.name,
+      role: "skilled labor",
+      skill: formData.skillset,
+      experience: formData.experience,
+      expectedSalary: formData.expectedSalary,
+    };
+
+    setUser(newUser); // Save user in context
+
+    // Navigate to profile page after signup
+    navigate("/profile");
   };
 
   return (
@@ -36,6 +54,7 @@ const SkilledLaborSignup = () => {
         <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
         <input type="text" name="expectedSalary" placeholder="Expected Salary" onChange={handleChange} required />
         <input type="text" name="skillset" placeholder="Skillset" onChange={handleChange} required />
+        <input type="text" name="experience" placeholder="Experience" onChange={handleChange} required />
         <input type="text" name="certifications" placeholder="Certifications (if any)" onChange={handleChange} />
         <input type="text" name="location" placeholder="Location/Address" onChange={handleChange} required />
         <input type="file" multiple accept="image/*" onChange={handleFileChange} />

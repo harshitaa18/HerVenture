@@ -27,10 +27,10 @@ const EntrepreneurSignup = () => {
     // Simulate user signup and save user data
     const newUser = {
       name: formData.name,
-      photo: "/default-profile.jpg", // Default profile image (Can replace with upload later)
       role: "entrepreneur",
       business: formData.aboutBusiness,
       location: formData.location,
+      contact: formData.contact,
     };
 
     setUser(newUser); // Save user in context
