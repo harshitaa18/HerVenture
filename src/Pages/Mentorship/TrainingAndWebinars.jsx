@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import "./TrainingAndWebinar.css";
-import img1 from "../../Components/Assets/img5.jpg";
-import img2 from "../../Components/Assets/webinar-banner.jpg";
-import img3 from "../../Components/Assets/webinar-banner-2.webp";
+import img1 from "../../Components/Assets/market.webp";
+import img2 from "../../Components/Assets/tax.webp";
+import img3 from "../../Components/Assets/property.jpg";
+import img4 from "../../Components/Assets/img5.jpg";
+import img6 from "../../Components/Assets/webinar-banner-2.webp";
+import img7 from "../../Components/Assets/webinar-banner.jpg";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
@@ -17,7 +20,7 @@ const TrainingAndWebinars = () => {
       title: "Marketing Strategies for Startups",
       date: "2025-02-10",
       mentor: "Anukriti",
-      img: img2,
+      img: img4,
       description: "Learn effective marketing strategies to grow your startup from industry experts.",
       link : "https://www.youtube.com/watch?v=-4nBFy4SJK4",
     },
@@ -26,7 +29,7 @@ const TrainingAndWebinars = () => {
       title: "Legal Compliance Basics",
       date: "2025-02-15",
       mentor: "Diya",
-      img: img3,
+      img: img6,
       description: "Understand the legal requirements and compliance essentials for startups.",
       link : "https://www.youtube.com/watch?v=-4nBFy4SJK4",
     },
@@ -35,7 +38,7 @@ const TrainingAndWebinars = () => {
       title: "Financial Planning 101",
       date: "2025-02-20",
       mentor: "Shreya",
-      img: img1,
+      img: img7,
       description: "Master the basics of financial planning to ensure your startup's success.",
       link : "https://www.youtube.com/watch?v=-4nBFy4SJK4",
     },
