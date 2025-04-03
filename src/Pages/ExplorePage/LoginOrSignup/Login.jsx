@@ -2,10 +2,10 @@ import { useState } from "react";
 import "./Login.css";
 
 const SignInPage = () => {
-  const [role, setRole] = useState(null);
+  const [role, setRole] = useState("entrepreneur");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const roles = ["landowner", "skilled-labour", "entrepreneur", "supplier"];
+  const roles = ["entrepreneur", "skilled-labor", "land-owner", "supplier"];
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -15,41 +15,41 @@ const SignInPage = () => {
   return (
     <div className="signin-container">
       <div className="auth-card">
-        {!role ? (
-          <div className="role-selection">
-            <h2>Select Your Role</h2>
-            {roles.map((r) => (
-              <button key={r} className="role-button" onClick={() => setRole(r)}>
-                {r.charAt(0).toUpperCase() + r.slice(1)}
-              </button>
-            ))}
-          </div>
-        ) : (
-          <div className="signin-form">
-            <h2>Sign In as {role}</h2>
-            <form onSubmit={handleSignIn}>
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              <button type="submit" className="signin-button">Sign In</button>
-            </form>
-            <button className="change-role-button" onClick={() => setRole(null)}>
-              Change Role
-            </button>
-          </div>
-        )}
-        </div>
+        <h2>Sign In</h2>
+
+        {/* Role Dropdown */}
+        <select
+          className="role-dropdown"
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+        >
+          {roles.map((r) => (
+            <option key={r} value={r}>
+              {r.charAt(0).toUpperCase() + r.slice(1).replace("-", " ")}
+            </option>
+          ))}
+        </select>
+
+        <form onSubmit={handleSignIn}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit" className="signin-button">
+            Sign In
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

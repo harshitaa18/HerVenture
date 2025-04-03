@@ -1,43 +1,75 @@
+/* Apply gradient to the background */
+
+
 .signup-form-container {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 400px;
-    max-width: 90%;
-    text-align: center;
-  }
-  
-  .signup-form-container h2 {
-    margin-bottom: 20px;
-    color: #8e44ad;
-  }
-  
-  .signup-form-container input,
-  .signup-form-container textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .signup-form-container textarea {
-    height: 100px;
-    resize: none;
-  }
-  
-  .signup-button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background: #8e44ad;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .signup-button:hover {
-    background: #6c3483;
-  }
-  
+  background: linear-gradient(135deg, #8e44ad, #ff758c);
+  padding: 50px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  max-width: 80%;
+  text-align: center;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: auto;
+}
+
+/* Title Styling */
+.signup-form-container h2 {
+  margin-bottom: 30px;
+  color: #8e44ad;
+  font-size: 26px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Input Fields */
+.signup-form-container input,
+.signup-form-container textarea {
+  width: 90%;
+  padding: 15px;
+  margin-bottom: 20px;
+  margin-right: 10px; /* Adds right margin */
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-size: 18px;
+  background: #f9f9f9;
+  transition: 0.3s;
+}
+
+.signup-form-container input:focus,
+.signup-form-container textarea:focus {
+  border-color: #ff758c;
+  outline: none;
+  background: #fff;
+}
+
+.signup-form-container textarea {
+  height: 140px;
+  resize: none;
+}
+
+/* Button Styling */
+.signup-button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background: #ff758c;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.signup-button:hover {
+  background: #d64e8b;
+  transform: translateY(-3px);
+}
+
+.signup-button:active {
+  transform: translateY(0);
+}

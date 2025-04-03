@@ -12,6 +12,10 @@ import FundingPage from './Pages/ExplorePage/Landowner/Landowner';
 import InvestorDetails from './Pages/ExplorePage/Entrepreneur/Entreprenuer';
 import Signup from './Pages/ExplorePage/LoginOrSignup/Signup'
 import Profile from './Pages/ExplorePage/profile'
+import EntrepreneurSignup from './Pages/ExplorePage/Entrepreneur/EntrepreneurialSignup';
+import SkilledLaborSignup from './Pages/ExplorePage/Skilledlabour/SkilledSignup';
+import SupplierSignup from './Pages/ExplorePage/Supplier/SupplierSignup';
+import LandOwnerSignup from './Pages/ExplorePage/Landowner/LandownerSignup';
 
 function App() {
 
@@ -23,6 +27,10 @@ function App() {
           <Route path="/" element={<Homepage/>}/>
           <Route path='/aboutUs' element = {<AboutUs/>}/>
           <Route path='/login' element = {<Login/>}/>
+          <Route path="/signup/entrepreneur" element={<EntrepreneurSignup />} />
+        <Route path="/signup/skilled-labor" element={<SkilledLaborSignup />} />
+        <Route path="/signup/land-owner" element={<LandOwnerSignup />} />
+        <Route path="/signup/supplier" element={<SupplierSignup />} />
           <Route path='/signup' element= {<Signup/>}/>
           <Route path='/mentorship' element = {<Mentorship/>}/>
           <Route path='/policy' element = {<Policy/>}/>

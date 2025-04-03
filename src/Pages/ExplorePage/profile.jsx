@@ -11,7 +11,6 @@ const Profile = () => {
     <div className="profile-container">
       {user && (
         <div className="profile-card">
-           console.log(user);
           <img src={user.photo} alt={user.name} className="profile-image" />
           <h2>{user.name}</h2>
           <p>{user.role.charAt(0).toUpperCase() + user.role.slice(1)}</p>
