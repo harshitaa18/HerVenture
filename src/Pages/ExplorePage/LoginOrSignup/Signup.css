@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 80vh;
   background: white;
 }
 
@@ -21,7 +21,7 @@
   position: relative;
 }
 
-.role-selection h2, .signup-form h2 {
+.role-selection h2 {
   margin-bottom: 15px;
   font-size: 18px;
 }

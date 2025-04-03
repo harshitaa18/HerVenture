@@ -14,6 +14,7 @@ const SignInPage = () => {
 
   return (
     <div className="signin-container">
+      <div className="auth-card">
         {!role ? (
           <div className="role-selection">
             <h2>Select Your Role</h2>
@@ -48,6 +49,7 @@ const SignInPage = () => {
             </button>
           </div>
         )}
+        </div>
     </div>
   );
 };

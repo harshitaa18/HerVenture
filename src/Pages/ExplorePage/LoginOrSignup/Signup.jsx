@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SignInPage from "./Login";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import EntrepreneurSignup from "../Entrepreneur/EntrepreneurialSignup";
 import SkilledLaborSignup from "../Skilledlabour/SkilledSignup";
 import LandOwnerSignup from "../Landowner/LandownerSignup";
@@ -8,15 +8,17 @@ import "./Signup.css";
 
 const SignupPage = () => {
   const [role, setRole] = useState(null);
-  const [isSignUp, setIsSignUp] = useState(false);
+  const navigate = useNavigate(); // Initialize navigation
   const roles = ["entrepreneur", "skilled-labor", "land-owner", "supplier"];
+
+  const handleToggleAuth = () => {
+    navigate("/login"); // Redirect to login page
+  };
 
   return (
     <div className="signup-container">
       <div className="auth-card">
-        {!isSignUp ? (
-          <SignInPage />
-        ) : !role ? (
+        {!role ? (
           <div className="role-selection">
             <h2>Select Your Role</h2>
             {roles.map((r) => (
@@ -36,8 +38,8 @@ const SignupPage = () => {
             </button>
           </div>
         )}
-        <button className="toggle-auth-button" onClick={() => setIsSignUp(!isSignUp)}>
-          {isSignUp ? "Switch to Sign In" : "Switch to Sign Up"}
+        <button className="toggle-auth-button" onClick={handleToggleAuth}>
+          Switch to Sign In
         </button>
       </div>
     </div>
