@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useUser } from "../../Context/UserContext";
+import { useNavigate } from "react-router-dom";
 import "./profile.css";
 import { entrepreneurs, landowners, skilledLabor, suppliers } from "./data";
 
 const Profile = () => {
   const { user } = useUser();
   const [tab, setTab] = useState("overview");
-  const [selectedFilter, setSelectedFilter] = useState(""); 
-  const [searchQuery, setSearchQuery] = useState("");
 
   const renderUserDetails = () => {
     if (!user) return <p>No user data available</p>;
@@ -106,7 +105,6 @@ const Profile = () => {
         <div className="profile-card">
           <h2>{user.name}</h2>
           <p>{user.role.charAt(0).toUpperCase() + user.role.slice(1)}</p>
-          {renderUserDetails()} 
         </div>
       )}
 
@@ -127,7 +125,7 @@ const Profile = () => {
       {tab === "hire" && (
         <div className="section">
           <h3>Available Skilled Workers</h3>
-          {filterData(skilledLabor).filter(worker => worker.location.toLowerCase().includes(searchQuery)).map((worker, index) => (
+          {skilledLabor.map((worker, index) => (
             <div key={worker.id || index} className="card">
               <p>{worker.name} - {worker.skill}</p>
             </div>
@@ -138,7 +136,7 @@ const Profile = () => {
       {tab === "land" && (
         <div className="section">
           <h3>Available Lands</h3>
-          {filterData(landowners).filter(owner => owner.location.toLowerCase().includes(searchQuery)).map((landowner, index) => (
+          {landowners.map((landowner, index) => (
             <div key={landowner.id || index} className="card">
               <p>{landowner.name} - {landowner.location}</p>
             </div>
@@ -149,7 +147,7 @@ const Profile = () => {
       {tab === "entrepreneurs" && (
         <div className="section">
           <h3>Entrepreneurs</h3>
-          {filterData(entrepreneurs).filter(ent => ent.location.toLowerCase().includes(searchQuery)).map((entrepreneur, index) => (
+          {entrepreneurs.map((entrepreneur, index) => (
             <div key={entrepreneur.id || index} className="card">
               <p>{entrepreneur.name} - {entrepreneur.business}</p>
             </div>
@@ -160,7 +158,7 @@ const Profile = () => {
       {tab === "suppliers" && (
         <div className="section">
           <h3>Suppliers</h3>
-          {filterData(suppliers).filter(supplier => supplier.location.toLowerCase().includes(searchQuery)).map((supplier, index) => (
+          {suppliers.map((supplier, index) => (
             <div key={supplier.id || index} className="card">
               <p>{supplier.name} - {supplier.products}</p>
             </div>
