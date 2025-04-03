@@ -1,52 +1,16 @@
 import React, { useState } from "react";
 import { useUser } from "../../Context/UserContext";
+import { useNavigate } from "react-router-dom";
 import "./profile.css";
 import { entrepreneurs, landowners, skilledLabor, suppliers } from "./data";
 
 const Profile = () => {
   const { user } = useUser();
   const [tab, setTab] = useState("overview");
+  const navigate = useNavigate();
 
-  const renderUserDetails = () => {
-    if (!user) return <p>No user data available</p>;
-
-    switch (user.role) {
-      case "entrepreneur":
-        return (
-          <>
-            <p><b>Business:</b> {user.business}</p>
-            <p><b>Contact No.:</b> {user.contact}</p>
-            <p><b>Location:</b> {user.location}</p>
-          </>
-        );
-      case "skilled labor":
-        return (
-          <>
-            <p><b>Skill:</b> {user.skill}</p>
-            <p><b>Experience:</b> {user.experience} years</p>
-            <p><b>Expected Salary:</b> ${user.expectedSalary}</p>
-          </>
-        );
-      case "landowner":
-        return (
-          <>
-            <p><b>Land Size:</b> {user.landSize}</p>
-            <p><b>Expected Payment:</b> ${user.expectedPayment}</p>
-            <p><b>Location:</b> {user.location}</p>
-            <p><b>For:</b> {user.rentOrSell}</p>
-          </>
-        );
-      case "supplier":
-        return (
-          <>
-            <p><b>Products Supplied:</b> {user.products}</p>
-            <p><b>Minimum Order Quantity:</b> {user.minOrder}</p>
-            <p><b>Delivery Areas:</b> {user.deliveryAreas}</p>
-          </>
-        );
-      default:
-        return <p>Role not recognized</p>;
-    }
+  const handleClick = (role, id) => {
+    navigate(`/profile/${role}/${id}`);
   };
 
   return (
@@ -55,7 +19,6 @@ const Profile = () => {
         <div className="profile-card">
           <h2>{user.name}</h2>
           <p>{user.role.charAt(0).toUpperCase() + user.role.slice(1)}</p>
-          {renderUserDetails()} 
         </div>
       )}
 
@@ -77,8 +40,8 @@ const Profile = () => {
       {tab === "hire" && (
         <div className="section">
           <h3>Available Skilled Workers</h3>
-          {skilledLabor.map((worker, index) => (
-            <div key={worker.id || index} className="card">
+          {skilledLabor.map((worker) => (
+            <div key={worker.id} className="card" onClick={() => handleClick("skilled-labor", worker.id)}>
               <p>{worker.name} - {worker.skill}</p>
             </div>
           ))}
@@ -88,8 +51,8 @@ const Profile = () => {
       {tab === "land" && (
         <div className="section">
           <h3>Available Lands</h3>
-          {landowners.map((landowner, index) => (
-            <div key={landowner.id || index} className="card">
+          {landowners.map((landowner) => (
+            <div key={landowner.id} className="card" onClick={() => handleClick("landowner", landowner.id)}>
               <p>{landowner.name} - {landowner.location}</p>
             </div>
           ))}
@@ -99,8 +62,8 @@ const Profile = () => {
       {tab === "entrepreneurs" && (
         <div className="section">
           <h3>Entrepreneurs</h3>
-          {entrepreneurs.map((entrepreneur, index) => (
-            <div key={entrepreneur.id || index} className="card">
+          {entrepreneurs.map((entrepreneur) => (
+            <div key={entrepreneur.id} className="card" onClick={() => handleClick("entrepreneur", entrepreneur.id)}>
               <p>{entrepreneur.name} - {entrepreneur.business}</p>
             </div>
           ))}
@@ -110,8 +73,8 @@ const Profile = () => {
       {tab === "suppliers" && (
         <div className="section">
           <h3>Suppliers</h3>
-          {suppliers.map((supplier, index) => (
-            <div key={supplier.id || index} className="card">
+          {suppliers.map((supplier) => (
+            <div key={supplier.id} className="card" onClick={() => handleClick("supplier", supplier.id)}>
               <p>{supplier.name} - {supplier.products}</p>
             </div>
           ))}

@@ -16,6 +16,7 @@ import EntrepreneurSignup from './Pages/ExplorePage/Entrepreneur/Entrepreneurial
 import SkilledLaborSignup from './Pages/ExplorePage/Skilledlabour/SkilledSignup';
 import SupplierSignup from './Pages/ExplorePage/Supplier/SupplierSignup';
 import LandOwnerSignup from './Pages/ExplorePage/Landowner/LandownerSignup';
+import ProfileDetail from './Pages/ExplorePage/profileDetails';
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
           <Route path='/mentorship' element = {<Mentorship/>}/>
           <Route path='/policy' element = {<Policy/>}/>
           <Route path='/profile' element = {<Profile/>}/>
+          <Route path="/profile/:role/:id" element={<ProfileDetail />} />
           <Route path="/dashboard" element={<UserDashboard/>} />
         <Route path="/funding" element={<FundingPage />} />
         <Route path="/investor/:id" element={<InvestorDetails />} />
