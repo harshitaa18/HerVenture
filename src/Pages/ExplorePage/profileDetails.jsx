@@ -14,13 +14,14 @@ const ProfileDetail = () => {
     supplier: suppliers,
   };
 
-  const userDetails = dataMap[role]?.find((user) => user.id === parseInt(id));
+  const formattedRole = role.replace("-", " "); // Convert hyphenated roles to normal ones
+  const userDetails = dataMap[role]?.find((user) => user.id.toString() === id);
 
   if (!userDetails) return <p className="error-message">Profile not found.</p>;
 
   return (
     <div className="profile-detail-container">
-      <div className="profile-card">
+      <div className="profile-card-details">
         {/* Profile Image Section */}
         <div className="profile-image">
           <span>{userDetails.name.charAt(0)}</span> {/* Placeholder Initial */}
@@ -28,7 +29,7 @@ const ProfileDetail = () => {
 
         {/* User Name & Role */}
         <h2>{userDetails.name}</h2>
-        <p className="role">{role.replace("-", " ").toUpperCase()}</p>
+        <p className="role">{formattedRole.toUpperCase()}</p>
 
         {/* Contact Section */}
         <div className="contact-section">

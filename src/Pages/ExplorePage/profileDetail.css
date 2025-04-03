@@ -7,10 +7,10 @@
     background: white;
   }
   
-  .profile-card {
+  .profile-card-details {
     width: 50%;
     max-width: 600px;
-    border: linear-gradient(135deg, purple, pink);
+    background: linear-gradient(135deg,purple,pink);
     padding: 20px;
     border-radius: 12px;
     backdrop-filter: blur(10px);
@@ -56,7 +56,6 @@
   }
   
   .contact-section p, .profile-details p {
-
     font-size: 18px;
     margin: 8px 0;
     padding: 10px;

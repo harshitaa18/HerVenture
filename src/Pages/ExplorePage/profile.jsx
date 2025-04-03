@@ -7,78 +7,117 @@ import { entrepreneurs, landowners, skilledLabor, suppliers } from "./data";
 const Profile = () => {
   const { user } = useUser();
   const [tab, setTab] = useState("overview");
+  const [selectedFilter, setSelectedFilter] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
-  const handleClick = (role, id) => {
-    navigate(`/profile/${role}/${id}`);
+  const roleMap = {
+    hire: "skilled-labor",
+    land: "landowner",
+    entrepreneurs: "entrepreneur",
+    suppliers: "supplier",
   };
+
+  const handleClick = (tabKey, id) => {
+    const role = roleMap[tabKey];
+    if (role) navigate(`/profile/${role}/${id}`);
+  };
+
+  const renderUserDetails = () => {
+    if (!user) return <p>No user data available</p>;
+    if (!user.role) return <p>Role not assigned</p>;
+
+    const userDetails = {
+      entrepreneur: (
+        <>
+          <p><b>Business:</b> {user.business || "N/A"}</p>
+          <p><b>Contact No.:</b> {user.contact || "N/A"}</p>
+          <p><b>Location:</b> {user.location || "N/A"}</p>
+        </>
+      ),
+      "skilled labor": (
+        <>
+          <p><b>Skill:</b> {user.skill || "N/A"}</p>
+          <p><b>Experience:</b> {user.experience ? `${user.experience} years` : "N/A"}</p>
+          <p><b>Expected Salary:</b> {user.expectedSalary ? `$${user.expectedSalary}` : "N/A"}</p>
+        </>
+      ),
+      landowner: (
+        <>
+          <p><b>Land Size:</b> {user.landSize || "N/A"}</p>
+          <p><b>Location:</b> {user.location || "N/A"}</p>
+          <p><b>For:</b> {user.rentOrSell || "N/A"}</p>
+        </>
+      ),
+      supplier: (
+        <>
+          <p><b>Products Supplied:</b> {user.products || "N/A"}</p>
+          <p><b>Minimum Order Quantity:</b> {user.minOrder || "N/A"}</p>
+          <p><b>Delivery Areas:</b> {user.deliveryAreas || "N/A"}</p>
+        </>
+      ),
+    };
+    return userDetails[user.role] || <p>Role not recognized</p>;
+  };
+
+  const tabs = [
+    { key: "hire", label: "Hire Skilled Labor", data: skilledLabor, filterKey: "skill" },
+    { key: "land", label: "Buy Land", data: landowners, filterKey: "size" },
+    { key: "entrepreneurs", label: "See Entrepreneurs", data: entrepreneurs, filterKey: "business" },
+    { key: "suppliers", label: "Find Suppliers", data: suppliers, filterKey: "products" },
+  ];
+
+  const filterData = (data) =>
+    data.filter(item =>
+      (!selectedFilter || Object.values(item).includes(selectedFilter)) &&
+      item.location.toLowerCase().includes(searchQuery)
+    );
 
   return (
     <div className="profile-container">
-      {user && (
+      {user ? (
         <div className="profile-card">
-          <h2>{user.name}</h2>
-          <p>{user.role.charAt(0).toUpperCase() + user.role.slice(1)}</p>
+          <h2>{user.name || "No Name"}</h2>
+          <p>{user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : "No Role"}</p>
+          {renderUserDetails()}
         </div>
+      ) : (
+        <p>Loading user data...</p>
       )}
 
       <div className="tabs">
-        <button className={tab === "hire" ? "active" : ""} onClick={() => setTab("hire")}>
-          Hire Skilled Labor
-        </button>
-        <button className={tab === "land" ? "active" : ""} onClick={() => setTab("land")}>
-          Buy Land
-        </button>
-        <button className={tab === "entrepreneurs" ? "active" : ""} onClick={() => setTab("entrepreneurs")}>
-          See Entrepreneurs
-        </button>
-        <button className={tab === "suppliers" ? "active" : ""} onClick={() => setTab("suppliers")}>
-          Find Suppliers
-        </button>
+        {tabs.map(({ key, label }) => (
+          <button key={key} className={tab === key ? "active" : ""} onClick={() => setTab(key)}>
+            {label}
+          </button>
+        ))}
       </div>
 
-      {tab === "hire" && (
-        <div className="section">
-          <h3>Available Skilled Workers</h3>
-          {skilledLabor.map((worker) => (
-            <div key={worker.id} className="card" onClick={() => handleClick("skilled-labor", worker.id)}>
-              <p>{worker.name} - {worker.skill}</p>
-            </div>
-          ))}
+      {tab !== "overview" && (
+        <div className="filters">
+          <input type="text" placeholder="Search by Location..." onChange={(e) => setSearchQuery(e.target.value.toLowerCase())} />
+          {tabs.find(t => t.key === tab) && (
+            <select onChange={(e) => setSelectedFilter(e.target.value)}>
+              <option value="">Filter by {tabs.find(t => t.key === tab).filterKey}</option>
+              {Array.from(new Set(tabs.find(t => t.key === tab).data.map(item => item[tabs.find(t => t.key === tab).filterKey]))).map((value, index) => (
+                <option key={index} value={value}>{value}</option>
+              ))}
+            </select>
+          )}
         </div>
       )}
 
-      {tab === "land" && (
-        <div className="section">
-          <h3>Available Lands</h3>
-          {landowners.map((landowner) => (
-            <div key={landowner.id} className="card" onClick={() => handleClick("landowner", landowner.id)}>
-              <p>{landowner.name} - {landowner.location}</p>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {tab === "entrepreneurs" && (
-        <div className="section">
-          <h3>Entrepreneurs</h3>
-          {entrepreneurs.map((entrepreneur) => (
-            <div key={entrepreneur.id} className="card" onClick={() => handleClick("entrepreneur", entrepreneur.id)}>
-              <p>{entrepreneur.name} - {entrepreneur.business}</p>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {tab === "suppliers" && (
-        <div className="section">
-          <h3>Suppliers</h3>
-          {suppliers.map((supplier) => (
-            <div key={supplier.id} className="card" onClick={() => handleClick("supplier", supplier.id)}>
-              <p>{supplier.name} - {supplier.products}</p>
-            </div>
-          ))}
-        </div>
+      {tabs.map(({ key, data }) =>
+        tab === key && (
+          <div key={key} className="section">
+            <h3>{tabs.find(t => t.key === key).label}</h3>
+            {filterData(data).map((item, index) => (
+              <div key={item.id || index} className="card" onClick={() => handleClick(key, item.id)}>
+                <p>{item.name} - {item[tabs.find(t => t.key === key).filterKey]}</p>
+              </div>
+            ))}
+          </div>
+        )
       )}
     </div>
   );
