@@ -7,163 +7,117 @@ import { entrepreneurs, landowners, skilledLabor, suppliers } from "./data";
 const Profile = () => {
   const { user } = useUser();
   const [tab, setTab] = useState("overview");
+  const [selectedFilter, setSelectedFilter] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
+  const roleMap = {
+    hire: "skilled-labor",
+    land: "landowner",
+    entrepreneurs: "entrepreneur",
+    suppliers: "supplier",
+  };
+
+  const handleClick = (tabKey, id) => {
+    const role = roleMap[tabKey];
+    if (role) navigate(`/profile/${role}/${id}`);
+  };
 
   const renderUserDetails = () => {
     if (!user) return <p>No user data available</p>;
+    if (!user.role) return <p>Role not assigned</p>;
 
-    switch (user.role) {
-      case "entrepreneur":
-        return (
-          <>
-            <p><b>Business:</b> {user.business}</p>
-            <p><b>Contact No.:</b> {user.contact}</p>
-            <p><b>Location:</b> {user.location}</p>
-          </>
-        );
-      case "skilled labor":
-        return (
-          <>
-            <p><b>Skill:</b> {user.skill}</p>
-            <p><b>Experience:</b> {user.experience} years</p>
-            <p><b>Expected Salary:</b> ${user.expectedSalary}</p>
-          </>
-        );
-      case "landowner":
-        return (
-          <>
-            <p><b>Land Size:</b> {user.landSize}</p>
-            <p><b>Expected Payment:</b> ${user.expectedPayment}</p>
-            <p><b>Location:</b> {user.location}</p>
-            <p><b>For:</b> {user.rentOrSell}</p>
-          </>
-        );
-      case "supplier":
-        return (
-          <>
-            <p><b>Products Supplied:</b> {user.products}</p>
-            <p><b>Minimum Order Quantity:</b> {user.minOrder}</p>
-            <p><b>Delivery Areas:</b> {user.deliveryAreas}</p>
-          </>
-        );
-      default:
-        return <p>Role not recognized</p>;
-    }
+    const userDetails = {
+      entrepreneur: (
+        <>
+          <p><b>Business:</b> {user.business || "N/A"}</p>
+          <p><b>Contact No.:</b> {user.contact || "N/A"}</p>
+          <p><b>Location:</b> {user.location || "N/A"}</p>
+        </>
+      ),
+      "skilled labor": (
+        <>
+          <p><b>Skill:</b> {user.skill || "N/A"}</p>
+          <p><b>Experience:</b> {user.experience ? `${user.experience} years` : "N/A"}</p>
+          <p><b>Expected Salary:</b> {user.expectedSalary ? `$${user.expectedSalary}` : "N/A"}</p>
+        </>
+      ),
+      landowner: (
+        <>
+          <p><b>Land Size:</b> {user.landSize || "N/A"}</p>
+          <p><b>Location:</b> {user.location || "N/A"}</p>
+          <p><b>For:</b> {user.rentOrSell || "N/A"}</p>
+        </>
+      ),
+      supplier: (
+        <>
+          <p><b>Products Supplied:</b> {user.products || "N/A"}</p>
+          <p><b>Minimum Order Quantity:</b> {user.minOrder || "N/A"}</p>
+          <p><b>Delivery Areas:</b> {user.deliveryAreas || "N/A"}</p>
+        </>
+      ),
+    };
+    return userDetails[user.role] || <p>Role not recognized</p>;
   };
 
-  const renderFilterOptions = () => {
-    switch (tab) {
-      case "hire":
-        return (
-          <select onChange={(e) => setSelectedFilter(e.target.value)}>
-            <option value="">Filter by Skill</option>
-            {Array.from(new Set(skilledLabor.map(worker => worker.skill))).map((skill, index) => (
-              <option key={index} value={skill}>{skill}</option>
-            ))}
-          </select>
-        );
-      case "land":
-        return (
-          <select onChange={(e) => setSelectedFilter(e.target.value)}>
-            <option value="">Filter by Land Size</option>
-            {Array.from(new Set(landowners.map(owner => owner.landSize))).map((size, index) => (
-              <option key={index} value={size}>{size}</option>
-            ))}
-          </select>
-        );
-      case "entrepreneurs":
-        return (
-          <select onChange={(e) => setSelectedFilter(e.target.value)}>
-            <option value="">Filter by Business Type</option>
-            {Array.from(new Set(entrepreneurs.map(ent => ent.business))).map((business, index) => (
-              <option key={index} value={business}>{business}</option>
-            ))}
-          </select>
-        );
-      case "suppliers":
-        return (
-          <select onChange={(e) => setSelectedFilter(e.target.value)}>
-            <option value="">Filter by Product Supplied</option>
-            {Array.from(new Set(suppliers.map(supplier => supplier.products))).map((product, index) => (
-              <option key={index} value={product}>{product}</option>
-            ))}
-          </select>
-        );
-      default:
-        return null;
-    }
-  };
+  const tabs = [
+    { key: "hire", label: "Hire Skilled Labor", data: skilledLabor, filterKey: "skill" },
+    { key: "land", label: "Buy Land", data: landowners, filterKey: "size" },
+    { key: "entrepreneurs", label: "See Entrepreneurs", data: entrepreneurs, filterKey: "business" },
+    { key: "suppliers", label: "Find Suppliers", data: suppliers, filterKey: "products" },
+  ];
 
-  const filterData = (data) => {
-    return data.filter(item =>
-      selectedFilter ? Object.values(item).some(val => val.toString() === selectedFilter) : true
+  const filterData = (data) =>
+    data.filter(item =>
+      (!selectedFilter || Object.values(item).includes(selectedFilter)) &&
+      item.location.toLowerCase().includes(searchQuery)
     );
-  };
 
   return (
     <div className="profile-container">
-      {user && (
+      {user ? (
         <div className="profile-card">
-          <h2>{user.name}</h2>
-          <p>{user.role.charAt(0).toUpperCase() + user.role.slice(1)}</p>
+          <h2>{user.name || "No Name"}</h2>
+          <p>{user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : "No Role"}</p>
+          {renderUserDetails()}
         </div>
+      ) : (
+        <p>Loading user data...</p>
       )}
 
       <div className="tabs">
-        <button className={tab === "hire" ? "active" : ""} onClick={() => setTab("hire")}>Hire Skilled Labor</button>
-        <button className={tab === "land" ? "active" : ""} onClick={() => setTab("land")}>Buy Land</button>
-        <button className={tab === "entrepreneurs" ? "active" : ""} onClick={() => setTab("entrepreneurs")}>See Entrepreneurs</button>
-        <button className={tab === "suppliers" ? "active" : ""} onClick={() => setTab("suppliers")}>Find Suppliers</button>
+        {tabs.map(({ key, label }) => (
+          <button key={key} className={tab === key ? "active" : ""} onClick={() => setTab(key)}>
+            {label}
+          </button>
+        ))}
       </div>
 
       {tab !== "overview" && (
         <div className="filters">
           <input type="text" placeholder="Search by Location..." onChange={(e) => setSearchQuery(e.target.value.toLowerCase())} />
-          {renderFilterOptions()}
+          {tabs.find(t => t.key === tab) && (
+            <select onChange={(e) => setSelectedFilter(e.target.value)}>
+              <option value="">Filter by {tabs.find(t => t.key === tab).filterKey}</option>
+              {Array.from(new Set(tabs.find(t => t.key === tab).data.map(item => item[tabs.find(t => t.key === tab).filterKey]))).map((value, index) => (
+                <option key={index} value={value}>{value}</option>
+              ))}
+            </select>
+          )}
         </div>
       )}
 
-      {tab === "hire" && (
-        <div className="section">
-          <h3>Available Skilled Workers</h3>
-          {skilledLabor.map((worker, index) => (
-            <div key={worker.id || index} className="card">
-              <p>{worker.name} - {worker.skill}</p>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {tab === "land" && (
-        <div className="section">
-          <h3>Available Lands</h3>
-          {landowners.map((landowner, index) => (
-            <div key={landowner.id || index} className="card">
-              <p>{landowner.name} - {landowner.location}</p>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {tab === "entrepreneurs" && (
-        <div className="section">
-          <h3>Entrepreneurs</h3>
-          {entrepreneurs.map((entrepreneur, index) => (
-            <div key={entrepreneur.id || index} className="card">
-              <p>{entrepreneur.name} - {entrepreneur.business}</p>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {tab === "suppliers" && (
-        <div className="section">
-          <h3>Suppliers</h3>
-          {suppliers.map((supplier, index) => (
-            <div key={supplier.id || index} className="card">
-              <p>{supplier.name} - {supplier.products}</p>
-            </div>
-          ))}
-        </div>
+      {tabs.map(({ key, data }) =>
+        tab === key && (
+          <div key={key} className="section">
+            <h3>{tabs.find(t => t.key === key).label}</h3>
+            {filterData(data).map((item, index) => (
+              <div key={item.id || index} className="card" onClick={() => handleClick(key, item.id)}>
+                <p>{item.name} - {item[tabs.find(t => t.key === key).filterKey]}</p>
+              </div>
+            ))}
+          </div>
+        )
       )}
     </div>
   );
