@@ -14,7 +14,7 @@ const MainHeader = () => {
             Empowering women to break barriers, lead boldly, and transform dreams into reality. <br />
              Together, let's build a future where women redefine success on their own terms.
             </p>
-            <Link to="/" className="main_header-btn lg">
+            <Link to="/signup" className="main_header-btn lg">
               Get Started
             </Link>
           </div>
