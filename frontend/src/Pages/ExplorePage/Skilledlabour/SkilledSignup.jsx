@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./SkilledSignup.css";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { useUser } from "../../../Context/UserContext"; 
+import api from "../../../utils/api";
 
 const SkilledLaborSignup = () => {
   const { setUser } = useUser(); // Get function to set user data
@@ -28,22 +29,31 @@ const SkilledLaborSignup = () => {
     setFormData({ ...formData, workSamples: e.target.files });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const newUser = {
-      name: formData.name,
-      role: "skilled labor",
-      skill: formData.skillset,
-      experience: formData.experience,
-      expectedSalary: formData.expectedSalary,
-    };
-
-    setUser(newUser); // Save user in context
-
-    // Navigate to profile page after signup
-    navigate("/profile");
+  
+    const data = new FormData();
+    for (const key in formData) {
+      if (key === "workSamples") {
+        for (let i = 0; i < formData.workSamples.length; i++) {
+          data.append("workSamples", formData.workSamples[i]);
+        }
+      } else {
+        data.append(key, formData[key]);
+      }
+    }
+  
+    try {
+      const res = await api.post("/labor", data, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      setUser(res.data);
+      navigate("/profile");
+    } catch (err) {
+      console.error("Signup error:", err);
+    }
   };
+  
 
   return (
     <div className="signup-form-container">

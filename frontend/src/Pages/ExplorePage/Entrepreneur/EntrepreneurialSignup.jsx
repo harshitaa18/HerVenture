@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { useUser } from "../../../Context/UserContext"; // Import User Context
 import "./EntrepreneurialSignup.css";
+import api from "../../../utils/api";
 
 const EntrepreneurSignup = () => {
   const { setUser } = useUser(); // Get function to set user data
@@ -21,22 +22,25 @@ const EntrepreneurSignup = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Simulate user signup and save user data
+  
     const newUser = {
       name: formData.name,
-      role: "entrepreneur",
-      business: formData.aboutBusiness,
-      location: formData.location,
       contact: formData.contact,
+      email: formData.email,
+      businessLicense: formData.businessLicense,
+      aboutBusiness: formData.aboutBusiness,
+      location: formData.location,
     };
-
-    setUser(newUser); // Save user in context
-
-    // Navigate to profile page after signup
-    navigate("/profile");
+  
+    try {
+      const res = await api.post("/entrepreneurs", newUser);
+      setUser(res.data); // save response
+      navigate("/profile");
+    } catch (err) {
+      console.error("Signup error:", err);
+    }
   };
 
   return (

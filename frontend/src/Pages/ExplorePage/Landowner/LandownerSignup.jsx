@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./LandownerSignup.css";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { useUser } from "../../../Context/UserContext";
+import api from "../../../utils/api";
 
 const LandOwnerSignup = () => {
   const { setUser } = useUser(); // Get function to set user data
@@ -29,22 +30,29 @@ const LandOwnerSignup = () => {
     setFormData({ ...formData, landPhotos: e.target.files });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const newUser = {
-      name: formData.name,
-      role: "landowner",
-      landSize: formData.landSize,
-      expectedPayment: formData.expectedPayment,
-      location: formData.location,
-      rentOrSell: formData.rentOrSell,
-    };
-
-    setUser(newUser); // Save user in context
-
-    // Navigate to profile page after signup
-    navigate("/profile");
+  
+    const data = new FormData();
+    for (const key in formData) {
+      if (key === "landPhotos") {
+        for (let i = 0; i < formData.landPhotos.length; i++) {
+          data.append("landPhotos", formData.landPhotos[i]);
+        }
+      } else {
+        data.append(key, formData[key]);
+      }
+    }
+  
+    try {
+      const res = await api.post("/landowners", data, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      setUser(res.data);
+      navigate("/profile");
+    } catch (err) {
+      console.error("Signup error:", err);
+    }
   };
 
   return (
