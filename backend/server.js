@@ -21,6 +21,6 @@ app.get("/", (req, res) => {
 
 // Routes
 app.use("/api/entrepreneurs", require("./routes/entrepreneurRoutes"));
-app.use("/api/labours", require("./routes/laborRoutes"));
+app.use("/api/labor", require("./routes/laborRoutes"));
 // Start server
 app.listen(5000, () => console.log("Server running on port 5000"));
