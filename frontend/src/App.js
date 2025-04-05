@@ -8,8 +8,6 @@ import Login from './Pages/ExplorePage/LoginOrSignup/Login';
 import Mentorship from './Pages/Mentorship/TrainingAndWebinars';
 import Policy from './Pages/Policy/Policy';
 import UserDashboard from './Components/Dashboard/Dashboard';
-import FundingPage from './Pages/ExplorePage/Landowner/Landowner';
-import InvestorDetails from './Pages/ExplorePage/Entrepreneur/Entreprenuer';
 import Signup from './Pages/ExplorePage/LoginOrSignup/Signup'
 import Profile from './Pages/ExplorePage/profile'
 import EntrepreneurSignup from './Pages/ExplorePage/Entrepreneur/EntrepreneurialSignup';
@@ -38,8 +36,6 @@ function App() {
           <Route path='/profile' element = {<Profile/>}/>
           <Route path="/profile/:role/:id" element={<ProfileDetail />} />
           <Route path="/dashboard" element={<UserDashboard/>} />
-        <Route path="/funding" element={<FundingPage />} />
-        <Route path="/investor/:id" element={<InvestorDetails />} />
         </Routes>
       <Footer/>
       </BrowserRouter>

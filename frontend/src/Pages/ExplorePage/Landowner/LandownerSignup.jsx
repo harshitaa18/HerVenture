@@ -33,22 +33,20 @@ const LandOwnerSignup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    const data = new FormData();
-    for (const key in formData) {
-      if (key === "landPhotos") {
-        for (let i = 0; i < formData.landPhotos.length; i++) {
-          data.append("landPhotos", formData.landPhotos[i]);
-        }
-      } else {
-        data.append(key, formData[key]);
-      }
-    }
+    // const data = new FormData();
+    // for (const key in formData) {
+    //   if (key === "landPhotos") {
+    //     for (let i = 0; i < formData.landPhotos.length; i++) {
+    //       data.append("landPhotos", formData.landPhotos[i]);
+    //     }
+    //   } else {
+    //     data.append(key, formData[key]);
+    //   }
+    // }
   
     try {
-      const res = await api.post("/landowners", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      setUser(res.data);
+      const res = await api.post("/landowner", formData);
+      setUser({ ...res.data, role: "landowner" });
       navigate("/profile");
     } catch (err) {
       console.error("Signup error:", err);

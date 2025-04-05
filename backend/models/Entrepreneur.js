@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
 const entrepreneurSchema = new mongoose.Schema({
-  name: String,
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  contact: { type: String, required: true },
   business: String,
-  contact: String,
   location: String,
   email: String,
-  businessLicense:String,
+  businessLicense: String,
   aboutBusiness: String,
 });
 
-module.exports = mongoose.model("Entrepreneur", entrepreneurSchema);
+module.exports = mongoose.models.Entrepreneur || mongoose.model("Entrepreneur", entrepreneurSchema);

@@ -37,8 +37,8 @@ const Profile = () => {
       ),
       "skilled labor": (
         <>
-          <p><b>Skill:</b> {user.skill || "N/A"}</p>
-          <p><b>Experience:</b> {user.experience ? `${user.experience} years` : "N/A"}</p>
+          <p><b>Skill:</b> {user.skillset || "N/A"}</p>
+          <p><b>Experience:</b> {user.experience != null ? `${user.experience} years` : "N/A"}</p>
           <p><b>Expected Salary:</b> {user.expectedSalary ? `$${user.expectedSalary}` : "N/A"}</p>
         </>
       ),

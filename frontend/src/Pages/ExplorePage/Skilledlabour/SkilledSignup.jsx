@@ -32,16 +32,16 @@ const SkilledLaborSignup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    const data = new FormData();
-    for (const key in formData) {
-      if (key === "workSamples") {
-        for (let i = 0; i < formData.workSamples.length; i++) {
-          data.append("workSamples", formData.workSamples[i]);
-        }
-      } else {
-        data.append(key, formData[key]);
-      }
-    }
+    // const data = new FormData();
+    // for (const key in formData) {
+    //   if (key === "workSamples") {
+    //     for (let i = 0; i < formData.workSamples.length; i++) {
+    //       data.append("workSamples", formData.workSamples[i]);
+    //     }
+    //   } else {
+    //     data.append(key, formData[key]);
+    //   }
+    // }
   
     try {
       const res = await api.post("/labor", formData);
