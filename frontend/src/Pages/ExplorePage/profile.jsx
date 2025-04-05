@@ -30,7 +30,7 @@ const Profile = () => {
     const userDetails = {
       entrepreneur: (
         <>
-          <p><b>Business:</b> {user.business || "N/A"}</p>
+          <p><b>Business:</b> {user.aboutBusiness || "N/A"}</p>
           <p><b>Contact No.:</b> {user.contact || "N/A"}</p>
           <p><b>Location:</b> {user.location || "N/A"}</p>
         </>

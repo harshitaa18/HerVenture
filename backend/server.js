@@ -1,23 +1,26 @@
 const express = require("express");
-const connectDB = require("./config/db");
+const mongoose = require("mongoose");
 require("dotenv").config();
+const cors = require("cors");
 
 const app = express();
-connectDB();
 
-const cors = require("cors");
+// Connect to MongoDB
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("MongoDB Connection Error:", err));
+
+// Middlewares
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(express.json());
 
-
-app.get("/",(req,res)=>{
-    res.send("backend is running");
+// Test Route
+app.get("/", (req, res) => {
+  res.send("Backend is running");
 });
 
-app.use(express.json());
-app.use("/api/auth", require("./routes/authRoutes"));
-app.use("/api/users", require("./routes/userRoutes"));
+// Routes
 app.use("/api/entrepreneurs", require("./routes/entrepreneurRoutes"));
-app.use("/api/labor", require("./routes/laborRoutes"));
-app.use("/api/landowners", require("./routes/landownerRoutes"));
-
+app.use("/api/labours", require("./routes/labourRoutes"));
+// Start server
 app.listen(5000, () => console.log("Server running on port 5000"));

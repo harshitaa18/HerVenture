@@ -25,18 +25,9 @@ const EntrepreneurSignup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    const newUser = {
-      name: formData.name,
-      contact: formData.contact,
-      email: formData.email,
-      businessLicense: formData.businessLicense,
-      aboutBusiness: formData.aboutBusiness,
-      location: formData.location,
-    };
-  
     try {
-      const res = await api.post("/entrepreneurs", newUser);
-      setUser(res.data); // save response
+      const res = await api.post("/entrepreneurs", formData);
+      setUser({ ...res.data, role: "entrepreneur" }); // save response
       navigate("/profile");
     } catch (err) {
       console.error("Signup error:", err);

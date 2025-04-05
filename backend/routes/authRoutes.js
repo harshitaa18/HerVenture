@@ -6,7 +6,6 @@ require("dotenv").config();
 
 const router = express.Router();
 
-// Register
 router.post("/register", async (req, res) => {
   try {
     const { name, email, password, role } = req.body;

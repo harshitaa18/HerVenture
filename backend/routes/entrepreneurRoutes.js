@@ -1,28 +1,40 @@
 const express = require("express");
 const Entrepreneur = require("../models/Entrepreneur");
-const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
 // Get all entrepreneurs
 router.get("/", async (req, res) => {
-  const entrepreneurs = await Entrepreneur.find();
-  res.json(entrepreneurs);
+  try {
+    const entrepreneurs = await Entrepreneur.find();
+    res.json(entrepreneurs);
+  } catch (err) {
+    console.error("Fetch error:", err);
+    res.status(500).json({ error: "Error fetching data" });
+  }
 });
 
-// Add entrepreneur profile
-router.post("/", authMiddleware, async (req, res) => {
+// Create new entrepreneur (No auth)
+router.post("/", async (req, res) => {
   try {
-    const entrepreneur = await Entrepreneur.create({
-      userId: req.user.userId,
-      ...req.body,
+    const { name, business, contact, location, email, businessLicense, aboutBusiness } = req.body;
+
+    const newEntrepreneur = new Entrepreneur({
+      name,
+      business,
+      contact,
+      location,
+      email,
+      businessLicense,
+      aboutBusiness,
     });
-    res.status(201).json(entrepreneur);
+
+    await newEntrepreneur.save();
+    res.status(201).json(newEntrepreneur);
   } catch (err) {
     console.error("Signup error:", err);
     res.status(500).json({ error: "Server error during signup" });
   }
 });
-
 
 module.exports = router;
