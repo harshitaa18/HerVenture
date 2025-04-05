@@ -27,6 +27,9 @@ const Profile = () => {
     if (!user) return <p>No user data available</p>;
     if (!user.role) return <p>Role not assigned</p>;
 
+    console.log("User context data:", user);
+
+
     const userDetails = {
       entrepreneur: (
         <>
