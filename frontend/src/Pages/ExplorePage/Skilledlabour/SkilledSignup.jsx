@@ -44,10 +44,8 @@ const SkilledLaborSignup = () => {
     }
   
     try {
-      const res = await api.post("/labor", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      setUser(res.data);
+      const res = await api.post("/labor", formData);
+      setUser({ ...res.data, role: "skilled labor" });
       navigate("/profile");
     } catch (err) {
       console.error("Signup error:", err);
