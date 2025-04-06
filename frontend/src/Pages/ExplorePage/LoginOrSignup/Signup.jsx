@@ -8,7 +8,7 @@ const SignupPage = () => {
   const roles = {
     entrepreneur: "/signup/entrepreneur",
     "skilled-labor": "/signup/skilled-labor",
-    "land-owner": "/signup/land-owner",
+    "land-owner": "/signup/landowner",
     supplier: "/signup/supplier",
   };
 

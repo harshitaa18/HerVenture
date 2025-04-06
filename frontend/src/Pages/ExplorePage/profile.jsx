@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useUser } from "../../Context/UserContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./profile.css";
 import { entrepreneurs, landowners, skilledLabor, suppliers } from "./data";
 
@@ -9,6 +10,7 @@ const Profile = () => {
   const [tab, setTab] = useState("overview");
   const [selectedFilter, setSelectedFilter] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [fullUser, setFullUser] = useState(null);
   const navigate = useNavigate();
 
   const roleMap = {
@@ -23,44 +25,61 @@ const Profile = () => {
     if (role) navigate(`/profile/${role}/${id}`);
   };
 
+  useEffect(() => {
+    const fetchFullProfile = async () => {
+      if (!user) return;
+      try {
+        const token = localStorage.getItem("token");
+        const res = await axios.get(`http://localhost:5000/api/${user.role}/${user._id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setFullUser({ ...user, ...res.data });
+      } catch (err) {
+        console.error("Error fetching full profile:", err);
+      }
+    };
+
+    fetchFullProfile();
+  }, [user]);
+
   const renderUserDetails = () => {
-    if (!user) return <p>No user data available</p>;
-    if (!user.role) return <p>Role not assigned</p>;
-
-    console.log("User context data:", user);
-
+    if (!fullUser) return <p>Loading profile...</p>;
 
     const userDetails = {
       entrepreneur: (
         <>
-          <p><b>Business:</b> {user.aboutBusiness || "N/A"}</p>
-          <p><b>Contact No.:</b> {user.contact || "N/A"}</p>
-          <p><b>Location:</b> {user.location || "N/A"}</p>
+          <p><b>Business:</b> {fullUser.aboutBusiness || "N/A"}</p>
+          <p><b>Contact No.:</b> {fullUser.contact || "N/A"}</p>
+          <p><b>Location:</b> {fullUser.location || "N/A"}</p>
         </>
       ),
       "skilled labor": (
         <>
-          <p><b>Skill:</b> {user.skillset || "N/A"}</p>
-          <p><b>Experience:</b> {user.experience != null ? `${user.experience} years` : "N/A"}</p>
-          <p><b>Expected Salary:</b> {user.expectedSalary ? `$${user.expectedSalary}` : "N/A"}</p>
+          <p><b>Skill:</b> {fullUser.skillset || "N/A"}</p>
+          <p><b>Experience:</b> {fullUser.experience != null ? `${fullUser.experience} years` : "N/A"}</p>
+          <p><b>Expected Salary:</b> {fullUser.expectedSalary ? `$${fullUser.expectedSalary}` : "N/A"}</p>
         </>
       ),
       landowner: (
         <>
-          <p><b>Land Size:</b> {user.landSize || "N/A"}</p>
-          <p><b>Location:</b> {user.location || "N/A"}</p>
-          <p><b>For:</b> {user.rentOrSell || "N/A"}</p>
+          <p><b>Land Size:</b> {fullUser.landSize || "N/A"}</p>
+          <p><b>Location:</b> {fullUser.location || "N/A"}</p>
+          <p><b>For:</b> {fullUser.rentOrSell || "N/A"}</p>
+          <p><b>Expected Payment:</b> {fullUser.expectedPayment || "N/A"}</p>
         </>
       ),
       supplier: (
         <>
-          <p><b>Products Supplied:</b> {user.products || "N/A"}</p>
-          <p><b>Minimum Order Quantity:</b> {user.minOrder || "N/A"}</p>
-          <p><b>Delivery Areas:</b> {user.deliveryAreas || "N/A"}</p>
+          <p><b>Products Supplied:</b> {fullUser.products || "N/A"}</p>
+          <p><b>Minimum Order Quantity:</b> {fullUser.minOrder || "N/A"}</p>
+          <p><b>Delivery Areas:</b> {fullUser.deliveryAreas || "N/A"}</p>
         </>
       ),
     };
-    return userDetails[user.role] || <p>Role not recognized</p>;
+
+    return userDetails[fullUser.role] || <p>Role not recognized</p>;
   };
 
   const tabs = [
@@ -78,10 +97,10 @@ const Profile = () => {
 
   return (
     <div className="profile-container">
-      {user ? (
+      {fullUser ? (
         <div className="profile-card">
-          <h2>{user.name || "No Name"}</h2>
-          <p>{user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : "No Role"}</p>
+          <h2>{fullUser.name || "No Name"}</h2>
+          <p>{fullUser.role ? fullUser.role.charAt(0).toUpperCase() + fullUser.role.slice(1) : "No Role"}</p>
           {renderUserDetails()}
         </div>
       ) : (
