@@ -6,7 +6,7 @@ import "./profile.css";
 import { entrepreneurs, landowners, suppliers, skilledLabor } from "./data";
 
 const Profile = () => {
-  const { user,setUser } = useUser();
+  const { user } = useUser();
   const [tab, setTab] = useState("overview");
   const [selectedFilter, setSelectedFilter] = useState("");
   const [fullUser, setFullUser] = useState(null);
@@ -65,22 +65,22 @@ const Profile = () => {
   }, [user]);
 
   const renderUserDetails = () => {
-    if (!user) return <p>Loading profile...</p>;
-
+    if (!user || !fullUser) return <p>Loading profile...</p>;
+  
     const userDetails = {
       entrepreneur: (
         <>
-          <p><b>Business:</b> {user.aboutBusiness || "N/A"}</p>
-          <p><b>Contact No.:</b> {user.contact || "N/A"}</p>
-          <p><b>Location:</b> {user.location || "N/A"}</p>
+          <p><b>Business:</b> {fullUser.aboutBusiness || "N/A"}</p>
+          <p><b>Contact No.:</b> {fullUser.contact || "N/A"}</p>
+          <p><b>Location:</b> {fullUser.location || "N/A"}</p>
         </>
       ),
       landowner: (
         <>
-          <p><b>Land Size:</b> {user.landSize || "N/A"}</p>
-          <p><b>Location:</b> {user.location || "N/A"}</p>
-          <p><b>For:</b> {user.rentOrSell || "N/A"}</p>
-          <p><b>Expected Payment:</b> {user.expectedPayment || "N/A"}</p>
+          <p><b>Land Size:</b> {fullUser.landSize || "N/A"}</p>
+          <p><b>Location:</b> {fullUser.location || "N/A"}</p>
+          <p><b>For:</b> {fullUser.rentOrSell || "N/A"}</p>
+          <p><b>Expected Payment:</b> {fullUser.expectedPayment || "N/A"}</p>
         </>
       ),
       labor: (
@@ -101,9 +101,10 @@ const Profile = () => {
         </>
       )
     };
-
+  
     return userDetails[fullUser.role?.toLowerCase()] || <p>Role not recognized</p>;
   };
+  
 
   const filterData = (data) =>
     data.filter(item =>
