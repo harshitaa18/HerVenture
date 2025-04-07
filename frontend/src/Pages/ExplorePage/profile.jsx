@@ -6,11 +6,10 @@ import "./profile.css";
 import { entrepreneurs, landowners } from "./data";
 
 const Profile = () => {
-  const { user } = useUser();
+  const { user,setUser } = useUser();
   const [tab, setTab] = useState("overview");
   const [selectedFilter, setSelectedFilter] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [fullUser, setFullUser] = useState(null);
   const navigate = useNavigate();
 
   const roleMap = {
@@ -27,7 +26,7 @@ const Profile = () => {
     const fetchFullProfile = async () => {
       if (!user) return;
       const token = localStorage.getItem("token");
-
+      console.log(token)
       // Ensure correct API path for only landowner and entrepreneur
       const validRoles = {
         entrepreneur: "entrepreneur",
@@ -39,18 +38,10 @@ const Profile = () => {
         console.error("Invalid or unsupported role:", user.role);
         return;
       }
-      console.log("User object:", user);
-      console.log("Role:", user?.role, "ID:", user?._id);
-      console.log("token: ", token)
 
       try {
-        console.log(endpoint, user._id);
-        const res = await axios.get(`http://localhost:5000/api/${endpoint}/${user._id}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
-        setFullUser({ ...user, ...res.data });
-        console.log("Fetched profile:", res.data);
+        const res = await axios.get(`http://localhost:5000/api/${endpoint}/${user._id}`)
+        setUser({ ...user, ...res.data });
       } catch (err) {
         console.error("Error fetching full profile:", err);
       }
@@ -60,27 +51,27 @@ const Profile = () => {
   }, [user]);
 
   const renderUserDetails = () => {
-    if (!fullUser) return <p>Loading profile...</p>;
+    if (!user) return <p>Loading profile...</p>;
 
     const userDetails = {
       entrepreneur: (
         <>
-          <p><b>Business:</b> {fullUser.aboutBusiness || "N/A"}</p>
-          <p><b>Contact No.:</b> {fullUser.contact || "N/A"}</p>
-          <p><b>Location:</b> {fullUser.location || "N/A"}</p>
+          <p><b>Business:</b> {user.aboutBusiness || "N/A"}</p>
+          <p><b>Contact No.:</b> {user.contact || "N/A"}</p>
+          <p><b>Location:</b> {user.location || "N/A"}</p>
         </>
       ),
       landowner: (
         <>
-          <p><b>Land Size:</b> {fullUser.landSize || "N/A"}</p>
-          <p><b>Location:</b> {fullUser.location || "N/A"}</p>
-          <p><b>For:</b> {fullUser.rentOrSell || "N/A"}</p>
-          <p><b>Expected Payment:</b> {fullUser.expectedPayment || "N/A"}</p>
+          <p><b>Land Size:</b> {user.landSize || "N/A"}</p>
+          <p><b>Location:</b> {user.location || "N/A"}</p>
+          <p><b>For:</b> {user.rentOrSell || "N/A"}</p>
+          <p><b>Expected Payment:</b> {user.expectedPayment || "N/A"}</p>
         </>
       ),
     };
 
-    return userDetails[fullUser.role?.toLowerCase()] || <p>Role not recognized</p>;
+    return userDetails[user.role?.toLowerCase()] || <p>Role not recognized</p>;
   };
 
   const tabs = [
@@ -96,10 +87,10 @@ const Profile = () => {
 
   return (
     <div className="profile-container">
-      {fullUser ? (
+      {user ? (
         <div className="profile-card">
-          <h2>{fullUser.name || "No Name"}</h2>
-          <p>{fullUser.role ? fullUser.role.charAt(0).toUpperCase() + fullUser.role.slice(1) : "No Role"}</p>
+          <h2>{user.name || "No Name"}</h2>
+          <p>{user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : "No Role"}</p>
           {renderUserDetails()}
         </div>
       ) : (
