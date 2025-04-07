@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
     enum: ["entrepreneur", "landowner", "skilled labor", "supplier"],
     required: true,
   },
+  contact: { type: String, required: true },
 });
 
 module.exports = mongoose.models.User ||  mongoose.model("User", userSchema);

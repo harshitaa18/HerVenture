@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../../utils/api";
+import { useUser } from "../../../Context/UserContext";
 import "./LandownerSignup.css";
 
 const LandownerSignup = () => {
+  const { setUser } = useUser();
   const navigate = useNavigate();
   const [form, setForm] = useState({
     name: "",
     email: "",
     contact: "",
+    password: "",
     landSize: "",
     location: "",
     ownerAddress: "",
@@ -18,29 +21,48 @@ const LandownerSignup = () => {
   });
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const token = localStorage.getItem("token");
-
     try {
-      const res = await api.post("/landowner", form, {
+      // Step 1: Register user
+      const signupRes = await api.post("/auth/signup", {
+        name: form.name,
+        email: form.email,
+        password: form.password,
+        contact: form.contact,
+        role: "landowner",
+      });
+      const { token, user } = signupRes.data;
+      localStorage.setItem("token", token);
+      const profileRes = await api.post("/landowner",{
+        contact: form.contact,
+        landSize: form.landSize,
+        location: form.location,
+        email: form.email,
+        rentOrSell: form.rentOrSell,
+        expectedPayment: form.expectedPayment,
+        preferredBusiness: form.preferredBusiness,
+        ownerAddress: form.ownerAddress,
+      },
+      {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      });
-
-      if (res.status === 201) {
-        alert("Landowner profile created successfully!");
-        navigate("/profile");
       }
-    } catch (err) {
-      console.error("Error creating landowner profile:", err.response?.data || err.message);
-      alert("Failed to create landowner profile.");
-    }
+    );
+
+    // Flatten user + profile data into one object
+    setUser({ ...user, ...profileRes.data });
+    navigate("/profile");
+  } catch (err) {
+    console.error("Signup error: ", err.response?.data || err.message);
+    alert(err.response?.data?.details || "Signup failed.");
+  }
   };
 
   return (
@@ -49,6 +71,7 @@ const LandownerSignup = () => {
       <form onSubmit={handleSubmit} className="form">
         <input type="text" name="name" placeholder="Name" required value={form.name} onChange={handleChange} />
         <input type="email" name="email" placeholder="Email" required value={form.email} onChange={handleChange} />
+        <input type="password" name="password" placeholder="Password" value={form.password} onChange={handleChange} required />
         <input type="text" name="contact" placeholder="Contact" required value={form.contact} onChange={handleChange} />
         <input type="text" name="landSize" placeholder="Land Size" value={form.landSize} onChange={handleChange} />
         <input type="text" name="location" placeholder="Location" value={form.location} onChange={handleChange} />

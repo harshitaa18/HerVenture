@@ -36,6 +36,9 @@ const Profile = () => {
           },
         });
         setFullUser({ ...user, ...res.data });
+        console.log("Requesting profile with ID:", user._id);
+        console.log("Fetched profile:", res.data);
+
       } catch (err) {
         console.error("Error fetching full profile:", err);
       }

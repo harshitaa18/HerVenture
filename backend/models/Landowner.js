@@ -8,10 +8,10 @@ const landownerSchema = new mongoose.Schema({
   location: String,
   rentOrSell: String,
   name: String,
-  contact: String,
+  contact: { type: String, required: true },
   email: String,
   ownerAddress: String,
   preferredBusiness: String,
 });
 
-module.exports = mongoose.model("Landowner", landownerSchema);
+module.exports = mongoose.models.Landowner || mongoose.model("Landowner", landownerSchema);
