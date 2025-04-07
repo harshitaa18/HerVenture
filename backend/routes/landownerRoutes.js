@@ -1,6 +1,7 @@
 const express = require("express");
 const Landowner = require("../models/Landowner");
 const authMiddleware = require("../middleware/authMiddleware");
+const mongoose = require("mongoose");
 
 const router = express.Router();
 
@@ -33,7 +34,7 @@ router.post("/", authMiddleware, async (req, res) => {
 
 router.get("/:id", authMiddleware, async (req, res) => {
   try {
-    const landowner = await Landowner.findOne({ userId: req.params.id });
+    const landowner = await Landowner.findOne({ _id: new mongoose.Types.ObjectId(req.params.id) });
     console.log("Fetching landowner for userId:", req.params.id);
 
     if (!landowner) {

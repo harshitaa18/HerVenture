@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
 
 // Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/entrepreneurs", require("./routes/entrepreneurRoutes"));
+app.use("/api/entrepreneur", require("./routes/entrepreneurRoutes"));
 app.use("/api/labor", require("./routes/laborRoutes"));
 app.use("/api/landowner", require("./routes/landownerRoutes"));
 // Start server
