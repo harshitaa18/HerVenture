@@ -1,15 +1,37 @@
 import { useState } from "react";
 import "./Login.css";
+import { useNavigate } from "react-router-dom";
+import api from "../../../utils/api";
+import { useUser } from "../../../Context/UserContext";
 
 const SignInPage = () => {
   const [role, setRole] = useState("entrepreneur");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const roles = ["entrepreneur", "skilled-labor", "land-owner", "supplier"];
+  const { setUser } = useUser();
+  const navigate = useNavigate();
 
-  const handleSignIn = (e) => {
+  const roles = ["entrepreneur", "labor", "landowner", "supplier"];
+
+  const handleSignIn = async (e) => {
     e.preventDefault();
-    console.log("Signing in as", role, "with email:", email);
+    try {
+      const res = await api.post("/auth/login", { email, password });
+
+      const { token, user } = res.data;
+
+      if (user.role !== role) {
+        return alert("Selected role does not match with user role!");
+      }
+
+      localStorage.setItem("token", token);
+      setUser(user);
+
+      navigate("/profile");
+    } catch (err) {
+      console.error("Login failed:", err.response?.data || err.message);
+      alert(err.response?.data?.error || "Login failed.");
+    }
   };
 
   return (
@@ -17,7 +39,6 @@ const SignInPage = () => {
       <div className="auth-card">
         <h2>Sign In</h2>
 
-        {/* Role Dropdown */}
         <select
           className="role-dropdown"
           value={role}

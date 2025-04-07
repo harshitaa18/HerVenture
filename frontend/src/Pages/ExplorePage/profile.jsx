@@ -3,7 +3,7 @@ import { useUser } from "../../Context/UserContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./profile.css";
-import { entrepreneurs, landowners } from "./data";
+import { entrepreneurs, landowners, suppliers, skilledLabor } from "./data";
 
 const Profile = () => {
   const { user } = useUser();
@@ -13,9 +13,18 @@ const Profile = () => {
   const [fullUser, setFullUser] = useState(null);
   const navigate = useNavigate();
 
+  const tabs = [
+    { key: "land", label: "Buy Land", data: landowners, filterKey: "size" },
+    { key: "entrepreneurs", label: "See Entrepreneurs", data: entrepreneurs, filterKey: "business" },
+    { key: "labor", label: "Find Skilled Labor", data: skilledLabor, filterKey: "skill" },
+    { key: "suppliers", label: "Find Suppliers", data: suppliers, filterKey: "industry" },
+  ];
+
   const roleMap = {
     land: "landowner",
     entrepreneurs: "entrepreneur",
+    labor: "labor",
+    suppliers: "supplier",
   };
 
   const handleClick = (tabKey, id) => {
@@ -28,11 +37,11 @@ const Profile = () => {
       if (!user) return;
       const token = localStorage.getItem("token");
 
-      // Ensure correct API path for only landowner and entrepreneur
       const validRoles = {
         entrepreneur: "entrepreneur",
         landowner: "landowner",
         labor: "labor",
+        supplier: "supplier",
       };
 
       const endpoint = validRoles[user.role?.toLowerCase()];
@@ -40,18 +49,13 @@ const Profile = () => {
         console.error("Invalid or unsupported role:", user.role);
         return;
       }
-      console.log("User object:", user);
-      console.log("Role:", user?.role, "ID:", user?._id);
-      console.log("token: ", token)
 
       try {
-        console.log(endpoint, user._id);
         const res = await axios.get(`http://localhost:5000/api/${endpoint}/${user._id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
         setFullUser({ ...user, ...res.data });
-        console.log("Fetched profile:", res.data);
       } catch (err) {
         console.error("Error fetching full profile:", err);
       }
@@ -79,7 +83,7 @@ const Profile = () => {
           <p><b>Expected Payment:</b> {fullUser.expectedPayment || "N/A"}</p>
         </>
       ),
-      "labor": (
+      labor: (
         <>
           <p><b>Skillset:</b> {fullUser.skillset || "N/A"}</p>
           <p><b>Certifications:</b> {fullUser.certifications || "N/A"}</p>
@@ -87,16 +91,19 @@ const Profile = () => {
           <p><b>Expected Salary:</b> ₹{fullUser.expectedSalary || "N/A"}</p>
           <p><b>Location:</b> {fullUser.location || "N/A"}</p>
         </>
+      ),
+      supplier: (
+        <>
+          <p><b>Industry:</b> {fullUser.industry || "N/A"}</p>
+          <p><b>Company Name:</b> {fullUser.name || "N/A"}</p>
+          <p><b>Location:</b> {fullUser.location || "N/A"}</p>
+          <p><b>Contact:</b> {fullUser.contact || "N/A"}</p>
+        </>
       )
     };
 
     return userDetails[fullUser.role?.toLowerCase()] || <p>Role not recognized</p>;
   };
-
-  const tabs = [
-    { key: "land", label: "Buy Land", data: landowners, filterKey: "size" },
-    { key: "entrepreneurs", label: "See Entrepreneurs", data: entrepreneurs, filterKey: "business" },
-  ];
 
   const filterData = (data) =>
     data.filter(item =>
