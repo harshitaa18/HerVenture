@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const Entrepreneur = require("../models/Entrepreneur");
 const authMiddleware = require("../middleware/authMiddleware"); // JWT middleware
+const mongoose = require("mongoose");
 
 router.post("/", authMiddleware, async (req, res) => {
   try {
@@ -21,6 +22,21 @@ router.post("/", authMiddleware, async (req, res) => {
     res.status(201).json(entrepreneur);
   } catch (err) {
     res.status(500).json({ error: "Failed to create profile", details: err.message });
+  }
+});
+
+router.get("/:id", authMiddleware, async (req, res) => {
+  try {
+    const entrepreneur = await Entrepreneur.findOne({ _id: new mongoose.Types.ObjectId(req.params.id) });
+    console.log("Fetching landowner for userId:", req.params.id);
+
+    if (!entrepreneur) {
+      return res.status(404).json({ error: "Landowner profile not found" });
+    }
+
+    res.json(entrepreneur);
+  } catch (err) {
+    res.status(500).json({ error: "Error fetching landowner profile", details: err.message });
   }
 });
 

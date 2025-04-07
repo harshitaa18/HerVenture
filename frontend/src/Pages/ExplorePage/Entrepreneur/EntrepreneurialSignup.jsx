@@ -39,7 +39,7 @@ const EntrepreneurSignup = () => {
       localStorage.setItem("token", token);
 
       // Step 2: Submit entrepreneur profile
-      const profileRes = await api.post("/entrepreneurs",{
+      const profileRes = await api.post("/entrepreneur",{
           contact: formData.contact,
           business: formData.businessLicense,
           location: formData.location,
