@@ -31,6 +31,7 @@ const Profile = () => {
       const validRoles = {
         entrepreneur: "entrepreneur",
         landowner: "landowner",
+        labor: "labor",
       };
 
       const endpoint = validRoles[user.role?.toLowerCase()];
@@ -69,6 +70,15 @@ const Profile = () => {
           <p><b>Expected Payment:</b> {user.expectedPayment || "N/A"}</p>
         </>
       ),
+      "labor": (
+        <>
+          <p><b>Skillset:</b> {fullUser.skillset || "N/A"}</p>
+          <p><b>Certifications:</b> {fullUser.certifications || "N/A"}</p>
+          <p><b>Experience:</b> {fullUser.experience || "N/A"} years</p>
+          <p><b>Expected Salary:</b> ₹{fullUser.expectedSalary || "N/A"}</p>
+          <p><b>Location:</b> {fullUser.location || "N/A"}</p>
+        </>
+      )
     };
 
     return userDetails[user.role?.toLowerCase()] || <p>Role not recognized</p>;

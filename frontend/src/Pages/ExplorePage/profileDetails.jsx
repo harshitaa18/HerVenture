@@ -8,7 +8,7 @@ const ProfileDetail = () => {
   const navigate = useNavigate();
 
   const dataMap = {
-    "skilled-labor": skilledLabor,
+    labor: skilledLabor,
     entrepreneur: entrepreneurs,
     landowner: landowners,
     supplier: suppliers,
@@ -44,7 +44,7 @@ const ProfileDetail = () => {
               <p><b>Location:</b> {userDetails.location}</p>
             </>
           )}
-          {role === "skilled-labor" && (
+          {role === "labor" && (
             <>
               <p><b>Skill:</b> {userDetails.skill}</p>
               <p><b>Experience:</b> {userDetails.experience} years</p>

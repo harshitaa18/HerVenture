@@ -1,20 +1,10 @@
 const express = require("express");
 const Labor = require("../models/Labor");
-
 const router = express.Router();
+const authMiddleware = require("../middleware/authMiddleware"); // JWT middleware
+const mongoose = require("mongoose");
 
-// Get all skilled labor
-router.get("/", async (req, res) => {
-  try {
-      const laborers = await Labor.find();
-      res.json(laborers);
-    } catch (err) {
-      console.error("Fetch error:", err);
-      res.status(500).json({ error: "Error fetching data" });
-    }
-});
-
-router.post("/", async (req, res) => {
+router.post("/", authMiddleware, async (req, res) => {
   try {
     const { name,
       contact,
@@ -26,10 +16,11 @@ router.post("/", async (req, res) => {
       experience,
       workSamples, } = req.body;
 
-    const newLabour = new Labor({
-      name,
+    const newLabour = await Labor.create({
+      userId: req.user._id,
+      name: req.user.name, // from token
+      email: req.user.email,
       contact,
-      email,
       expectedSalary,
       skillset,
       certifications,
@@ -37,12 +28,25 @@ router.post("/", async (req, res) => {
       experience,
       workSamples,
     });
-
-    await newLabour.save();
     res.status(201).json(newLabour);
   } catch (err) {
     console.error("Signup error:", err);
     res.status(500).json({ error: "Server error during signup" });
+  }
+});
+
+router.get("/:id", authMiddleware, async (req, res) => {
+  try {
+    const labor = await Labor.findOne({ _id: new mongoose.Types.ObjectId(req.params.id) });
+    console.log("Fetching landowner for userId:", req.params.id);
+
+    if (!labor) {
+      return res.status(404).json({ error: "Landowner profile not found" });
+    }
+
+    res.json(labor);
+  } catch (err) {
+    res.status(500).json({ error: "Error fetching landowner profile", details: err.message });
   }
 });
 
