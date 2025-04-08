@@ -36,7 +36,7 @@
 }
 
 .main_header-text h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
@@ -60,7 +60,7 @@
 .main_header-btn:hover {
     background-color: rgb(192, 94, 192);
 }
-.header img {
+.headerr img {
     width: 100%;
     height: 600px;
     object-fit: fill;  /* Ensures the entire image is visible */

@@ -4,7 +4,6 @@
 .explore-container {
     display: flex;
     height: 100vh;
-    background: #ffff;
     color: linear-gradient(135deg, purple, pink);
     align-items: center;
     justify-content: center;

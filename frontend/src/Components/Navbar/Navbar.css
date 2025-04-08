@@ -13,6 +13,21 @@
   font-family: 'Arial', sans-serif;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
+.feedback-btn {
+  padding: 6px 12px;
+  background-color: #f06292;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.feedback-btn:hover {
+  background-color: #ec407a;
+}
 
 /* Logo Section */
 .logo {
