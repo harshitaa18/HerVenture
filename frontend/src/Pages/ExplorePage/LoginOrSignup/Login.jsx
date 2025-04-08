@@ -1,8 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import api from "../../../utils/api";
 import { useUser } from "../../../Context/UserContext";
+import poster1 from "../../../Components/Assets/poster1.avif";
+import poster2 from "../../../Components/Assets/poster2.jpg";
+import poster5 from "../../../Components/Assets/poster5.jpg";
+import poster4 from "../../../Components/Assets/poster4.jpg";
+
+const slides = [
+  { type: "image", content: poster1 },
+  { type: "image", content: poster5 },
+  { type: "image", content: poster2 },
+  {type: "image", content: poster4 },
+];
 
 const SignInPage = () => {
   const [role, setRole] = useState("entrepreneur");
@@ -10,6 +21,14 @@ const SignInPage = () => {
   const [password, setPassword] = useState("");
   const { setUser } = useUser();
   const navigate = useNavigate();
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   const roles = ["entrepreneur", "labor", "landowner", "supplier"];
 
@@ -37,39 +56,53 @@ const SignInPage = () => {
   return (
     <div className="signin-container">
       <div className="auth-card">
-        <h2>Sign In</h2>
+        {/* Left Section */}
+        <div className="auth-left">
+          <h2>Sign In</h2>
 
-        <select
-          className="role-dropdown"
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-        >
-          {roles.map((r) => (
-            <option key={r} value={r}>
-              {r.charAt(0).toUpperCase() + r.slice(1).replace("-", " ")}
-            </option>
-          ))}
-        </select>
+          <select
+            className="role-dropdown"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+          >
+            {roles.map((r) => (
+              <option key={r} value={r}>
+                {r.charAt(0).toUpperCase() + r.slice(1).replace("-", " ")}
+              </option>
+            ))}
+          </select>
 
-        <form onSubmit={handleSignIn}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button type="submit" className="signin-button">
-            Sign In
-          </button>
-        </form>
+          <form onSubmit={handleSignIn}>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <button type="submit" className="signin-button">
+              Sign In
+            </button>
+          </form>
+        </div>
+
+        {/* Right Section with Slideshow */}
+        <div className="auth-right">
+          <div className="slide-content">
+            {slides[currentSlide].type === "image" ? (
+              <img src={slides[currentSlide].content} alt="slide" className="slide-image" />
+            ) : (
+              <p className="slide-text">{slides[currentSlide].content}</p>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

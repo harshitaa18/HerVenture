@@ -1,92 +1,138 @@
 .profile-detail-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
-    padding: 20px;
-    background: white;
-  }
+  position: relative;
+  height: 100vh;
+  background: #f9f9f9; /* light background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.profile-card {
+  display: flex;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 1;
+  max-width: 800px;
+  width: 100%;
+  color: #333;
+  position: relative;
+}
+
+.profile-left, .profile-right {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile-left {
+  background: #f0f0f5;
+  align-items: center;
+  width: 40%;
+  text-align: center;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+.profile-left p{
+  color: white;
+}
+.profile-right {
+  width: 60%;
+}
+
+.image-circle {
+  width: 130px;
+  height: 130px;
+  background: linear-gradient(135deg, purple, pink);
+  border-radius: 50%;
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  border: 5px solid white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.role {
+  background-color: purple;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 10px;
+  margin-top: 10px;
+  font-size: 14px;
   
-  .profile-card-details {
-    width: 50%;
-    max-width: 600px;
-    background: linear-gradient(135deg,purple,pink);
-    padding: 20px;
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    display: flex;
+}
+
+.profile-right h3 {
+  color: purple;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.profile-right p {
+  margin: 10px 0;
+  font-size: 16px;
+  background: #f4f4f4;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.back-button {
+  margin-top: 25px;
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: purple;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.back-button:hover {
+  background-color: #9333ea;
+}
+
+.leaf-shape {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 0 70px 0 70px;
+  z-index: 0;
+  opacity: 0.8;
+  filter: blur(1px);
+  background: linear-gradient(135deg, purple, pink);
+}
+
+.top-right {
+  top: 40px;
+  right: 270px;
+}
+
+.bottom-left {
+  bottom: 70px;
+  left: 240px;
+}
+
+@media (max-width: 768px) {
+  .profile-card {
     flex-direction: column;
-    align-items: center;
-    color: white;
-    text-align: center;
   }
-  
-  .profile-image {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    margin-bottom: 15px;
-  }
-  
-  .profile-card h2 {
-    margin: 10px 0;
-    font-size: 26px;
-  }
-  
-  .role {
-    font-size: 18px;
-    font-weight: bold;
-    background: rgba(255, 255, 255, 0.3);
-    padding: 5px 10px;
-    border-radius: 8px;
-  }
-  
-  .contact-section, .profile-details {
+
+  .profile-left, .profile-right {
     width: 100%;
-    text-align: left;
-    margin-top: 15px;
+    padding: 20px;
   }
-  
-  .contact-section p, .profile-details p {
-    font-size: 18px;
-    margin: 8px 0;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
+
+  .leaf-shape {
+    width: 100px;
+    height: 100px;
   }
-  
-  .back-button {
-    margin-top: 20px;
-    padding: 12px 18px;
-    font-size: 16px;
-    background: rgba(255, 255, 255, 0.3);
-    border: none;
-    border-radius: 8px;
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .back-button:hover {
-    background: white;
-    color: #ff758c;
-    font-weight: bold;
-  }
-  
-  @media (max-width: 768px) {
-    .profile-card {
-      width: 90%;
-      padding: 20px;
-    }
-  }
-  
+}

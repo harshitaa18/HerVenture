@@ -46,12 +46,12 @@ body {
 .profile-card h2 {
   font-size: 27px;
   margin: 10px 0;
-  color: white;
+  color: black;
 }
 
 .profile-card p {
   font-size: 16px;
-  color: #f1f1f1;
+  color: black;
   opacity: 0.9;
 }
 
