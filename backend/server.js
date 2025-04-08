@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
   res.send("Backend is running");
 });
 
-// Routes
+app.use("/api",  require("./routes/userRoutes"));
 app.use("/api/auth", authRoutes);
 app.use("/api/entrepreneur", require("./routes/entrepreneurRoutes"));
 app.use("/api/labor", require("./routes/laborRoutes"));

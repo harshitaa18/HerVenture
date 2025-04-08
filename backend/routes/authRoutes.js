@@ -64,4 +64,8 @@ router.post("/login", async (req, res) => {
   }
 });
 
+const { getProfileByRoleAndId } = require("../controllers/authController");
+
+router.get("/profile/:role/:id", getProfileByRoleAndId);
+
 module.exports = router;

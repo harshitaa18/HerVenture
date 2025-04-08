@@ -177,24 +177,24 @@ const Profile = () => {
       )}
 
       
-{tabs.map(({ key, data }) => 
-  tab === key && (
-    <div key={key} className="section">
-      <h3>{tabs.find(t => t.key === key).label}</h3>
-      {filterData(data).map((item, index) => {
-        return (
-          <div key={item._id || index} className="car" onClick={() => handleClick(key, item._id)}>
-              <p><b>Name:</b> {item.name || "N/A"}</p>
-              <p><b>Location:</b> {item.location || "N/A"}</p>
-              {key === "entrepreneurs" && <p><b>Business:</b> {item.aboutBusiness || "N/A"}</p>}
-              {key === "land" && <p><b>Land Size:</b> {item.landSize || "N/A"}</p>}
-              {key === "labor" && <p><b>Skillset:</b> {item.skillset || "N/A"}</p>}
-          </div>
-        );
-      })}
-    </div>
-  )
-)}
+        {tabs.map(({ key, data }) => 
+          tab === key && (
+            <div key={key} className="section">
+              <h3>{tabs.find(t => t.key === key).label}</h3>
+              {filterData(data).map((item, index) => {
+                return (
+                  <div key={item._id || index} className="car" onClick={() => handleClick(key, item._id)}>
+                      <p><b>Name:</b> {item.name || "N/A"}</p>
+                      <p><b>Location:</b> {item.location || "N/A"}</p>
+                      {key === "entrepreneurs" && <p><b>Business:</b> {item.aboutBusiness || "N/A"}</p>}
+                      {key === "land" && <p><b>Land Size:</b> {item.landSize || "N/A"}</p>}
+                      {key === "labor" && <p><b>Skillset:</b> {item.skillset || "N/A"}</p>}
+                  </div>
+                );
+              })}
+            </div>
+          )
+        )}
     </div>
   );
 };

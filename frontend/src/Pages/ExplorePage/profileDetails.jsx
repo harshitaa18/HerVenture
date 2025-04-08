@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./profileDetail.css";
+import axios from "axios";
 
 const ProfileDetail = () => {
   const { role, id } = useParams();
@@ -11,16 +12,14 @@ const ProfileDetail = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch(`https://your-backend-url.com/api/profile/${role}/${id}`);
-        if (!response.ok) throw new Error("Profile not found");
-        const data = await response.json();
-        setUserDetails(data);
-        console.log(userDetails);
+        const response = await axios.get(`http://localhost:5000/api/auth/profile/${role}/${id}`);
+        setUserDetails(response.data);
+        console.log(response.data);
       } catch (err) {
-        setError(err.message);
+        setError(err.response?.data?.error || err.message);
       }
     };
-
+      
     fetchProfile();
   }, [role, id]);
 
