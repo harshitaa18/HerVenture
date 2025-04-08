@@ -37,8 +37,7 @@ router.post("/", authMiddleware, async (req, res) => {
 
 router.get("/:id", authMiddleware, async (req, res) => {
   try {
-    const labor = await Labor.findOne({ _id: new mongoose.Types.ObjectId(req.params.id) });
-    console.log("Fetching landowner for userId:", req.params.id);
+    const labor = await newLabour.findOne({ userId: new mongoose.Types.ObjectId(req.params.id) });
 
     if (!labor) {
       return res.status(404).json({ error: "Landowner profile not found" });
