@@ -66,20 +66,24 @@ const EntrepreneurSignup = () => {
   };
 
   return (
-    <div className="signup-form-container">
-      <h2>Entrepreneur Signup</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="signup-page">
+    <div className="purple-blob blob-top-left"></div>
+    <div className="purple-blob blob-bottom-right"></div>
+    <div className="signup-container">
+      <h2 className="form-title">Get Started</h2>
+      <form className="signup-form" onSubmit={handleSubmit}>
         <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
-        <input type="text" name="contact" placeholder="Contact" value={formData.contact} onChange={handleChange} required />
-        <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
+        <input type="email" name="email" placeholder="E-mail" value={formData.email} onChange={handleChange} required />
         <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
-        <input type="text" name="businessLicense" placeholder="Business License (Optional)" value={formData.businessLicense} onChange={handleChange} />
-        <textarea name="aboutBusiness" placeholder="About Your Business (100-150 words)" value={formData.aboutBusiness} onChange={handleChange} required />
-        <input type="text" name="location" placeholder="Location/Address" value={formData.location} onChange={handleChange} required />
-
-        <button type="submit" className="signup-button">Sign Up</button>
+        <input type="password" name="confirmPassword" placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleChange} required />
+        <input type="text" name="contact" placeholder="Contact Number" value={formData.contact} onChange={handleChange} required />
+        <input type="text" name="businessLicense" placeholder="Business License" value={formData.businessLicense} onChange={handleChange} required />
+        <textarea name="aboutBusiness" placeholder="About Your Business" value={formData.aboutBusiness} onChange={handleChange} required />
+        <input type="text" name="location" placeholder="Business Location" value={formData.location} onChange={handleChange} required />
+        <button type="submit" className="submit-btn">Sign Up</button>
       </form>
     </div>
+  </div>
   );
 };
 
