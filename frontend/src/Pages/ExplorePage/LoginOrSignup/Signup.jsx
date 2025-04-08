@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Signup.css";
-import poster2 from "../../../Components/Assets/poster2.jpg";
 import poster1 from "../../../Components/Assets/poster1.avif";
+import poster2 from "../../../Components/Assets/poster2.jpg";
+import poster5 from "../../../Components/Assets/poster5.jpg";
+import poster4 from "../../../Components/Assets/poster4.jpg";
 
 const slides = [
-  { type: "quote", content: "Where ambition meets opportunity — a platform built by and for visionary women 🌱" },
-  { type: "stat", content: "Together, we’re not just building businesses — we’re building a future that reflects us" },
   { type: "image", content: poster1 },
-  { type: "quote", content: "HerVenture: Where skilled minds, bold hearts, and big dreams come together to build legacies." },
+  { type: "image", content: poster5 },
   { type: "image", content: poster2 },
+  {type: "image", content: poster4 },
 ];
 
 const SignupPage = () => {

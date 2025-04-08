@@ -139,9 +139,9 @@ const Profile = () => {
 
   return (
     
-    <div className="profile-container">
+    <div className="profilee-container">
       {user ? (
-        <div className="profile-card">
+        <div className="profilee-card">
           <h2>{user.name || "No Name"}</h2>
           <p>{user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : "No Role"}</p>
           {renderUserDetails()}
