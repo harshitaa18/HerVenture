@@ -46,12 +46,12 @@ body {
 .profile-card h2 {
   font-size: 27px;
   margin: 10px 0;
-  color: black;
+  color: white;
 }
 
 .profile-card p {
   font-size: 16px;
-  color: black;
+  color: #f1f1f1;
   opacity: 0.9;
 }
 
@@ -62,6 +62,7 @@ body {
   align-items: center;
   gap: 15px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .filters input,
@@ -88,6 +89,7 @@ body {
   justify-content: space-between;
   margin: 30px 0;
   border-bottom: 2px solid #ddd;
+  flex-wrap: wrap;
 }
 
 .tabs button {
@@ -135,31 +137,38 @@ body {
 }
 
 /* ===== Cards (Workers, Landowners, Suppliers) ===== */
-.card {
+/* ===== Cards (Workers, Landowners, Suppliers) ===== */
+.car {
   background: white;
   padding: 18px;
-  height: 40px;
   margin: 12px 0;
+  border: 2px solid purple; /* Added border */
   border-radius: 12px;
-  box-shadow: var(purple);
+  box-shadow: var(--card-shadow); /* Corrected from var(purple) to actual shadow */
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column; /* Ensures content stacks nicely if it's large */
+  align-items: flex-start;
+  justify-content: flex-start;
   cursor: pointer;
+  word-wrap: break-word; /* Makes sure long text breaks properly */
+  overflow-wrap: break-word;
 }
 
-.card:hover {
+.car:hover {
   transform: scale(1.03);
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-.card p {
+.car p {
   font-size: 16px;
   font-weight: 500;
   color: var(--text-color);
   margin: 0;
+  margin-bottom: 8px;
+  width: 100%;
 }
+
 
 /* ===== Contact/Inquire Buttons ===== */
 .contact-btn,
@@ -207,7 +216,7 @@ body {
     max-width: 100%;
   }
 
-  .card {
+  .car {
     flex-direction: column;
     text-align: center;
     padding: 20px;

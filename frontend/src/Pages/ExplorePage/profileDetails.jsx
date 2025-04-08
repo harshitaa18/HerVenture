@@ -1,42 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { entrepreneurs, landowners, skilledLabor, suppliers } from "./data";
 import "./profileDetail.css";
 
 const ProfileDetail = () => {
   const { role, id } = useParams();
   const navigate = useNavigate();
+  const [userDetails, setUserDetails] = useState(null);
+  const [error, setError] = useState(null);
 
-  const dataMap = {
-    labor: skilledLabor,
-    entrepreneur: entrepreneurs,
-    landowner: landowners,
-    supplier: suppliers,
-  };
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await fetch(`https://your-backend-url.com/api/profile/${role}/${id}`);
+        if (!response.ok) throw new Error("Profile not found");
+        const data = await response.json();
+        setUserDetails(data);
+        console.log(userDetails);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
 
-  const formattedRole = role.replace("-", " "); // Convert hyphenated roles to normal ones
-  const userDetails = dataMap[role]?.find((user) => user.id.toString() === id);
+    fetchProfile();
+  }, [role, id]);
 
-  if (!userDetails) return <p className="error-message">Profile not found.</p>;
+  if (error) return <p className="error-message">{error}</p>;
+  if (!userDetails) return <p>Loading...</p>;
 
   return (
     <div className="profile-detail-container">
       <div className="profile-card-details">
         {/* Profile Image Section */}
         <div className="profile-image">
-          <span>{userDetails.name.charAt(0)}</span> {/* Placeholder Initial */}
+          <span>{userDetails.name.charAt(0)}</span>
         </div>
 
         {/* User Name & Role */}
         <h2>{userDetails.name}</h2>
-        <p className="role">{formattedRole.toUpperCase()}</p>
+        <p className="role">{role.toUpperCase()}</p>
 
-        {/* Contact Section */}
+        {/* Contact */}
         <div className="contact-section">
           <p><b>Email:</b> {userDetails.email || userDetails.contact}</p>
         </div>
 
-        {/* Dynamic Details Based on Role */}
+        {/* Dynamic Role Details */}
         <div className="profile-details">
           {role === "entrepreneur" && (
             <>

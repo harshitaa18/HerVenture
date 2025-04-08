@@ -50,4 +50,13 @@ router.get("/:id", authMiddleware, async (req, res) => {
   }
 });
 
+router.get("/", async (req, res) => {
+  try {
+    const allLabor = await Labor.find().populate('userId', 'name');
+    res.json(allLabor);
+  } catch (err) {
+    res.status(500).json({ error: "Error fetching entrepreneurs", details: err.message });
+  }
+});
+
 module.exports = router;

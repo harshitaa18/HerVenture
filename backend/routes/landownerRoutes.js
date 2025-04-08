@@ -35,7 +35,6 @@ router.post("/", authMiddleware, async (req, res) => {
 router.get("/:id", authMiddleware, async (req, res) => {
   try {
     const landowner = await Landowner.findOne({ _id: new mongoose.Types.ObjectId(req.params.id) });
-    console.log("Fetching landowner for userId:", req.params.id);
 
     if (!landowner) {
       return res.status(404).json({ error: "Landowner profile not found" });
@@ -44,6 +43,15 @@ router.get("/:id", authMiddleware, async (req, res) => {
     res.json(landowner);
   } catch (err) {
     res.status(500).json({ error: "Error fetching landowner profile", details: err.message });
+  }
+});
+
+router.get("/", async (req, res) => {
+  try {
+    const allLandowner = await Landowner.find().populate('userId', 'name');
+    res.json(allLandowner);
+  } catch (err) {
+    res.status(500).json({ error: "Error fetching ", details: err.message });
   }
 });
 

@@ -3,7 +3,7 @@ import { useUser } from "../../Context/UserContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./profile.css";
-import { entrepreneurs, landowners, suppliers, skilledLabor } from "./data";
+import {suppliers} from "./data";
 
 const Profile = () => {
   const { user } = useUser();
@@ -11,14 +11,11 @@ const Profile = () => {
   const [selectedFilter, setSelectedFilter] = useState("");
   const [fullUser, setFullUser] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const navigate = useNavigate();
+  const [entrepreneurs, setEntrepreneurs] = useState([]);
+  const [landownersData, setLandownersData] = useState([]);
+  const [laborData, setLaborData] = useState([]);
 
-  const tabs = [
-    { key: "land", label: "Buy Land", data: landowners, filterKey: "size" },
-    { key: "entrepreneurs", label: "See Entrepreneurs", data: entrepreneurs, filterKey: "business" },
-    { key: "labor", label: "Find Skilled Labor", data: skilledLabor, filterKey: "skill" },
-    { key: "suppliers", label: "Find Suppliers", data: suppliers, filterKey: "industry" },
-  ];
+  const navigate = useNavigate();
 
   const roleMap = {
     land: "landowner",
@@ -27,10 +24,31 @@ const Profile = () => {
     suppliers: "supplier",
   };
 
-  const handleClick = (tabKey, id) => {
-    const role = roleMap[tabKey];
+  const handleClick = (Key, id) => {
+    const role = roleMap[Key];
     if (role) navigate(`/profile/${role}/${id}`);
   };
+  
+
+  useEffect(() => {
+    const fetchAllUsers = async () => {
+      try {
+        const [entrepreneurRes, landRes, laborRes] = await Promise.all([
+          axios.get("http://localhost:5000/api/entrepreneur"),
+          axios.get("http://localhost:5000/api/landowner"),
+          axios.get("http://localhost:5000/api/labor"),
+        ]);
+  
+        setEntrepreneurs(entrepreneurRes.data);
+        setLandownersData(landRes.data);
+        setLaborData(laborRes.data);
+      } catch (err) {
+        console.error("Failed to fetch users by role:", err);
+      }
+    };
+  
+    fetchAllUsers();
+  }, []);
 
   useEffect(() => {
     const fetchFullProfile = async () => {
@@ -56,13 +74,14 @@ const Profile = () => {
         });
 
         setFullUser({ ...user, ...res.data });
+
       } catch (err) {
         console.error("Error fetching full profile:", err);
       }
     };
 
     fetchFullProfile();
-  }, [user]);
+  }, [fullUser]);
 
   const renderUserDetails = () => {
     if (!user || !fullUser) return <p>Loading profile...</p>;
@@ -105,6 +124,12 @@ const Profile = () => {
     return userDetails[fullUser.role?.toLowerCase()] || <p>Role not recognized</p>;
   };
   
+  const tabs = [
+    { key: "land", label: "Buy Land", data: landownersData, filterKey: "landSize" },
+    { key: "entrepreneurs", label: "See Entrepreneurs", data: entrepreneurs, filterKey: "aboutBusiness" },
+    { key: "labor", label: "Find Skilled Labor", data: laborData, filterKey: "skillset" },
+    { key: "suppliers", label: "Find Suppliers", data: suppliers, filterKey: "industry" },
+  ];
 
   const filterData = (data) =>
     data.filter(item =>
@@ -113,6 +138,7 @@ const Profile = () => {
     );
 
   return (
+    
     <div className="profile-container">
       {user ? (
         <div className="profile-card">
@@ -150,18 +176,25 @@ const Profile = () => {
         </div>
       )}
 
-      {tabs.map(({ key, data }) => 
-        tab === key && (
-          <div key={key} className="section">
-            <h3>{tabs.find(t => t.key === key).label}</h3>
-            {filterData(data).map((item, index) => (
-              <div key={item.id || index} className="card" onClick={() => handleClick(key, item.id)}>
-                <p>{item.name} - {item[tabs.find(t => t.key === key).filterKey]}</p>
-              </div>
-            ))}
+      
+{tabs.map(({ key, data }) => 
+  tab === key && (
+    <div key={key} className="section">
+      <h3>{tabs.find(t => t.key === key).label}</h3>
+      {filterData(data).map((item, index) => {
+        return (
+          <div key={item._id || index} className="car" onClick={() => handleClick(key, item._id)}>
+              <p><b>Name:</b> {item.name || "N/A"}</p>
+              <p><b>Location:</b> {item.location || "N/A"}</p>
+              {key === "entrepreneurs" && <p><b>Business:</b> {item.aboutBusiness || "N/A"}</p>}
+              {key === "land" && <p><b>Land Size:</b> {item.landSize || "N/A"}</p>}
+              {key === "labor" && <p><b>Skillset:</b> {item.skillset || "N/A"}</p>}
           </div>
-        )
-      )}
+        );
+      })}
+    </div>
+  )
+)}
     </div>
   );
 };

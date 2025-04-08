@@ -5,7 +5,7 @@ import "./EntrepreneurialSignup.css";
 import api from "../../../utils/api";
 
 const EntrepreneurSignup = () => {
-  const { setUser } = useUser();
+  const {setUser } = useUser();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -34,8 +34,9 @@ const EntrepreneurSignup = () => {
         contact: formData.contact,
         role: "entrepreneur",
       });
-
+      
       const { token, user } = signupRes.data;
+     
       localStorage.setItem("token", token);
 
       // Step 2: Submit entrepreneur profile
@@ -56,6 +57,7 @@ const EntrepreneurSignup = () => {
 
       // Flatten user + profile data into one object
       setUser({ ...user, ...profileRes.data });
+      
       navigate("/profile");
     } catch (err) {
       console.error("Signup error: ", err.response?.data || err.message);
