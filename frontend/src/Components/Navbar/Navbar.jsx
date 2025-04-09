@@ -7,9 +7,9 @@ import profilePic from '../Assets/pic3.jpg';
 import Feedback from '../Feedback/Feedback'; // Adjust the path as needed
 
 export const Navbar = () => {
-  const { userData } = useUser();
+  const { user } = useUser();
   const [feedbackOpen, setFeedbackOpen] = useState(false); // state to control drawer
-
+  console.log("userData in Navbar:", user);
   return (
     <>
       <div className='Navbar'>
@@ -22,12 +22,13 @@ export const Navbar = () => {
           <li><Link to='/aboutUs' >About</Link></li>
           <li><Link to='/mentorship'>Mentorship</Link></li>
           <li><Link to='/policy'>Schemes and Policies</Link></li>
-          {userData && userData.email ? (
+
+          {user ? (
   // Show profile pic if user is logged in
               <li className='profile-icon'>
                 <Link to='/dashboard'>
                   <img 
-                    src={userData?.profilePicture || profilePic} 
+                    src={profilePic} 
                     alt="Profile" 
                     className="profile-pic" 
                   />
