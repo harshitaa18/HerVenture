@@ -1,95 +1,85 @@
-import React, { useState } from 'react';
-import {
-  SwipeableDrawer,
-  Box,
-  Typography,
-  TextField,
-  Button
-} from '@mui/material';
+import React from 'react';
+import { SwipeableDrawer, Box, Typography, IconButton, TextField, FormControlLabel, Checkbox, Button, RadioGroup, Radio, FormGroup } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
-const Feedback = ({ open, onToggle }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    feedback: ''
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Feedback Submitted:', formData);
-    setFormData({ name: '', email: '', feedback: '' });
-    onToggle(false); // Close drawer after submission
-  };
-
+function Feedback({ open, onClose }) {
   return (
     <SwipeableDrawer
-      anchor="bottom"
+      anchor="right"
       open={open}
-      onClose={() => onToggle(false)}
-      onOpen={() => onToggle(true)}
-      swipeAreaWidth={56}
-      disableSwipeToOpen={false}
-      ModalProps={{ keepMounted: true }}
+      onClose={onClose}
+      onOpen={() => {}}
     >
-      <Box
-        sx={{
-          padding: 3,
-          maxWidth: 500,
-          margin: '0 auto',
-          textAlign: 'center'
-        }}
-        component="form"
-        onSubmit={handleSubmit}
-      >
-        <Typography variant="h6" gutterBottom>
-          Share Your Feedback
-        </Typography>
+      <Box sx={{ width: 400, p: 3 }}>
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+          <Typography variant="h6">Feedback Form</Typography>
+          <IconButton onClick={onClose}>
+            <CloseIcon />
+          </IconButton>
+        </Box>
+
+        <TextField fullWidth margin="normal" label="Name" />
+        <TextField fullWidth margin="normal" label="Email" />
+
+        <Typography variant="subtitle1" mt={2}>Were the listings/recommendations relevant to your needs?</Typography>
+        <RadioGroup row>
+          <FormControlLabel value="yes1" control={<Radio />} label="Yes" />
+          <FormControlLabel value="no1" control={<Radio />} label="No" />
+        </RadioGroup>
+
+        <Typography variant="subtitle1">Was it easy to contact the landowner/supplier/worker?</Typography>
+        <RadioGroup row>
+          <FormControlLabel value="yes2" control={<Radio />} label="Yes" />
+          <FormControlLabel value="no2" control={<Radio />} label="No" />
+        </RadioGroup>
+
+        <Typography variant="subtitle1">Did you end up making a successful connection?</Typography>
+        <RadioGroup row>
+          <FormControlLabel value="yes3" control={<Radio />} label="Yes" />
+          <FormControlLabel value="no3" control={<Radio />} label="No" />
+        </RadioGroup>
+
+        <Typography variant="subtitle1">Would you recommend HerVenture to other women entrepreneurs?</Typography>
+        <RadioGroup row>
+          <FormControlLabel value="yes4" control={<Radio />} label="Yes" />
+          <FormControlLabel value="no4" control={<Radio />} label="No" />
+        </RadioGroup>
+
+        <Typography variant="subtitle1" mt={2}>Has HerVenture helped you grow your business in any of the following ways?</Typography>
+        <FormGroup>
+          <FormControlLabel control={<Checkbox />} label="Found a better location" />
+          <FormControlLabel control={<Checkbox />} label="Reduced supply costs" />
+          <FormControlLabel control={<Checkbox />} label="Found trustworthy staff" />
+          <FormControlLabel control={<Checkbox />} label="Saved time or effort" />
+          <FormControlLabel control={<Checkbox />} label="Gained more confidence to expand" />
+          <FormControlLabel control={<Checkbox />} label="Other (please describe)" />
+        </FormGroup>
+
+        <Typography variant="subtitle1" mt={2}>Did you face any problems while using the platform?</Typography>
+        <FormGroup>
+          <FormControlLabel control={<Checkbox />} label="Technical issues" />
+          <FormControlLabel control={<Checkbox />} label="Listings not available in my area" />
+          <FormControlLabel control={<Checkbox />} label="Lack of response from people I contacted" />
+          <FormControlLabel control={<Checkbox />} label="Language/clarity issues" />
+          <FormControlLabel control={<Checkbox />} label="Other" />
+        </FormGroup>
 
         <TextField
           fullWidth
-          label="Name"
-          name="name"
           margin="normal"
-          value={formData.name}
-          onChange={handleChange}
-        />
-
-        <TextField
-          fullWidth
-          label="Email"
-          name="email"
-          margin="normal"
-          type="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-
-        <TextField
-          fullWidth
-          label="Your Feedback"
-          name="feedback"
-          margin="normal"
+          label="What would you like to see improved most?"
           multiline
-          rows={4}
-          value={formData.feedback}
-          onChange={handleChange}
+          rows={3}
         />
 
-        <Button
-          type="submit"
-          variant="contained"
-          sx={{ mt: 2 }}
-        >
-          Submit
-        </Button>
+        <Box textAlign="center" mt={3}>
+          <Button variant="contained" color="primary">
+            Submit Feedback
+          </Button>
+        </Box>
       </Box>
     </SwipeableDrawer>
   );
-};
+}
 
 export default Feedback;
