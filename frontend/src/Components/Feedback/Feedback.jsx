@@ -21,31 +21,31 @@ function Feedback({ open, onClose }) {
         <TextField fullWidth margin="normal" label="Name" />
         <TextField fullWidth margin="normal" label="Email" />
 
-        <Typography variant="subtitle1" mt={2}>Were the listings/recommendations relevant to your needs?</Typography>
+        <Typography variant="subtitle1" mt={2}>1. Were the listings/recommendations relevant to your needs?</Typography>
         <RadioGroup row>
           <FormControlLabel value="yes1" control={<Radio />} label="Yes" />
           <FormControlLabel value="no1" control={<Radio />} label="No" />
         </RadioGroup>
 
-        <Typography variant="subtitle1">Was it easy to contact the landowner/supplier/worker?</Typography>
+        <Typography variant="subtitle1">2. Was it easy to contact the landowner/supplier/worker?</Typography>
         <RadioGroup row>
           <FormControlLabel value="yes2" control={<Radio />} label="Yes" />
           <FormControlLabel value="no2" control={<Radio />} label="No" />
         </RadioGroup>
 
-        <Typography variant="subtitle1">Did you end up making a successful connection?</Typography>
+        <Typography variant="subtitle1">3. Did you end up making a successful connection?</Typography>
         <RadioGroup row>
           <FormControlLabel value="yes3" control={<Radio />} label="Yes" />
           <FormControlLabel value="no3" control={<Radio />} label="No" />
         </RadioGroup>
 
-        <Typography variant="subtitle1">Would you recommend HerVenture to other women entrepreneurs?</Typography>
+        <Typography variant="subtitle1">4. Would you recommend HerVenture to other women entrepreneurs?</Typography>
         <RadioGroup row>
           <FormControlLabel value="yes4" control={<Radio />} label="Yes" />
           <FormControlLabel value="no4" control={<Radio />} label="No" />
         </RadioGroup>
 
-        <Typography variant="subtitle1" mt={2}>Has HerVenture helped you grow your business in any of the following ways?</Typography>
+        <Typography variant="subtitle1" mt={2}>5. Has HerVenture helped you grow your business in any of the following ways?</Typography>
         <FormGroup>
           <FormControlLabel control={<Checkbox />} label="Found a better location" />
           <FormControlLabel control={<Checkbox />} label="Reduced supply costs" />
@@ -55,7 +55,7 @@ function Feedback({ open, onClose }) {
           <FormControlLabel control={<Checkbox />} label="Other (please describe)" />
         </FormGroup>
 
-        <Typography variant="subtitle1" mt={2}>Did you face any problems while using the platform?</Typography>
+        <Typography variant="subtitle1" mt={2}>6. Did you face any problems while using the platform?</Typography>
         <FormGroup>
           <FormControlLabel control={<Checkbox />} label="Technical issues" />
           <FormControlLabel control={<Checkbox />} label="Listings not available in my area" />
