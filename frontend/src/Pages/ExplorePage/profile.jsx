@@ -75,14 +75,14 @@ const Profile = () => {
         });
 
         setFullUser({ ...user, ...res.data });
-        
+
       } catch (err) {
         console.error("Error fetching full profile:", err);
       }
     };
 
     fetchFullProfile();
-  }, [fullUser, user]);
+  }, [ user]);
 
   const renderUserDetails = () => {
     if (!user || !fullUser) return <p>Loading profile...</p>;

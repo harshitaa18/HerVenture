@@ -51,13 +51,13 @@ const ProfileDetail = () => {
           )}
           {role === "labor" && (
             <>
-              <p><strong>Skill:</strong> {userDetails.skill}</p>
+              <p><strong>Skill:</strong> {userDetails.skillset}</p>
               <p><strong>Experience:</strong> {userDetails.experience} years</p>
             </>
           )}
           {role === "landowner" && (
             <>
-              <p><strong>Land Size:</strong> {userDetails.size}</p>
+              <p><strong>Land Size:</strong> {userDetails.landSize}</p>
               <p><strong>Location:</strong> {userDetails.location}</p>
             </>
           )}
