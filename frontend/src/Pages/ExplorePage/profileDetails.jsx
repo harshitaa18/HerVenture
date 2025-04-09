@@ -14,6 +14,7 @@ const ProfileDetail = () => {
       try {
         const response = await axios.get(`http://localhost:5000/api/auth/profile/${role}/${id}`);
         setUserDetails(response.data);
+        console.log()
       } catch (err) {
         setError(err.response?.data?.error || err.message);
       }
@@ -50,13 +51,13 @@ const ProfileDetail = () => {
           )}
           {role === "labor" && (
             <>
-              <p><strong>Skill:</strong> {userDetails.skill}</p>
+              <p><strong>Skill:</strong> {userDetails.skillset}</p>
               <p><strong>Experience:</strong> {userDetails.experience} years</p>
             </>
           )}
           {role === "landowner" && (
             <>
-              <p><strong>Land Size:</strong> {userDetails.size}</p>
+              <p><strong>Land Size:</strong> {userDetails.landSize}</p>
               <p><strong>Location:</strong> {userDetails.location}</p>
             </>
           )}

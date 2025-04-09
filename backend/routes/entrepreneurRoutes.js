@@ -26,15 +26,19 @@ router.post("/", authMiddleware, async (req, res) => {
 });
 
 router.get("/:id", authMiddleware, async (req, res) => {
+  console.log(req.params.id, typeof req.params.id);
   try {
-    const entrepreneur = await Entrepreneur.findOne({ userId: new mongoose.Types.ObjectId(req.params.id) });
+    const entrepreneur = await Entrepreneur.findOne({ userId: req.params.id
+    });
 
     if (!entrepreneur) {
+      console.log("Sorry no one found")
       return res.status(404).json({ error: "Landowner profile not found" });
     }
 
     res.json(entrepreneur);
   } catch (err) {
+    console.log("Error here")
     res.status(500).json({ error: "Error fetching landowner profile", details: err.message });
   }
 });

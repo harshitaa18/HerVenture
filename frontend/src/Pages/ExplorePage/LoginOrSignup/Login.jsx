@@ -46,6 +46,8 @@ const SignInPage = () => {
       localStorage.setItem("token", token);
       setUser(user);
 
+      console.log(localStorage.getItem("token"));
+
       navigate("/profile");
     } catch (err) {
       console.error("Login failed:", err.response?.data || err.message);
@@ -87,8 +89,11 @@ const SignInPage = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <button type="submit" className="signin-button">
+            <button type="submit" className="proceed-button">
               Sign In
+            </button>
+            <button type="button" className="toggle-auth-button" onClick={() => navigate("/signup")}>
+              Switch to Signup
             </button>
           </form>
         </div>
