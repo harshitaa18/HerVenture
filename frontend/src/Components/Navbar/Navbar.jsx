@@ -22,18 +22,24 @@ export const Navbar = () => {
           <li><Link to='/aboutUs' >About</Link></li>
           <li><Link to='/mentorship'>Mentorship</Link></li>
           <li><Link to='/policy'>Schemes and Policies</Link></li>
-          <li><Link to='/login' >LogIn / SignUp</Link></li>
+          {userData && userData.email ? (
+  // Show profile pic if user is logged in
+              <li className='profile-icon'>
+                <Link to='/dashboard'>
+                  <img 
+                    src={userData?.profilePicture || profilePic} 
+                    alt="Profile" 
+                    className="profile-pic" 
+                  />
+                </Link>
+              </li>
+            ) : (
+              // Show login/signup if user is not logged in
+              <li>
+                <Link to='/login'>LogIn / SignUp</Link>
+              </li>
+        )}
 
-          {/* Profile Photo for Dashboard Link */}
-          <li className='profile-icon'>
-            <Link to='/dashboard'>
-              <img 
-                src={userData?.profilePicture || profilePic} 
-                alt="Profile" 
-                className="profile-pic" 
-              />
-            </Link>
-          </li>
 
           {/* Feedback Button */}
           <li>
