@@ -14,6 +14,7 @@ const ProfileDetail = () => {
       try {
         const response = await axios.get(`http://localhost:5000/api/auth/profile/${role}/${id}`);
         setUserDetails(response.data);
+        console.log()
       } catch (err) {
         setError(err.response?.data?.error || err.message);
       }
