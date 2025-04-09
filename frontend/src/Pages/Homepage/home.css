@@ -3,7 +3,7 @@
     bottom: 25px;
     left: 90rem;
     z-index: 1000;
-    background-color: #42a5f5 !important;
+    background-color: #be79e3 !important;
     color: white;
     width: 65px;
     height: 65px;
@@ -16,7 +16,42 @@
     transition: transform 0.3s ease;
   }
   .feedback-fab:hover {
-    background-color: #1e88e5 !important;
+    background-color: #d82deb !important;
     transform: scale(1.1);
+  }
+  .fab-wrapper {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .feedback-fab {
+    transition: transform 0.3s ease;
+  }
+  
+  /* Hidden text by default */
+  .fab-text {
+    background: linear-gradient(135deg, purple, pink);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 25px 0 0 25px;
+    margin-right: 10px;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+    font-weight: 500;
+    pointer-events: none;
+  }
+  
+  /* On hover, reveal the text */
+  .fab-wrapper:hover .fab-text {
+    opacity: 1;
+    transform: translateX(0);
   }
   

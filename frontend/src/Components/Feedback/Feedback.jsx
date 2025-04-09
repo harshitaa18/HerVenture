@@ -1,6 +1,39 @@
 import React from 'react';
-import { SwipeableDrawer, Box, Typography, IconButton, TextField, FormControlLabel, Checkbox, Button, RadioGroup, Radio, FormGroup } from '@mui/material';
+import {
+  SwipeableDrawer,
+  Box,
+  Typography,
+  IconButton,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Button,
+  RadioGroup,
+  Radio,
+  FormGroup
+} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+
+const purpleRadioStyle = {
+  color: '#800080',
+  '&.Mui-checked': {
+    color: '#800080',
+  },
+};
+
+const textFieldStyle = {
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#800080',
+    },
+    '&:hover fieldset': {
+      borderColor: '#800080',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#800080',
+    },
+  },
+};
 
 function Feedback({ open, onClose }) {
   return (
@@ -10,58 +43,77 @@ function Feedback({ open, onClose }) {
       onClose={onClose}
       onOpen={() => {}}
     >
-      <Box sx={{ width: 400, p: 3 }}>
+      <Box
+        sx={{
+          width: 400,
+          p: 3,
+          fontFamily: `'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif`,
+          fontSize: '1rem',
+          fontWeight: 500,
+          color: '#333'
+        }}
+      >
         <Box display="flex" justifyContent="space-between" alignItems="center">
-          <Typography variant="h6">Feedback Form</Typography>
+          <Typography variant="h6" fontWeight="bold">
+          We'd Love Your Feedback!
+          </Typography>
           <IconButton onClick={onClose}>
             <CloseIcon />
           </IconButton>
         </Box>
 
-        <TextField fullWidth margin="normal" label="Name" />
-        <TextField fullWidth margin="normal" label="Email" />
+        <TextField
+          fullWidth
+          margin="normal"
+          label="Name"
+          sx={textFieldStyle}
+        />
+        <TextField
+          fullWidth
+          margin="normal"
+          label="Email"
+          sx={textFieldStyle}
+        />
 
-        <Typography variant="subtitle1" mt={2}>1. Were the listings/recommendations relevant to your needs?</Typography>
+        <Typography variant="subtitle1" mt={2} fontWeight="bold">
+          1. Were the listings/recommendations relevant to your needs?
+        </Typography>
         <RadioGroup row>
-          <FormControlLabel value="yes1" control={<Radio />} label="Yes" />
-          <FormControlLabel value="no1" control={<Radio />} label="No" />
+          <FormControlLabel value="yes1" control={<Radio sx={purpleRadioStyle} />} label="Yes" />
+          <FormControlLabel value="no1" control={<Radio sx={purpleRadioStyle} />} label="No" />
         </RadioGroup>
 
-        <Typography variant="subtitle1">2. Was it easy to contact the landowner/supplier/worker?</Typography>
+        <Typography variant="subtitle1" fontWeight="bold">
+          2. Did you end up making a successful connection?
+        </Typography>
         <RadioGroup row>
-          <FormControlLabel value="yes2" control={<Radio />} label="Yes" />
-          <FormControlLabel value="no2" control={<Radio />} label="No" />
+          <FormControlLabel value="yes3" control={<Radio sx={purpleRadioStyle} />} label="Yes" />
+          <FormControlLabel value="no3" control={<Radio sx={purpleRadioStyle} />} label="No" />
         </RadioGroup>
 
-        <Typography variant="subtitle1">3. Did you end up making a successful connection?</Typography>
+        <Typography variant="subtitle1" fontWeight="bold">
+          3. Would you recommend HerVenture to other women entrepreneurs?
+        </Typography>
         <RadioGroup row>
-          <FormControlLabel value="yes3" control={<Radio />} label="Yes" />
-          <FormControlLabel value="no3" control={<Radio />} label="No" />
+          <FormControlLabel value="yes4" control={<Radio sx={purpleRadioStyle} />} label="Yes" />
+          <FormControlLabel value="no4" control={<Radio sx={purpleRadioStyle} />} label="No" />
         </RadioGroup>
 
-        <Typography variant="subtitle1">4. Would you recommend HerVenture to other women entrepreneurs?</Typography>
-        <RadioGroup row>
-          <FormControlLabel value="yes4" control={<Radio />} label="Yes" />
-          <FormControlLabel value="no4" control={<Radio />} label="No" />
-        </RadioGroup>
-
-        <Typography variant="subtitle1" mt={2}>5. Has HerVenture helped you grow your business in any of the following ways?</Typography>
+        <Typography variant="subtitle1" mt={2} fontWeight="bold">
+          4. Did you face any problems while using the platform?
+        </Typography>
         <FormGroup>
-          <FormControlLabel control={<Checkbox />} label="Found a better location" />
-          <FormControlLabel control={<Checkbox />} label="Reduced supply costs" />
-          <FormControlLabel control={<Checkbox />} label="Found trustworthy staff" />
-          <FormControlLabel control={<Checkbox />} label="Saved time or effort" />
-          <FormControlLabel control={<Checkbox />} label="Gained more confidence to expand" />
-          <FormControlLabel control={<Checkbox />} label="Other (please describe)" />
-        </FormGroup>
-
-        <Typography variant="subtitle1" mt={2}>6. Did you face any problems while using the platform?</Typography>
-        <FormGroup>
-          <FormControlLabel control={<Checkbox />} label="Technical issues" />
-          <FormControlLabel control={<Checkbox />} label="Listings not available in my area" />
-          <FormControlLabel control={<Checkbox />} label="Lack of response from people I contacted" />
-          <FormControlLabel control={<Checkbox />} label="Language/clarity issues" />
-          <FormControlLabel control={<Checkbox />} label="Other" />
+          <FormControlLabel control={<Checkbox sx={purpleRadioStyle}/>} label="Technical issues" />
+          <FormControlLabel
+            control={<Checkbox sx={purpleRadioStyle} />}
+            label="Listings not available in my area"
+          />
+          <FormControlLabel
+            control={<Checkbox sx={purpleRadioStyle}/>}
+            label="Lack of response from people I contacted"
+          />
+          <FormControlLabel control={<Checkbox sx={purpleRadioStyle} />} label="Language/clarity issues" />
+          <FormControlLabel control={<Checkbox sx={purpleRadioStyle} />} label="Other" />
         </FormGroup>
 
         <TextField
@@ -70,10 +122,20 @@ function Feedback({ open, onClose }) {
           label="What would you like to see improved most?"
           multiline
           rows={3}
+          sx={textFieldStyle}
         />
 
         <Box textAlign="center" mt={3}>
-          <Button variant="contained" color="primary">
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: 'purple',
+              '&:hover': {
+                backgroundColor: 'purple',
+              },
+              fontWeight: 'bold'
+            }}
+          >
             Submit Feedback
           </Button>
         </Box>
