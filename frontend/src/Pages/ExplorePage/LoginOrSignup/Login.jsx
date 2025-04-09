@@ -46,6 +46,8 @@ const SignInPage = () => {
       localStorage.setItem("token", token);
       setUser(user);
 
+      console.log(localStorage.getItem("token"));
+
       navigate("/profile");
     } catch (err) {
       console.error("Login failed:", err.response?.data || err.message);

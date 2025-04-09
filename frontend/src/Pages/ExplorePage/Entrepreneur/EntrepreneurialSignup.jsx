@@ -39,8 +39,11 @@ const EntrepreneurSignup = () => {
      
       localStorage.setItem("token", token);
 
+      console.log(token);
+
       // Step 2: Submit entrepreneur profile
       const profileRes = await api.post("/entrepreneur",{
+        userId: user._id,
           contact: formData.contact,
           business: formData.businessLicense,
           location: formData.location,
@@ -54,11 +57,11 @@ const EntrepreneurSignup = () => {
           },
         }
       );
-
+      
       // Flatten user + profile data into one object
       setUser({ ...user, ...profileRes.data });
       
-      navigate("/profile");
+      navigate("/login");
     } catch (err) {
       console.error("Signup error: ", err.response?.data || err.message);
       alert(err.response?.data?.details || "Signup failed.");
