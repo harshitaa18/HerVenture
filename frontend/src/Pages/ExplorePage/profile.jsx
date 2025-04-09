@@ -75,7 +75,7 @@ const Profile = () => {
         });
 
         setFullUser({ ...user, ...res.data });
-
+        
       } catch (err) {
         console.error("Error fetching full profile:", err);
       }
