@@ -42,6 +42,7 @@ function Feedback({ open, onClose }) {
       open={open}
       onClose={onClose}
       onOpen={() => {}}
+      sx={{ zIndex: 1300 }}
     >
       <Box
         sx={{

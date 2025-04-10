@@ -3,7 +3,7 @@ import './AboutUs.css';
 import HeaderImage from '../../Components/Assets/purple-bg2.webp';
 import Header from '../../Components/Header';
 import { FaClipboardList, FaFolderOpen, FaUsers, FaBullseye } from "react-icons/fa";
-import Team from './Team';
+import {Team} from './Team';
 
 export const AboutUs = () => {
     const features = [
