@@ -196,3 +196,101 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
 }
+/* Base styles - already included by you */
+.training-webinars {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  background: #f9f9f9;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 1024px) {
+  .calendar-events-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .calendar-container {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .events-container h2 {
+    font-size: 36px;
+    text-align: center;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .selected-event-card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .categories {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .events-container h2 {
+    font-size: 28px;
+  }
+
+  .card-title {
+    font-size: 1.3rem;
+  }
+
+  .card-mentor,
+  .card-date {
+    font-size: 16px;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .card-img,
+  .selected-event-card .card-img {
+    height: 200px;
+  }
+
+  .cards-container {
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+
+  .play-icon {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 10px;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .card-mentor,
+  .card-date {
+    font-size: 14px;
+  }
+
+  .selected-event-card {
+    padding: 15px;
+  }
+
+  .events-container h2 {
+    font-size: 24px;
+  }
+}

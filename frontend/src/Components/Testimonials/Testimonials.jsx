@@ -12,37 +12,37 @@ const testimonials = [
   {
     name: "Anita Roy",
     position: "Small Business Owner",
-    view: "HerVenture provided me with the tools to manage my business finances more effectively. The platform taught me budgeting, accounting, and resource allocation strategies that transformed how I run my business. It's a must-have for any entrepreneur looking to succeed.",
+    view: "HerVenture helped me find a supplier and skilled help quickly. It saved me time and made running my business easier.",
     photo: pic1,
   },
   {
     name: "Meera Sharma",
     position: "Freelance Designer",
-    view: "I connected with like-minded women and secured new clients through HerVenture's networking platform. The resources on client engagement and effective marketing techniques allowed me to build a strong and consistent freelance career.",
+    view: "Through HerVenture, I found skilled collaborators and suppliers that matched my work style. It helped me grow my freelance career with ease.",
     photo: pic2,
   },
   {
     name: "Priya Das",
     position: "Café Owner",
-    view: "The training modules helped me to expand my café operations and improve customer satisfaction. I also learned innovative ways to promote my café online, resulting in increased foot traffic and glowing customer reviews.",
+    view: "HerVenture helped me find the right café space and local suppliers. Their tips boosted my service and brought in more customers.",
     photo: pic3,
   },
   {
     name: "Rina Gupta",
     position: "Boutique Owner",
-    view: "HerVenture's marketing resources helped me grow my online presence and triple my online sales. I now have a robust digital storefront, and their analytics tips helped me target the right customers.",
+    view:"HerVenture helped me boost my online presence and find the right suppliers. With their tools, my sales tripled.",
     photo: pic4,
   },
   {
     name: "Neha Kapoor",
     position: "Tech Entrepreneur",
-    view: "Thanks to HerVenture, I successfully pitched my startup and received funding from investors. The mentorship and resources prepared me with the tools and confidence needed to showcase my ideas effectively.",
+    view: "HerVenture connected me to the right space and resources, helping me confidently pitch my startup and secure funding.",
     photo: pic5,
   },
   {
     name: "Sonal Verma",
     position: "Artisan",
-    view: "The mentorship program provided guidance on scaling my handmade products business globally. I’ve established partnerships with international buyers, and the knowledge shared on the platform was instrumental in this growth.",
+    view: "HerVenture helped me scale my handmade business by connecting me to trusted suppliers and workspace. With their support, I’ve grown globally and built partnerships abroad.",
     photo: pic6,
   },
 ];

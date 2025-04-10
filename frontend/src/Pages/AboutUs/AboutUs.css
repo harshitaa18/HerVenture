@@ -77,9 +77,11 @@ p{
 }
 .team_contain{
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
-    margin-left: 18rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+    max-width: 1200px;
 }
 .team-member{
     background: linear-gradient(135deg, #550a83, #bc75d0);;
@@ -207,4 +209,20 @@ p{
     display: flex;
     align-items: center; /* Align icon and text in the same line */
     gap: 10px; /* Add spacing between icon and text */
+}
+@media (max-width: 768px) {
+    .headerr {
+        height: auto;
+        padding: 2rem 1rem;
+    }
+    .headerr_content h2 {
+        font-size: 2rem;
+    }
+    .team h2 {
+        font-size: 2rem;
+    }
+    .team-member {
+        height: auto;
+        padding: 1.5rem;
+    }
 }
