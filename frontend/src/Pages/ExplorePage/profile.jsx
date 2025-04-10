@@ -82,7 +82,7 @@ const Profile = () => {
     };
 
     fetchFullProfile();
-  }, [ user]);
+  }, [user]);
 
   const renderUserDetails = () => {
     if (!user || !fullUser) return <p>Loading profile...</p>;
