@@ -15,7 +15,7 @@ import SkilledLaborSignup from './Pages/ExplorePage/Skilledlabour/SkilledSignup'
 import SupplierSignup from './Pages/ExplorePage/Supplier/SupplierSignup';
 import LandOwnerSignup from './Pages/ExplorePage/Landowner/LandownerSignup';
 import ProfileDetail from './Pages/ExplorePage/profileDetails';
-
+import PostRequirement from './Components/CreatePost/PostRequirement';
 function App() {
 
   return (
@@ -27,9 +27,10 @@ function App() {
           <Route path='/aboutUs' element = {<AboutUs/>}/>
           <Route path='/login' element = {<Login/>}/>
           <Route path="/signup/entrepreneur" element={<EntrepreneurSignup />} />
-        <Route path="/signup/skilled-labor" element={<SkilledLaborSignup />} />
-        <Route path="/signup/landowner" element={<LandOwnerSignup />} />
-        <Route path="/signup/supplier" element={<SupplierSignup />} />
+          <Route path="/signup/skilled-labor" element={<SkilledLaborSignup />} />
+          <Route path="/signup/landowner" element={<LandOwnerSignup />} />
+          <Route path="/signup/supplier" element={<SupplierSignup />} />
+          <Route path='/post' element={<PostRequirement />} />
           <Route path='/signup' element= {<Signup/>}/>
           <Route path='/mentorship' element = {<Mentorship/>}/>
           <Route path='/policy' element = {<Policy/>}/>

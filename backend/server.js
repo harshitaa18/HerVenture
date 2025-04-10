@@ -5,7 +5,6 @@ const multer = require('multer');
 const path = require('path');
 const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
-import postRoutes from './routes/postRoutes.js';
 
 const app = express();
 
@@ -16,8 +15,8 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Middlewares
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
-app.use(express.json());
 
+app.use(express.json());
 // Test Route
 app.get("/", (req, res) => {
   res.send("Backend is running");
@@ -27,7 +26,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/entrepreneur", require("./routes/entrepreneurRoutes"));
 app.use("/api/labor", require("./routes/laborRoutes"));
 app.use("/api/landowner", require("./routes/landownerRoutes"));
-app.use('/api/posts', postRoutes);
+const postRoutes = require("./routes/postRoutes");
 // Start server
 app.listen(5000, () => console.log("Server running on port 5000"));
 

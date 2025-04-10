@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useUser } from "../../Context/UserContext";
 import axios from "axios";
 import './Dashboard.css';
+import { useNavigate } from "react-router-dom";
 
 const UserDashboard = () => {
   const { user } = useUser();
   const [userData, setUserData] = useState(null);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchFullProfile = async () => {
       if (!user) return;
@@ -39,6 +40,11 @@ const UserDashboard = () => {
 
     fetchFullProfile();
   }, [ user]);
+
+  const handleCreatePost = () => {
+    navigate("/post"); // Replace with your actual route
+  };
+
 
   if (!userData) return <p>No user data found.</p>;
 
@@ -83,6 +89,11 @@ const UserDashboard = () => {
           <p><strong>Owner Address:</strong> {userData.ownerAddress || "N/A"}</p>
         </div>
       )}
+      <div className="post-section">
+  <p className="post-prompt">Want to post your requirement?</p>
+  <button  onClick={handleCreatePost} className="create-post-btn">Create New Post</button>
+</div>
+
     </div>
   );
 };

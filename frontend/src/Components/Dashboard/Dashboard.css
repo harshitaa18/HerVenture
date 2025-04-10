@@ -36,6 +36,33 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
   transition: box-shadow 0.3s ease;
 }
+.post-section {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.post-prompt {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #9b59b6; /* Purple */
+  margin-bottom: 0.7rem;
+}
+
+.create-post-btn {
+  background: purple; /* Pink to purple */
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.create-post-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+}
 
 .common-info:hover,
 .entrepreneur-section:hover,
