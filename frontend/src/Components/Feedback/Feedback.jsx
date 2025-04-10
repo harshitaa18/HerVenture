@@ -36,6 +36,11 @@ const textFieldStyle = {
 };
 
 function Feedback({ open, onClose }) {
+  const handleSubmit = () => {
+    // You can handle form data here if needed
+    onClose(); // Close the drawer on submit
+  };
+
   return (
     <SwipeableDrawer
       anchor="right"
@@ -56,7 +61,7 @@ function Feedback({ open, onClose }) {
       >
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Typography variant="h6" fontWeight="bold">
-          We'd Love Your Feedback!
+            We'd Love Your Feedback!
           </Typography>
           <IconButton onClick={onClose}>
             <CloseIcon />
@@ -104,15 +109,9 @@ function Feedback({ open, onClose }) {
           4. Did you face any problems while using the platform?
         </Typography>
         <FormGroup>
-          <FormControlLabel control={<Checkbox sx={purpleRadioStyle}/>} label="Technical issues" />
-          <FormControlLabel
-            control={<Checkbox sx={purpleRadioStyle} />}
-            label="Listings not available in my area"
-          />
-          <FormControlLabel
-            control={<Checkbox sx={purpleRadioStyle}/>}
-            label="Lack of response from people I contacted"
-          />
+          <FormControlLabel control={<Checkbox sx={purpleRadioStyle} />} label="Technical issues" />
+          <FormControlLabel control={<Checkbox sx={purpleRadioStyle} />} label="Listings not available in my area" />
+          <FormControlLabel control={<Checkbox sx={purpleRadioStyle} />} label="Lack of response from people I contacted" />
           <FormControlLabel control={<Checkbox sx={purpleRadioStyle} />} label="Language/clarity issues" />
           <FormControlLabel control={<Checkbox sx={purpleRadioStyle} />} label="Other" />
         </FormGroup>
@@ -129,12 +128,16 @@ function Feedback({ open, onClose }) {
         <Box textAlign="center" mt={3}>
           <Button
             variant="contained"
+            onClick={handleSubmit}
             sx={{
               backgroundColor: 'purple',
               '&:hover': {
-                backgroundColor: 'purple',
+                backgroundColor: '#a020f0',
               },
-              fontWeight: 'bold'
+              fontWeight: 'bold',
+              color: 'white',
+              px: 4,
+              borderRadius: 2
             }}
           >
             Submit Feedback

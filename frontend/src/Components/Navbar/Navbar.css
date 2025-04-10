@@ -147,3 +147,56 @@
     right: -10px;
   }
 }
+/* ...existing styles remain unchanged... */
+
+/* Hamburger Icon */
+.hamburger {
+  display: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Responsive Menu */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .Navbar-menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 0;
+    background-color: #282c34;
+  }
+
+  .Navbar-menu.open {
+    display: flex;
+  }
+
+  .Navbar-menu li {
+    margin: 10px 0;
+  }
+
+  .profile-icon {
+    margin-top: 10px;
+  }
+
+  .profile-pic {
+    height: 40px;
+    width: 40px;
+  }
+
+  .dropdown-menu {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    background-color: #fff;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .dropdown-item {
+    border-top: 1px solid #ddd;
+  }
+}
