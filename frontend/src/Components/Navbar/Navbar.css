@@ -1,5 +1,4 @@
-/* Navbar.css */
-
+/* Navbar Container */
 .Navbar {
   position: sticky;
   top: 0;
@@ -12,21 +11,6 @@
   color: white;
   font-family: 'Arial', sans-serif;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-.feedback-btn {
-  padding: 6px 12px;
-  background-color: #f06292;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  margin-left: 10px;
-  transition: background-color 0.3s ease;
-}
-
-.feedback-btn:hover {
-  background-color: #ec407a;
 }
 
 /* Logo Section */
@@ -46,9 +30,6 @@
   font-size: 1.4rem;
   font-weight: bold;
   margin: 0;
-  line-height: 1.2;
-  display: flex;
-  align-items: center;
   color: #fff;
 }
 
@@ -63,6 +44,7 @@
 
 .Navbar-menu li {
   margin: 0 20px;
+  position: relative;
 }
 
 .Navbar-menu li a {
@@ -70,7 +52,7 @@
   color: white;
   font-size: 1.1rem;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, background 0.3s ease;
   padding: 8px 12px;
   border-radius: 5px;
 }
@@ -82,49 +64,84 @@
 
 /* Profile Icon */
 .profile-icon {
-  display: flex;
-  align-items: center;
+  cursor: pointer;
 }
 
-.profile-icon img {
-  height: 45px;
-  width: 45px;
+.profile-pic {
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #fff;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
-.profile-icon img:hover {
-  transform: scale(1.1);
-  border-color: #61dafb;
+.profile-pic:hover {
+  transform: scale(1.05);
 }
 
-/* Responsive Design */
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 10px 0;
+  width: 160px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-item {
+  font-size: 1.2rem;
+  padding: 10px 16px;
+  color: #333;
+  background: none;
+  font-size: 900;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Arial', sans-serif;
+  transition: background 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .Navbar {
-      flex-direction: column;
-      align-items: center;
-      padding: 15px;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
   }
 
   .Navbar-menu {
-      flex-direction: column;
-      width: 100%;
-      align-items: center;
-      padding: 10px 0;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding: 10px 0;
   }
 
   .Navbar-menu li {
-      margin: 10px 0;
+    margin: 10px 0;
   }
 
   .profile-icon {
-      margin-top: 10px;
+    margin-top: 10px;
   }
 
-  .profile-icon img {
-      height: 40px;
-      width: 40px;
+  .profile-pic {
+    height: 40px;
+    width: 40px;
+  }
+
+  .dropdown-menu {
+    top: 45px;
+    right: -10px;
   }
 }
