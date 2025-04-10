@@ -2,15 +2,17 @@ import React from 'react';
 import './Explore.css';
 import img2 from "../../Components/Assets/explore_comp.png";
 import { Link } from 'react-router-dom';
+import { useUser } from '../../Context/UserContext'; // ✅ import your context
 
 const Explore = () => {
+  const { user } = useUser(); // ✅ access current user
 
   return (
     <div className="explore-container">
       <div className="explore-left">
         <div className="scrolling-image-container">
           <img
-            src={img2} // Replace with your image URL
+            src={img2}
             alt="Scrolling"
             className="scrolling-image"
           />
@@ -30,10 +32,12 @@ const Explore = () => {
           <b>Unleash</b> your potential, ignite your passion,
           and transform your startup journey today.
         </p>
-        <Link to="/signup"> 
-        <button className="explore-button">
-          Explore Now
-        </button>
+
+        {/* ✅ Conditionally navigate to /profile or /signup */}
+        <Link to={user ? "/profile" : "/signup"}>
+          <button className="explore-button">
+            Explore Now
+          </button>
         </Link>
       </div>
     </div>

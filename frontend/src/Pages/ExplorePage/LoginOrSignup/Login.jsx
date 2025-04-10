@@ -36,24 +36,27 @@ const SignInPage = () => {
     e.preventDefault();
     try {
       const res = await api.post("/auth/login", { email, password });
-
+  
       const { token, user } = res.data;
-
+  
       if (user.role !== role) {
         return alert("Selected role does not match with user role!");
       }
-
+  
+      // ✅ Save token and user to localStorage
       localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+  
+      // ✅ Set user in context
       setUser(user);
-
-      console.log(localStorage.getItem("token"));
-
+  
       navigate("/profile");
     } catch (err) {
       console.error("Login failed:", err.response?.data || err.message);
       alert(err.response?.data?.error || "Login failed.");
     }
   };
+  
 
   return (
     <div className="signin-container">
