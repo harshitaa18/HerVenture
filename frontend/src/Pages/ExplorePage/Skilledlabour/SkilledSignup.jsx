@@ -65,7 +65,7 @@ const SkilledLaborSignup = () => {
 
       // Flatten user + profile data into one object
       setUser({ ...user, ...profileRes.data });
-      navigate("/profile");
+      navigate("/login");
     } catch (err) {
       console.error("Signup error: ", err.response?.data || err.message);
       alert(err.response?.data?.details || "Signup failed.");
