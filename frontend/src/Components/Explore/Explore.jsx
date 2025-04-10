@@ -21,16 +21,11 @@ const Explore = () => {
       <div className="explore-right">
         <h2>Explore Opportunities</h2>
         <p>
-          <b>Discover</b> mentors, connect with like-minded entrepreneurs,<br />
-          and find funding to grow your startup.<br />
-          <b>Share</b> your vision, exchange ideas,
-          and build a supportive community. <br />
-          <b>Access</b> expert advice to navigate challenges,
-          and turn your innovative ideas into reality.<br/>
-          <b>Collaborate</b>, learn, and scale your business,
-          all in one dynamic ecosystem.<br />
-          <b>Unleash</b> your potential, ignite your passion,
-          and transform your startup journey today.
+        💡 <b>Learn, lead, and scale</b> — all within one empowering ecosystem.<br/>
+          🏢 Find available <b>business spaces</b> listed by supportive landowners.<br />
+          🤝 <b>Connect</b> with inspiring women entrepreneurs across and regions.<br/>
+          👩‍💼 <b>Hire skilled women</b> professionals to help bring your business vision to life
+          and <b>Grow</b> your network and unlock collaboration opportunities with like-minded individuals.<br/>
         </p>
 
         {/* ✅ Conditionally navigate to /profile or /signup */}
