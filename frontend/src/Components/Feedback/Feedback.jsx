@@ -1,95 +1,148 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   SwipeableDrawer,
   Box,
   Typography,
+  IconButton,
   TextField,
-  Button
+  FormControlLabel,
+  Checkbox,
+  Button,
+  RadioGroup,
+  Radio,
+  FormGroup
 } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
-const Feedback = ({ open, onToggle }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    feedback: ''
-  });
+const purpleRadioStyle = {
+  color: '#800080',
+  '&.Mui-checked': {
+    color: '#800080',
+  },
+};
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+const textFieldStyle = {
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#800080',
+    },
+    '&:hover fieldset': {
+      borderColor: '#800080',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#800080',
+    },
+  },
+};
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Feedback Submitted:', formData);
-    setFormData({ name: '', email: '', feedback: '' });
-    onToggle(false); // Close drawer after submission
-  };
-
+function Feedback({ open, onClose }) {
   return (
     <SwipeableDrawer
-      anchor="bottom"
+      anchor="right"
       open={open}
-      onClose={() => onToggle(false)}
-      onOpen={() => onToggle(true)}
-      swipeAreaWidth={56}
-      disableSwipeToOpen={false}
-      ModalProps={{ keepMounted: true }}
+      onClose={onClose}
+      onOpen={() => {}}
+      sx={{ zIndex: 1300 }}
     >
       <Box
         sx={{
-          padding: 3,
-          maxWidth: 500,
-          margin: '0 auto',
-          textAlign: 'center'
+          width: 400,
+          p: 3,
+          fontFamily: `'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif`,
+          fontSize: '1rem',
+          fontWeight: 500,
+          color: '#333'
         }}
-        component="form"
-        onSubmit={handleSubmit}
       >
-        <Typography variant="h6" gutterBottom>
-          Share Your Feedback
-        </Typography>
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+          <Typography variant="h6" fontWeight="bold">
+          We'd Love Your Feedback!
+          </Typography>
+          <IconButton onClick={onClose}>
+            <CloseIcon />
+          </IconButton>
+        </Box>
 
         <TextField
           fullWidth
+          margin="normal"
           label="Name"
-          name="name"
-          margin="normal"
-          value={formData.name}
-          onChange={handleChange}
+          sx={textFieldStyle}
         />
-
         <TextField
           fullWidth
+          margin="normal"
           label="Email"
-          name="email"
-          margin="normal"
-          type="email"
-          value={formData.email}
-          onChange={handleChange}
+          sx={textFieldStyle}
         />
+
+        <Typography variant="subtitle1" mt={2} fontWeight="bold">
+          1. Were the listings/recommendations relevant to your needs?
+        </Typography>
+        <RadioGroup row>
+          <FormControlLabel value="yes1" control={<Radio sx={purpleRadioStyle} />} label="Yes" />
+          <FormControlLabel value="no1" control={<Radio sx={purpleRadioStyle} />} label="No" />
+        </RadioGroup>
+
+        <Typography variant="subtitle1" fontWeight="bold">
+          2. Did you end up making a successful connection?
+        </Typography>
+        <RadioGroup row>
+          <FormControlLabel value="yes3" control={<Radio sx={purpleRadioStyle} />} label="Yes" />
+          <FormControlLabel value="no3" control={<Radio sx={purpleRadioStyle} />} label="No" />
+        </RadioGroup>
+
+        <Typography variant="subtitle1" fontWeight="bold">
+          3. Would you recommend HerVenture to other women entrepreneurs?
+        </Typography>
+        <RadioGroup row>
+          <FormControlLabel value="yes4" control={<Radio sx={purpleRadioStyle} />} label="Yes" />
+          <FormControlLabel value="no4" control={<Radio sx={purpleRadioStyle} />} label="No" />
+        </RadioGroup>
+
+        <Typography variant="subtitle1" mt={2} fontWeight="bold">
+          4. Did you face any problems while using the platform?
+        </Typography>
+        <FormGroup>
+          <FormControlLabel control={<Checkbox sx={purpleRadioStyle}/>} label="Technical issues" />
+          <FormControlLabel
+            control={<Checkbox sx={purpleRadioStyle} />}
+            label="Listings not available in my area"
+          />
+          <FormControlLabel
+            control={<Checkbox sx={purpleRadioStyle}/>}
+            label="Lack of response from people I contacted"
+          />
+          <FormControlLabel control={<Checkbox sx={purpleRadioStyle} />} label="Language/clarity issues" />
+          <FormControlLabel control={<Checkbox sx={purpleRadioStyle} />} label="Other" />
+        </FormGroup>
 
         <TextField
           fullWidth
-          label="Your Feedback"
-          name="feedback"
           margin="normal"
+          label="What would you like to see improved most?"
           multiline
-          rows={4}
-          value={formData.feedback}
-          onChange={handleChange}
+          rows={3}
+          sx={textFieldStyle}
         />
 
-        <Button
-          type="submit"
-          variant="contained"
-          sx={{ mt: 2 }}
-        >
-          Submit
-        </Button>
+        <Box textAlign="center" mt={3}>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: 'purple',
+              '&:hover': {
+                backgroundColor: 'purple',
+              },
+              fontWeight: 'bold'
+            }}
+          >
+            Submit Feedback
+          </Button>
+        </Box>
       </Box>
     </SwipeableDrawer>
   );
-};
+}
 
 export default Feedback;

@@ -3,8 +3,8 @@ import './AboutUs.css';
 import HeaderImage from '../../Components/Assets/purple-bg2.webp';
 import Header from '../../Components/Header';
 import { FaClipboardList, FaFolderOpen, FaUsers, FaBullseye } from "react-icons/fa";
-import Team from './Team';
-
+import {Team} from './Team';
+import Experience from './caseStudy';      
 export const AboutUs = () => {
     const features = [
         {
@@ -56,6 +56,7 @@ export const AboutUs = () => {
                         </div>
                     </div>
                 </div>
+                <Experience/>
             </section>
         </>
     );

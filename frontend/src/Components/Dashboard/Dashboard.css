@@ -1,34 +1,81 @@
+/* Container */
 .dashboard-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    background: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Headings */
+.dashboard-container h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.dashboard-container h2 {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+/* Common info & section styles */
+.common-info,
+.entrepreneur-section,
+.skilled-labor-section,
+.landowner-section {
+  background-color: #f9f9f9;
+  border-left: 4px solid purple;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+  transition: box-shadow 0.3s ease;
+}
+
+.common-info:hover,
+.entrepreneur-section:hover,
+.skilled-labor-section:hover,
+.landowner-section:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Paragraph styling */
+.common-info p,
+.entrepreneur-section p,
+.skilled-labor-section p,
+.landowner-section p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+strong {
+  color: #1d1d1d;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .dashboard-container {
+    padding: 1rem;
   }
-  
-  h1, h2 {
-    color: #333;
+
+  .dashboard-container h1 {
+    font-size: 1.5rem;
   }
-  
-  .profile-section, .startup-section, .founder-section, 
-  .expectations-section, .location-section, .social-section, 
-  .goal-section, .team-section, .hiring-section, .impact-section, 
-  .skills-section, .verification-section {
-    margin-bottom: 20px;
-    padding: 15px;
-    border-left: 5px solid #b8378d;
-    background: #fff;
+
+  .dashboard-container h2 {
+    font-size: 1rem;
   }
-  
-  p {
-    line-height: 1.6;
-    color: #555;
+
+  .common-info,
+  .entrepreneur-section,
+  .skilled-labor-section,
+  .landowner-section {
+    padding: 1rem;
   }
-  
-  a {
-    color: #007BFF;
-    text-decoration: none;
-  }
-  
+}

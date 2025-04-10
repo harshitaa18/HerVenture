@@ -1,4 +1,4 @@
-.header {
+.headerr {
     height: 10rem;
     background-size: cover;
     background-position: center;
@@ -9,7 +9,7 @@
     /* margin-bottom: 10rem; */
     color: white; /* To make the text visible on the image */
 }
-.header::before {
+.headerr::before {
     content: "";
     position: absolute;
     top: 0;
@@ -22,7 +22,7 @@
     opacity: 0.9; /* Adjust this value to change the opacity of the image */
     z-index: 0;
 }
-.header_container {
+.headerr_container {
     width: 100%;
     height: 100%;
     display: flex;
@@ -34,7 +34,7 @@
     background: rgba(0, 0, 0, 0.5); /* Optional: Adds a semi-transparent background to improve text readability */
 }
 
-.header_content {
+.headerr_content {
     position: relative;
     z-index: 1;
     width: 60%;
@@ -42,14 +42,14 @@
     text-align: center;
     margin: 0 auto;
 }
-.header_content h2{
+.headerr_content h2{
     margin-bottom: 1rem;
     font-size: 2.5rem;
     font-weight: bold;
     color: white;
     text-align: center;
 }
-.header_content p {
+.headerr_content p {
     font-size: 1.1rem;
     text-align: center;
     margin-bottom: 1rem;

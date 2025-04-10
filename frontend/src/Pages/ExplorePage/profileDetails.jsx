@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./profileDetail.css";
+import { MdEmail } from "react-icons/md";
 
 const ProfileDetail = () => {
   const { role, id } = useParams();
@@ -41,12 +42,24 @@ const ProfileDetail = () => {
 
         <div className="profile-right">
           <h3>Profile Details</h3>
-          <p><strong>Email:</strong> {userDetails.email || userDetails.contact}</p>
+          <p>
+            <strong>Email:</strong>{" "}
+            {userDetails.email}
+            <a
+              href={`mailto:${userDetails.email}`}
+              className="email-link"
+              style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", color: "purple", fontSize: "20px", paddingLeft:"130px"}}
+            >
+              <MdEmail style={{ marginRight: "5px" }} />
+              
+            </a>
+          </p>
+          <p><strong>Phone No.:</strong> {userDetails.contact}</p>            
+          <p><strong>Location:</strong> {userDetails.location}</p>
 
           {role === "entrepreneur" && (
             <>
               <p><strong>Business:</strong> {userDetails.business}</p>
-              <p><strong>Location:</strong> {userDetails.location}</p>
             </>
           )}
           {role === "labor" && (
@@ -58,13 +71,11 @@ const ProfileDetail = () => {
           {role === "landowner" && (
             <>
               <p><strong>Land Size:</strong> {userDetails.landSize}</p>
-              <p><strong>Location:</strong> {userDetails.location}</p>
             </>
           )}
           {role === "supplier" && (
             <>
               <p><strong>Industry:</strong> {userDetails.industry}</p>
-              <p><strong>Location:</strong> {userDetails.location}</p>
             </>
           )}
 

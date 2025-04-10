@@ -5,7 +5,7 @@ import Harshita from '../../Components/Assets/harshita_2.jpg';
 import Mtree from '../../Components/Assets/mtree.jpg';
 import PalakImage from '../../Components/Assets/palak.jpg';
 
-const Team = () => {
+export const Team = () => {
   const teamMembers = [
     {
       img: Harshita,
@@ -49,7 +49,6 @@ const TeamMember = ({ img, name, designation, instagram, linkedin, email }) => (
     </div>
     <div className="team-members_info">
       <h4>{name}</h4>
-      <p>{designation}</p>
     </div>
     <div className="team-members_socials">
       <a href={instagram} target="_blank" rel="noopener noreferrer"><FaInstagram /></a>

@@ -4,76 +4,73 @@ import './Faqs.css';
 export const Faqs = () => {
   
   const [activeIndex, setActiveIndex] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState('For Startups');
+  const [selectedCategory, setSelectedCategory] = useState('For Entrepreneurs');
 
   const faqData = {
-    'For Startups': [
+    'For Entrepreneurs': [
       {
-        question: 'I have an innovative idea that I want to pursue as a Startup. What guidance can Startup India provide me?',
-        answer: 'Startup India provides guidance through a wide array of resources such as mentorship, funding support, and recognition under government initiatives.',
+        question: 'How can HerVenture help me start or grow my business?',
+        answer: 'HerVenture supports women entrepreneurs by helping them find land, connect with trusted suppliers, and hire skilled labor — all in one place.',
       },
       {
-        question: 'My entity does not have a PAN. Would I be allowed to register it as a ‘Startup’ on the Startup India portal?',
-        answer: 'Yes, you can still register, but it is advisable to obtain a PAN for compliance purposes.',
+        question: 'Does HerVenture assist in finding affordable land or workspace?',
+        answer: 'Yes, the platform connects you with verified landowners and landlords offering commercial spaces suited for small and growing businesses.',
       },
       {
-        question: 'Would a One Person Company (OPC) be eligible to avail benefits under the Startup India initiative?',
-        answer: 'Yes, OPCs are eligible to avail benefits under the Startup India initiative.',
+        question: 'Can I find suppliers for raw materials on HerVenture?',
+        answer: 'Absolutely. HerVenture helps you connect with reliable suppliers across categories such as packaging, textiles, food supplies, and more.',
       },
       {
-        question: 'Can a foreigner enter into partnership under the LLP Act and get that LLP registered with Startup India?',
-        answer: 'Yes, foreign nationals can enter into partnerships under the LLP Act and register with Startup India.',
+        question: 'Is HerVenture useful for home-based businesses?',
+        answer: 'Yes! Even if you\'re operating from home, you can use HerVenture to source materials, find labor, and expand your operations when ready.',
       },
       {
-        question: 'Can I provide two mobile numbers in the registration form?',
-        answer: 'No, only one mobile number is allowed for registration.',
+        question: 'How do I hire skilled labor through the platform?',
+        answer: 'You can explore and connect with local skilled workers listed on HerVenture, including roles like carpenters, cooks, tailors, and more.',
       },
-      
-      
     ],
-    'For Mentors/Investors': [
+    'For Suppliers': [
       {
-        question: 'How do I register as a Mentor/ Investor on the Hub?',
-        answer: 'You can register as a Mentor/Investor by signing up on the Hub and completing your profile.',
+        question: 'How do I register as a supplier on HerVenture?',
+        answer: 'You can sign up on the platform and create a profile listing your products, pricing, and delivery capabilities to start connecting with women entrepreneurs.',
       },
       {
-        question: 'What is my role as a Mentor on the Hub?',
-        answer: 'As a mentor, your role is to guide and provide expert advice to startups on various aspects of their business.',
+        question: 'What types of businesses can I supply to through HerVenture?',
+        answer: 'You can connect with businesses ranging from cafés and boutiques to home-based artisans and tech startups looking for raw materials or services.',
       },
       {
-        question: 'How do Startups connect with a mentor/ investor?',
-        answer: 'Startups can connect with mentors/investors through the portal’s matchmaking feature.',
+        question: 'Is there a verification process for suppliers?',
+        answer: 'Yes, all suppliers go through a basic verification to ensure trust and quality within the platform.',
       },
       {
-        question: 'How do you make sure I don’t get spammed?',
-        answer: 'The platform ensures privacy by allowing you to accept or reject connection requests.',
+        question: 'Can I receive orders directly through HerVenture?',
+        answer: 'Yes, once listed, entrepreneurs can reach out to you directly to discuss orders, pricing, and delivery timelines.',
       },
       {
-        question: 'Can I get access to additional resources which can further aid my mentorship support to the Startup?',
-        answer: 'Yes, the platform provides additional resources like toolkits, case studies, and training programs.',
+        question: 'Is there any fee for listing as a supplier?',
+        answer: 'Currently, registration and listing are free to support wider access for both new and established suppliers.',
       },
-      
     ],
-    'For Facilitators & Others': [
+    'For Landowners & Property Providers': [
       {
-        question: 'What is the procedure to claim reimbursement by patent facilitators for services offered to startups?',
-        answer: 'Facilitators need to submit invoices and required documents on the portal for processing reimbursements.',
+        question: 'How do I list my land or property on HerVenture?',
+        answer: 'You can register as a landowner and add property details including location, size, purpose, and pricing. Our team verifies listings before they go live.',
       },
       {
-        question: 'What is the procedure to claim reimbursement by Trademark facilitators for services offered to startups?',
-        answer: 'Trademark facilitators must submit proof of services rendered along with relevant invoices.',
+        question: 'What type of properties can I list?',
+        answer: 'You can list commercial spaces, retail outlets, co-working areas, warehouses, or land suitable for farming or production units.',
       },
       {
-        question: 'What factors are considered by investors to invest in startups?',
-        answer: 'Investors typically consider the startup’s innovation, scalability, team strength, and market potential.',
+        question: 'Is my property visible only to local entrepreneurs?',
+        answer: 'No, your listing is visible to all HerVenture users, so entrepreneurs from nearby cities or states can also find and contact you.',
       },
       {
-        question: 'How do Investors earn returns from investing in Startups?',
-        answer: 'Investors earn returns through equity appreciation, dividends, or eventual exits like IPOs or acquisitions.',
+        question: 'Can I offer short-term or lease options?',
+        answer: 'Yes, you can specify if the property is available for lease, rent, or sale — along with the terms.',
       },
       {
-        question: 'What is a Term Sheet?',
-        answer: 'A Term Sheet is a document outlining the terms and conditions of an investment deal between a startup and an investor.',
+        question: 'Will HerVenture help manage the rental process?',
+        answer: 'While we don’t manage legal agreements directly, we provide tools for communication and connection between you and potential tenants.',
       },
     ],
   };
@@ -90,34 +87,34 @@ export const Faqs = () => {
         </header>
       </div>
       <div className='faqs-total'>
-      <div className="faq-sidebar">
-        <ul>
-          {Object.keys(faqData).map((category) => (
-            <li
-              key={category}
-              className={selectedCategory === category ? 'active' : ''}
-              onClick={() => setSelectedCategory(category)}
+        <div className="faq-sidebar">
+          <ul>
+            {Object.keys(faqData).map((category) => (
+              <li
+                key={category}
+                className={selectedCategory === category ? 'active' : ''}
+                onClick={() => setSelectedCategory(category)}
+              >
+                {category}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="faq-content">
+          {faqData[selectedCategory].map((faq, index) => (
+            <div
+              className={`faq-item ${activeIndex === index ? 'active' : ''}`}
+              key={index}
+              onClick={() => toggleFAQ(index)}
             >
-              {category}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="faq-content">
-        {faqData[selectedCategory].map((faq, index) => (
-          <div
-            className={`faq-item ${activeIndex === index ? 'active' : ''}`}
-            key={index}
-            onClick={() => toggleFAQ(index)}
-          >
-            <div className="faq-question">
-              {faq.question}
-              <span className="faq-toggle">{activeIndex === index ? '-' : '+'}</span>
+              <div className="faq-question">
+                {faq.question}
+                <span className="faq-toggle">{activeIndex === index ? '-' : '+'}</span>
+              </div>
+              {activeIndex === index && <div className="faq-answer">{faq.answer}</div>}
             </div>
-            {activeIndex === index && <div className="faq-answer">{faq.answer}</div>}
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
       </div>
     </div>
   );
