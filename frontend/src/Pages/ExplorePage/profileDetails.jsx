@@ -3,12 +3,25 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./profileDetail.css";
 import { MdEmail } from "react-icons/md";
+import ChatPop from '../../Components/ChatPop/ChatPop';
+import { useUser } from '../../Context/UserContext'; // adjust path if needed
 
 const ProfileDetail = () => {
+  const { user } = useUser(); // this gives you the currently logged-in user
   const { role, id } = useParams();
   const navigate = useNavigate();
   const [userDetails, setUserDetails] = useState(null);
   const [error, setError] = useState(null);
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
+  const handleClose = () => {
+    setIsChatOpen(false);
+  };
+
+  // Optionally open the chat popup (this could be triggered by a button or other event)
+  const openChat = () => {
+    setIsChatOpen(true);
+  };
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -38,6 +51,12 @@ const ProfileDetail = () => {
           </div>
           <h2>{userDetails.name}</h2>
           <p className="role">{role.toUpperCase()}</p>
+          <button onClick={openChat}>Open Chat</button>
+      
+            {isChatOpen && (
+              <ChatPop recipient={userDetails} onClose={handleClose} />
+            )}
+
         </div>
 
         <div className="profile-right">
