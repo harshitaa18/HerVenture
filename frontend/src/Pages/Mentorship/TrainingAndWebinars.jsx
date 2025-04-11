@@ -23,7 +23,6 @@ const TrainingAndWebinars = () => {
       id: 1,
       title: "Digital Marketing",
       date: "2025-04-21",
-      mentor: "Anukriti",
       img: img1,
       description: "Learn effective marketing strategies to grow your startup from industry experts.",
       link: "https://www.youtube.com/watch?v=-4nBFy4SJK4",
@@ -32,7 +31,6 @@ const TrainingAndWebinars = () => {
       id: 2,
       title: "Marketing Strategies",
       date: "2025-04-22",
-      mentor: "Diya",
       img: img6,
       description: "Go through the best marketing strategies to grow to business",
       link: "https://www.youtube.com/watch?v=3w3QSrq4Rho",
@@ -41,7 +39,6 @@ const TrainingAndWebinars = () => {
       id: 3,
       title: "Empower Series",
       date: "2025-04-23",
-      mentor: "Shreya",
       img: img7,
       description: "Master the basics of financial planning to ensure your startup's success.",
       link: "https://www.youtube.com/watch?v=eHJnEHyyN1Y",
@@ -50,7 +47,6 @@ const TrainingAndWebinars = () => {
       id: 4,
       title: "Ted-talk",
       date: "2025-04-24",
-      mentor: "Ritika",
       img: img8,
       description: "Professor John Mullins shares six counter-conventional mindsets for entrepreneurs looking to think strategically, navigate challenges and change the world.",
       link: "https://www.youtube.com/watch?v=eHJnEHyyN1Y",
@@ -59,7 +55,6 @@ const TrainingAndWebinars = () => {
       id: 5,
       title: "Mindset Shift",
       date: "2025-04-25",
-      mentor: "Tanvi",
       img: img3,
       description: "How to Cultivate an Entrepreneurial Mindset.",
       link: "https://www.youtube.com/watch?v=niOV_jSVCKs",
@@ -68,7 +63,6 @@ const TrainingAndWebinars = () => {
       id: 6,
       title: "Empower Series",
       date: "2025-04-26",
-      mentor: "Neha",
       img: img2,
       description: "Tips and tricks to manage your startup taxes like a pro.",
       link: "https://www.youtube.com/watch?v=3w3QSrq4Rho",
@@ -77,7 +71,6 @@ const TrainingAndWebinars = () => {
       id: 7,
       title: "Empower Series",
       date: "2025-04-27",
-      mentor: "Radhika",
       img: img6,
       description: "Explore digital innovation strategies for startups in 2025.",
       link: "https://www.youtube.com/watch?v=OC8s2_VSQFA",
@@ -86,7 +79,6 @@ const TrainingAndWebinars = () => {
       id: 8,
       title: "Empower Series",
       date: "2025-04-28",
-      mentor: "Shruti",
       img: img7,
       description: "How to pitch your startup idea and win over investors.",
       link: "https://www.youtube.com/watch?v=RmwI_QqcPQc",
@@ -95,7 +87,6 @@ const TrainingAndWebinars = () => {
       id: 9,
       title: "Empower Series",
       date: "2025-04-29",
-      mentor: "Megha",
       img: img1,
       description: "Growth hacking techniques that boost your startup's user base rapidly.",
       link: "https://www.youtube.com/watch?v=-4nBFy4SJK4",
@@ -104,7 +95,6 @@ const TrainingAndWebinars = () => {
       id: 10,
       title: "Empower Series",
       date: "2025-04-30",
-      mentor: "Isha",
       img: img4,
       description: "Grow your brand presence through smart social media tactics.",
       link: "https://www.youtube.com/watch?v=3w3QSrq4Rho",
@@ -113,7 +103,7 @@ const TrainingAndWebinars = () => {
       id: 11,
       title: "Support Schemes",
       date: "2025-04-20",
-      mentor: "Kritika",
+
       img: img4,
       description: "5 Government Schemes That Can Help Women Entrepreneurs Boost Their Businesses In India.",
       link: "https://www.youtube.com/watch?v=7hM_H5jVciE",
@@ -207,7 +197,7 @@ const TrainingAndWebinars = () => {
                       </a>
                       <h3 className="card-title">{event.title}</h3>
                       <p className="card-date">{new Date(event.date).toLocaleDateString()}</p>
-                      <p className="card-mentor">Mentor: {event.mentor}</p>
+                      {/* <p className="card-mentor">Mentor: {event.mentor}</p> */}
                     </div>
                     <div className="card-back">
                       <p className="card-description">{event.description}</p>
@@ -248,7 +238,7 @@ const TrainingAndWebinars = () => {
         />
    {filteredWebinars.length > 0 ? (
           <div className="marquee-wrapper">
-            <Marquee gradient={false} speed={40} pauseOnHover={true}>
+            <Marquee gradient={false} speed={80} pauseOnHover={true}>
               {loopedWebinars.map((webinar, index) => (
                 <div key={`${webinar.id}-${index}`} className="card">
                   <div className="card-inner">
