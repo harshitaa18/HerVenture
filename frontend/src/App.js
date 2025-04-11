@@ -16,6 +16,8 @@ import SupplierSignup from './Pages/ExplorePage/Supplier/SupplierSignup';
 import LandOwnerSignup from './Pages/ExplorePage/Landowner/LandownerSignup';
 import ProfileDetail from './Pages/ExplorePage/profileDetails';
 import PostRequirement from './Components/CreatePost/PostRequirement';
+import AllPostsPage from './Pages/ExplorePage/AllPosts/AllPostsPage';
+import PostDetailsPage from './Components/CreatePost/PostDetailsPage';
 function App() {
 
   return (
@@ -31,6 +33,8 @@ function App() {
           <Route path="/signup/landowner" element={<LandOwnerSignup />} />
           <Route path="/signup/supplier" element={<SupplierSignup />} />
           <Route path='/post' element={<PostRequirement />} />
+          <Route path="/all-posts" element={<AllPostsPage />} />
+          <Route path="/post/:id" element={<PostDetailsPage />} />
           <Route path='/signup' element= {<Signup/>}/>
           <Route path='/mentorship' element = {<Mentorship/>}/>
           <Route path='/policy' element = {<Policy/>}/>
