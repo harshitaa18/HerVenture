@@ -22,6 +22,41 @@
   color: #666;
   margin-bottom: 1.5rem;
 }
+.dashboard {
+  padding: 2rem;
+}
+.post-card {
+  position: relative;
+  background-color: #f9f9f9;
+  border-left: 4px solid purple;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+}
+
+.delete-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 50%;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.delete-icon {
+  color: #555;
+  font-size: 1.2rem;
+  transition: color 0.2s ease-in-out;
+}
+
+.delete-btn:hover .delete-icon {
+  color: #a855f7; /* Tailwind's purple-500 */
+}
+
 
 /* Common info & section styles */
 .common-info,
@@ -35,6 +70,33 @@
   margin-bottom: 1.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
   transition: box-shadow 0.3s ease;
+}
+.post-section {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.post-prompt {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #9b59b6; /* Purple */
+  margin-bottom: 0.7rem;
+}
+
+.create-post-btn {
+  background: purple; /* Pink to purple */
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.create-post-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
 }
 
 .common-info:hover,

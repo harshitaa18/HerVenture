@@ -1,30 +1,62 @@
-import Post from '../models/Post.js';
+const Post = require("../models/Post");
 
-export const createPost = async (req, res) => {
+
+const createPost = async (req, res) => {
+  const { title, description, tags } = req.body;
+  const user = req.user; // from JWT middleware
+
   try {
-    const { type, title, description } = req.body;
-    const { _id, role } = req.user;
-
-    const post = new Post({
-      userId: _id,
-      role,
-      type,
+    const newPost = await Post.create({
+      userId: user._id,
+      role: user.role,
       title,
       description,
+      tags
     });
-
-    await post.save();
-    res.status(201).json(post);
+    res.status(201).json(newPost);
   } catch (err) {
-    res.status(500).json({ error: "Failed to create post." });
+    res.status(400).json({ error: "Error creating post" });
   }
 };
 
-export const getUserPosts = async (req, res) => {
+const getPostsByUser = async (req, res) => {
   try {
-    const posts = await Post.find({ userId: req.user._id }).sort({ createdAt: -1 });
+    const posts = await Post.find({ userId: req.params.id });
     res.json(posts);
   } catch (err) {
-    res.status(500).json({ error: "Failed to fetch posts." });
+    res.status(500).json({ error: "Error fetching user posts" });
   }
 };
+
+const deletePost = async (req, res) => {
+  const user = req.user;
+
+  try {
+    const post = await Post.findById(req.params.id);
+
+    if (!post) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    if (post.userId.toString() !== user._id.toString()) {
+      return res.status(403).json({ error: "Unauthorized to delete this post" });
+    }
+
+    await Post.findByIdAndDelete(req.params.id);
+    res.json({ message: "Post deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: "Error deleting post" });
+  }
+};
+
+
+ const getAllPosts = async (req, res) => {
+  try {
+    const posts = await Post.find().populate("userId", "name role");
+    res.json(posts);
+  } catch (err) {
+    res.status(500).json({ error: "Error fetching posts" });
+  }
+};
+
+module.exports = { createPost, getAllPosts, deletePost, getPostsByUser };

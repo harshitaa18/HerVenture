@@ -1,11 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { useUser } from "../../Context/UserContext";
 import axios from "axios";
+import API from "../../utils/api";
 import './Dashboard.css';
+import { useNavigate } from "react-router-dom";
+import { FiTrash2 } from "react-icons/fi";
+
 
 const UserDashboard = () => {
   const { user } = useUser();
   const [userData, setUserData] = useState(null);
+  const [userPosts, setUserPosts] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const res = await API.get(`/post/user/${user._id}`);
+        setUserPosts(res.data);
+      } catch (err) {
+        console.error("Error fetching posts:", err.response?.data || err.message);
+      }
+    };
+
+    if (user?._id) {
+      fetchPosts();
+    }
+  }, [user]);
 
   useEffect(() => {
     const fetchFullProfile = async () => {
@@ -39,6 +60,19 @@ const UserDashboard = () => {
 
     fetchFullProfile();
   }, [ user]);
+
+  const handleCreatePost = () => {
+    navigate("/post", { state: { role: user.role }}); // Replace with your actual route
+  };
+
+  const handleDelete = async (postId) => {
+    try {
+      await API.delete(`/post/${postId}`);
+      setUserPosts((prev) => prev.filter((post) => post._id !== postId)); // Update UI
+    } catch (err) {
+      console.error("Error deleting post:", err.response?.data || err.message);
+    }
+  };
 
   if (!userData) return <p>No user data found.</p>;
 
@@ -83,6 +117,29 @@ const UserDashboard = () => {
           <p><strong>Owner Address:</strong> {userData.ownerAddress || "N/A"}</p>
         </div>
       )}
+      <div className="post-section">
+  <p className="post-prompt">Want to post your requirement?</p>
+  <button  onClick={handleCreatePost} className="create-post-btn">Create New Post</button>
+</div>
+<div className="dashboard">
+      <h2>My Posts</h2>
+      {userPosts.length === 0 ? (
+        <p>No posts yet</p>
+      ) : (
+        userPosts.map((post) => (
+          <div key={post._id} className="post-card">
+            <h3>{post.title}</h3>
+            <p>{post.description}</p>
+            <small>{post.tags?.join(", ")}</small>
+            <p>{post.contact}</p>
+            <button className="delete-btn" onClick={() => handleDelete(post._id)}>
+  <FiTrash2 className="delete-icon" />
+</button>
+
+          </div>
+        ))
+      )}
+    </div>
     </div>
   );
 };

@@ -1,10 +1,12 @@
-import express from 'express';
-import { createPost, getUserPosts } from '../controllers/postController.js';
-import authMiddleware from '../middleware/authMiddleware.js';
+const express = require("express");
+const { createPost, getAllPosts, getPostsByUser, deletePost } = require("../controllers/postController");
+const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-router.post('/create', authMiddleware, createPost);
-router.get('/my-posts', authMiddleware, getUserPosts);
+router.post("/", authMiddleware, createPost);
+router.get("/user/:id", authMiddleware, getPostsByUser);
+router.delete("/:id", authMiddleware, deletePost);
+router.get("/", getAllPosts);
 
-export default router;
+module.exports = router;
