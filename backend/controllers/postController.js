@@ -1,7 +1,6 @@
-import Post from "../models/Post.js";
-import User from "../models/User.js";
+// controllers/postController.js
+const Post = require("../models/Post");
 
-// Create a post
 export const createPost = async (req, res) => {
   const { title, description, tags } = req.body;
   const user = req.user;
@@ -20,17 +19,6 @@ export const createPost = async (req, res) => {
   }
 };
 
-// Get all posts
-export const getAllPosts = async (req, res) => {
-  try {
-    const posts = await Post.find().populate("userId", "name role");
-    res.json(posts);
-  } catch (err) {
-    res.status(500).json({ error: "Error fetching posts" });
-  }
-};
-
-// Get posts by a specific user
 export const getPostsByUser = async (req, res) => {
   try {
     const posts = await Post.find({ userId: req.params.id });
@@ -40,18 +28,6 @@ export const getPostsByUser = async (req, res) => {
   }
 };
 
-// Get a single post by ID
-export const getPostById = async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id).populate("userId", "name role");
-    if (!post) return res.status(404).json({ error: "Post not found" });
-    res.json(post);
-  } catch (err) {
-    res.status(500).json({ error: "Error fetching post" });
-  }
-};
-
-// Delete a post
 export const deletePost = async (req, res) => {
   const user = req.user;
 
@@ -71,10 +47,8 @@ export const deletePost = async (req, res) => {
   }
 };
 
-// Like/Unlike a post
-export const likePost = async (req, res) => {
-  const userId = req.user._id;
 
+export const getAllPosts = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (!post) return res.status(404).json({ error: "Post not found" });
@@ -125,3 +99,5 @@ export const commentOnPost = async (req, res) => {
     res.status(500).json({ error: "Error adding comment" });
   }
 };
+
+module.exports = { createPost, getAllPosts, deletePost, getPostsByUser };

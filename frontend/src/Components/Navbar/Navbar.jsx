@@ -12,6 +12,19 @@ export const Navbar = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  let dropdownTimeout;
+
+  const handleMouseEnter = () => {
+    clearTimeout(dropdownTimeout);
+    setDropdownVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    dropdownTimeout = setTimeout(() => {
+      setDropdownVisible(false);
+    }, 200); // slight delay to allow clicks
+  };
+
   const handleLogout = () => {
     localStorage.removeItem('token');
     setUser(null);
@@ -20,7 +33,7 @@ export const Navbar = () => {
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
-    setDropdownVisible(false); // close dropdown if open
+    setDropdownVisible(false);
   };
 
   return (
@@ -41,20 +54,30 @@ export const Navbar = () => {
         <li><Link to='/policy' onClick={toggleMenu}>Schemes and Policies</Link></li>
 
         {user ? (
-          <li
-            className='profile-icon'
-            onMouseEnter={() => setDropdownVisible(true)}
-            onMouseLeave={() => setDropdownVisible(false)}
-          >
-            <img src={profilePic} alt="Profile" className="profile-pic" />
-            {dropdownVisible && (
-              <div className="dropdown-menu">
-                <Link to="/dashboard" onClick={toggleMenu}>
-                  <button className="dropdown-item"><b>Dashboard</b></button>
-                </Link>
-                <button className="dropdown-item" onClick={handleLogout}><b>Logout</b></button>
-              </div>
-            )}
+          <li className='profile-icon'>
+            <div
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              className="profile-hover-area"
+            >
+              <img src={profilePic} alt="Profile" className="profile-pic" />
+              {dropdownVisible && (
+                <div className="dropdown-menu">
+                  <Link to="/dashboard" onClick={toggleMenu}>
+                    <button className="dropdown-item"><b>Dashboard</b></button>
+                  </Link>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => {
+                      setDropdownVisible(false);
+                      handleLogout();
+                    }}
+                  >
+                    <b>Logout</b>
+                  </button>
+                </div>
+              )}
+            </div>
           </li>
         ) : (
           <li><Link to='/login' onClick={toggleMenu}>LogIn / SignUp</Link></li>
