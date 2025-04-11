@@ -22,6 +22,41 @@
   color: #666;
   margin-bottom: 1.5rem;
 }
+.dashboard {
+  padding: 2rem;
+}
+.post-card {
+  position: relative;
+  background-color: #f9f9f9;
+  border-left: 4px solid purple;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+}
+
+.delete-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 50%;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.delete-icon {
+  color: #555;
+  font-size: 1.2rem;
+  transition: color 0.2s ease-in-out;
+}
+
+.delete-btn:hover .delete-icon {
+  color: #a855f7; /* Tailwind's purple-500 */
+}
+
 
 /* Common info & section styles */
 .common-info,
