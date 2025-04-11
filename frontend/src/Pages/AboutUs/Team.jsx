@@ -2,8 +2,8 @@ import React from 'react';
 import './AboutUs.css';
 import { FaInstagram, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import Harshita from '../../Components/Assets/harshita_2.jpg';
-import Mtree from '../../Components/Assets/mtree.jpg';
-import PalakImage from '../../Components/Assets/palak.jpg';
+import Mtree from '../../Components/Assets/mtree_2.jpg';
+import PalakImage from '../../Components/Assets/palak_2.jpg';
 
 export const Team = () => {
   const teamMembers = [
@@ -32,7 +32,7 @@ export const Team = () => {
 
   return (
     <section className="team">
-      <h2>Meet Our Team</h2>
+      <h2>Meet The Team</h2>
       <div className="container team_contain">
         {teamMembers.map((member, index) => (
           <TeamMember key={index} {...member} />

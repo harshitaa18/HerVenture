@@ -7,7 +7,7 @@ const BusinessSection = () => {
   const navigate = useNavigate();
 
   const handleGetStarted = () => {
-    navigate('/all-post');
+    navigate('/all-posts');
   };
 
   const businessServices = [
@@ -52,7 +52,7 @@ const BusinessSection = () => {
               <div className="business-card-icon">{service.icon}</div>
               <h3>{service.title}</h3>
               <p>{service.description}</p>
-              <button className="business-card-button">Learn More</button>
+              {/* <button className="business-card-button">Learn More</button> */}
             </div>
           </div>
         ))}
