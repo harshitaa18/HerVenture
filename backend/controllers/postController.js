@@ -1,7 +1,7 @@
-// controllers/postController.js
-import Post from "../models/Post.js";
+const Post = require("../models/Post");
 
-export const createPost = async (req, res) => {
+
+const createPost = async (req, res) => {
   const { title, description, tags } = req.body;
   const user = req.user; // from JWT middleware
 
@@ -19,7 +19,7 @@ export const createPost = async (req, res) => {
   }
 };
 
-export const getPostsByUser = async (req, res) => {
+const getPostsByUser = async (req, res) => {
   try {
     const posts = await Post.find({ userId: req.params.id });
     res.json(posts);
@@ -28,7 +28,7 @@ export const getPostsByUser = async (req, res) => {
   }
 };
 
-export const deletePost = async (req, res) => {
+const deletePost = async (req, res) => {
   const user = req.user;
 
   try {
@@ -50,7 +50,7 @@ export const deletePost = async (req, res) => {
 };
 
 
-export const getAllPosts = async (req, res) => {
+ const getAllPosts = async (req, res) => {
   try {
     const posts = await Post.find().populate("userId", "name role");
     res.json(posts);
@@ -58,3 +58,5 @@ export const getAllPosts = async (req, res) => {
     res.status(500).json({ error: "Error fetching posts" });
   }
 };
+
+module.exports = { createPost, getAllPosts, deletePost, getPostsByUser };

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema({
   userId: {
@@ -11,13 +11,13 @@ const postSchema = new mongoose.Schema({
     enum: ["entrepreneur", "landowner", "labor", "supplier"],
     required: true,
   },
-  title: String,          // Short summary
-  description: String,    // Full content of the post
-  tags: [String],         // e.g., ["electrician", "available", "urgent"]
+  title: String,
+  description: String,
+  tags: [String],
   createdAt: {
     type: Date,
     default: Date.now,
   }
 });
 
-export default mongoose.model("Post", postSchema);
+module.exports = mongoose.model("Post", postSchema);
