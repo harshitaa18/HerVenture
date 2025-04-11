@@ -29,7 +29,7 @@ const Explore = () => {
         </p>
 
         {/* ✅ Conditionally navigate to /profile or /signup */}
-        <Link to={user ? "/profile" : "/signup"}>
+        <Link to={'/all-posts'}>
           <button className="explore-button">
             Explore Now
           </button>

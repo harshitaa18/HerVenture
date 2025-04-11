@@ -25,6 +25,7 @@
     "react-simple-typewriter": "^5.0.1",
     "react-typed": "^2.0.12",
     "react-vertical-timeline-component": "^3.5.3",
+    "socket.io-client": "^4.8.1",
     "typed.js": "^2.1.0"
   },
   "scripts": {

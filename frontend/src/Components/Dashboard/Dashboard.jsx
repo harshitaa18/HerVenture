@@ -127,7 +127,7 @@ const UserDashboard = () => {
         <p>No posts yet</p>
       ) : (
         userPosts.map((post) => (
-          <div key={post._id} className="post-card">
+          <div key={post._id} className="post-card1">
             <h3>{post.title}</h3>
             <p>{post.description}</p>
             <small>{post.tags?.join(", ")}</small>

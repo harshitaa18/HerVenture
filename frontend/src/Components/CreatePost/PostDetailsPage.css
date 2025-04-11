@@ -1,0 +1,120 @@
+.post-details {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.post-details h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.post-details p {
+  margin-bottom: 0.8rem;
+  color: #555;
+}
+
+.like-btn {
+  background: transparent;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  transition: color 0.3s ease;
+}
+
+.like-btn:hover {
+  color: #a855f7;
+}
+
+.comment-section {
+  margin-top: 2rem;
+}
+
+.comment-section h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.comment {
+  background: #fdf3ff;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+  border-left: 4px solid #c084fc;
+  box-shadow: 0 2px 6px rgba(172, 107, 255, 0.1);
+}
+
+.comment strong {
+  color: #7e22ce;
+}
+
+.comment-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.comment-form input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.comment-form button {
+  background: linear-gradient(to right, #a855f7, #ec4899);
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.comment-form button:hover {
+  background: linear-gradient(to right, #9333ea, #db2777);
+}
+
+/* Additional Posts by User Section */
+.other-posts {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.other-posts h3 {
+  font-size: 1.4rem;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.other-posts ul {
+  list-style: none;
+  padding: 0;
+}
+
+.other-posts li {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  border-left: 4px solid #a855f7;
+  transition: transform 0.2s ease;
+}
+
+.other-posts li:hover {
+  background-color: #f3e8ff;
+  transform: translateX(4px);
+}
