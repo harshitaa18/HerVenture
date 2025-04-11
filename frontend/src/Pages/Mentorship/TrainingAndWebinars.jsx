@@ -3,11 +3,15 @@ import "./TrainingAndWebinar.css";
 import img1 from "../../Components/Assets/market.webp";
 import img2 from "../../Components/Assets/tax.webp";
 import img3 from "../../Components/Assets/property.jpg";
-import img4 from "../../Components/Assets/img5.jpg";
-import img6 from "../../Components/Assets/webinar-banner-2.webp";
+import img4 from "../../Components/Assets/scheme.webp";
+import img6 from "../../Components/Assets/market2.avif";
 import img7 from "../../Components/Assets/webinar-banner.jpg";
+import img8 from "../../Components/Assets/download.jpeg";
+import img9 from "../../Components/Assets/tech.png";
+import img10 from "../../Components/Assets/leader.jpg";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import Marquee from "react-fast-marquee";
 
 const TrainingAndWebinars = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -17,37 +21,136 @@ const TrainingAndWebinars = () => {
   const events = [
     {
       id: 1,
-      title: "Marketing Strategies for Startups",
-      date: "2025-02-10",
+      title: "Digital Marketing",
+      date: "2025-04-21",
       mentor: "Anukriti",
-      img: img4,
+      img: img1,
       description: "Learn effective marketing strategies to grow your startup from industry experts.",
-      link : "https://www.youtube.com/watch?v=-4nBFy4SJK4",
+      link: "https://www.youtube.com/watch?v=-4nBFy4SJK4",
     },
     {
       id: 2,
-      title: "Legal Compliance Basics",
-      date: "2025-02-15",
+      title: "Marketing Strategies",
+      date: "2025-04-22",
       mentor: "Diya",
       img: img6,
-      description: "Understand the legal requirements and compliance essentials for startups.",
-      link : "https://www.youtube.com/watch?v=-4nBFy4SJK4",
+      description: "Go through the best marketing strategies to grow to business",
+      link: "https://www.youtube.com/watch?v=3w3QSrq4Rho",
     },
     {
       id: 3,
-      title: "Financial Planning 101",
-      date: "2025-02-20",
+      title: "Empower Series",
+      date: "2025-04-23",
       mentor: "Shreya",
       img: img7,
       description: "Master the basics of financial planning to ensure your startup's success.",
-      link : "https://www.youtube.com/watch?v=-4nBFy4SJK4",
+      link: "https://www.youtube.com/watch?v=eHJnEHyyN1Y",
+    },
+    {
+      id: 4,
+      title: "Ted-talk",
+      date: "2025-04-24",
+      mentor: "Ritika",
+      img: img8,
+      description: "Professor John Mullins shares six counter-conventional mindsets for entrepreneurs looking to think strategically, navigate challenges and change the world.",
+      link: "https://www.youtube.com/watch?v=eHJnEHyyN1Y",
+    },
+    {
+      id: 5,
+      title: "Mindset Shift",
+      date: "2025-04-25",
+      mentor: "Tanvi",
+      img: img3,
+      description: "How to Cultivate an Entrepreneurial Mindset.",
+      link: "https://www.youtube.com/watch?v=niOV_jSVCKs",
+    },
+    {
+      id: 6,
+      title: "Empower Series",
+      date: "2025-04-26",
+      mentor: "Neha",
+      img: img2,
+      description: "Tips and tricks to manage your startup taxes like a pro.",
+      link: "https://www.youtube.com/watch?v=3w3QSrq4Rho",
+    },
+    {
+      id: 7,
+      title: "Empower Series",
+      date: "2025-04-27",
+      mentor: "Radhika",
+      img: img6,
+      description: "Explore digital innovation strategies for startups in 2025.",
+      link: "https://www.youtube.com/watch?v=OC8s2_VSQFA",
+    },
+    {
+      id: 8,
+      title: "Empower Series",
+      date: "2025-04-28",
+      mentor: "Shruti",
+      img: img7,
+      description: "How to pitch your startup idea and win over investors.",
+      link: "https://www.youtube.com/watch?v=RmwI_QqcPQc",
+    },
+    {
+      id: 9,
+      title: "Empower Series",
+      date: "2025-04-29",
+      mentor: "Megha",
+      img: img1,
+      description: "Growth hacking techniques that boost your startup's user base rapidly.",
+      link: "https://www.youtube.com/watch?v=-4nBFy4SJK4",
+    },
+    {
+      id: 10,
+      title: "Empower Series",
+      date: "2025-04-30",
+      mentor: "Isha",
+      img: img4,
+      description: "Grow your brand presence through smart social media tactics.",
+      link: "https://www.youtube.com/watch?v=3w3QSrq4Rho",
+    },
+    {
+      id: 11,
+      title: "Support Schemes",
+      date: "2025-04-20",
+      mentor: "Kritika",
+      img: img4,
+      description: "5 Government Schemes That Can Help Women Entrepreneurs Boost Their Businesses In India.",
+      link: "https://www.youtube.com/watch?v=7hM_H5jVciE",
     },
   ];
-
+  
   const recordedWebinars = [
-    { title: "Marketing Trends of 2024", category: "Marketing", img: img1 },
-    { title: "Intellectual Property Essentials", category: "Legal Compliance", img: img3 },
-    { title: "Tax Planning for Startups", category: "Financial Planning", img: img2 },
+    { id: 1,
+      title: "Marketing Trends of 2025",
+      category: "Marketing",
+      description:
+        "Discover emerging trends shaping the future of marketing.",
+      link: "https://www.youtube.com/watch?v=ZvChhHNTz1g",img: img1 },
+    { id: 2,
+      title: "Intellectual Property Essentials",
+      category: "Legal Compliance",
+      description: "Learn and understand how IP protects your business.",
+      link: "https://www.youtube.com/watch?v=NrW7mt8gHmI",
+      img: img3,},
+    { id: 3,
+      title: "Tax Planning for Startups",
+      category: "Financial Planning",
+      description: "Plan your startup finances to ensure tax compliance and savings.",
+      link: "https://www.youtube.com/watch?v=oL6EvSJAVqc",
+      img: img2, },
+      {id: 4,
+      title: "Technology",
+        category: "Technology",
+        description:
+          "Discover emerging trends shaping the future of marketing.",
+        link: "https://www.youtube.com/watch?v=ZvChhHNTz1g",img: img9 },
+        {id: 5,
+          title: "Leadership Skills",
+          category: "Leadership Skills",
+          description:
+            "Discover emerging trends shaping the future of marketing.",
+          link: "https://www.youtube.com/watch?v=ZvChhHNTz1g",img: img10 },
   ];
 
   const categories = [
@@ -59,10 +162,14 @@ const TrainingAndWebinars = () => {
     "Leadership Skills",
   ];
 
-  const filteredWebinars = recordedWebinars.filter((webinar) =>
-    (categoryFilter === "All" || !categoryFilter || webinar.category === categoryFilter) &&
-    webinar.title.toLowerCase().includes(searchFilter.toLowerCase())
+  const filteredWebinars = recordedWebinars.filter(
+    (webinar) =>
+      (categoryFilter === "All" || !categoryFilter || webinar.category === categoryFilter) &&
+      webinar.title.toLowerCase().includes(searchFilter.toLowerCase())
   );
+
+  const loopedWebinars = [...filteredWebinars];
+
 
   return (
     <div className="training-webinars">
@@ -79,7 +186,7 @@ const TrainingAndWebinars = () => {
         </div>
 
         <div className="events-container">
-        <h2 className="upcoming">Upcoming Events</h2>
+        <h2 className="upcoming">Empower Series</h2>
         <div className="cards-container">
           {events.filter((event) => new Date(event.date).toDateString() === selectedDate.toDateString()).length === 0 ? (
             <p className="no-events-message">No upcoming webinars for this date.</p>
@@ -130,7 +237,6 @@ const TrainingAndWebinars = () => {
         </div>
       </section>
 
-      {/* Recorded Webinars Section */}
       <div className="recorded">
         <h2>Recorded Webinars</h2>
         <input
@@ -140,15 +246,35 @@ const TrainingAndWebinars = () => {
           onChange={(e) => setSearchFilter(e.target.value)}
           className="search-input"
         />
-        <div className="cards-container">
-          {filteredWebinars.map((webinar, index) => (
-            <div key={index} className="card">
-              <img className="card-img" src={webinar.img} alt="Webinar" />
-              <h3 className="card-title">{webinar.title}</h3>
-              <p className="card-category">{webinar.category}</p>
-            </div>
-          ))}
-        </div>
+   {filteredWebinars.length > 0 ? (
+          <div className="marquee-wrapper">
+            <Marquee gradient={false} speed={40} pauseOnHover={true}>
+              {loopedWebinars.map((webinar, index) => (
+                <div key={`${webinar.id}-${index}`} className="card">
+                  <div className="card-inner">
+                    <div className="card-front">
+                      <a href={webinar.link} target="_blank" rel="noopener noreferrer">
+                        <div className="img-container">
+                          <img className="card-img" src={webinar.img} alt={webinar.title} />
+                          <div className="play-overlay">
+                            <i className="play-icon">▶</i>
+                          </div>
+                        </div>
+                      </a>
+                      <h3 className="card-title">{webinar.title}</h3>
+                      <p className="card-mentor">{webinar.category}</p>
+                    </div>
+                    <div className="card-back">
+                      <p className="card-description">{webinar.description}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </Marquee>
+          </div>
+        ) : (
+          <p className="no-results">No webinars match your search.</p>
+        )}
       </div>
     </div>
   );
