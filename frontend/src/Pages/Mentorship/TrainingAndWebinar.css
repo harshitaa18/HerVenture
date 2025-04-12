@@ -1,338 +1,209 @@
-.training-webinars {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  padding: 2rem;
-  background: #f9f9f9;
-  color: #333;
-  min-height: 100vh;
-  font-family: sans-serif;
-}
-
-.categories-section {
-  background: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  position: relative;
-  z-index: 2;
-}
-
-.categories {
+.event-page {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-}
-
-.category {
-  padding: 8px 12px;
-  border: 2px solid transparent;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.category:hover,
-.category.active {
-  border-color: purple;
-  background: #f5f0ff;
-}
-
-.calendar-events-section {
-  display: flex;
-  gap: 30px;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
-
-.calendar-container {
-  flex: 1;
-  background: #fff;
-  border: 2px solid purple;
-  border-radius: 16px;
-  padding: 20px;
-  max-width: 400px;
-  margin-bottom: 2rem;
-  box-shadow: 0 6px 15px rgba(160, 32, 240, 0.1);
-}
-
-.events-container {
-  flex: 2;
-  margin-bottom: 2rem;
-  justify-content: center;
-  width: 100%;
-}
-
-.events-container h2 {
-  font-size: 50px;
-  color: #282c34;
-}
-
-.cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  overflow-x: auto;
-  justify-content: center;
-  margin-top: 20px;
-  scroll-behavior: smooth;
-  white-space: nowrap;
-  padding-bottom: 1rem;
-}
-
-.cards-container::-webkit-scrollbar {
-  display: none;
-}
-
-.card {
-  width: 300px;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  background: #fff;
-  border: 2px solid pink;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-  padding: 20px;
-  text-align: center;
-  transition: transform 0.3s ease  box-shadow 0.3s ease;
-  min-width: 300px;
-  flex-shrink: 0;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: #f9f9ff;
 }
 
-.card-img {
+.calendar-section {
+  flex: 1 1 50%;
+  min-width: 300px;
+}
+
+.featured-event {
+  flex: 1 1 40%;
+  min-width: 300px;
+}
+
+.featured-card {
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.featured-card:hover {
+  transform: scale(1.02);
+}
+
+.featured-card img {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: 8px;
 }
 
-.card-content {
+.details {
   padding: 1rem;
 }
 
-.card-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 10px 0;
+.details h3 {
+  margin: 0.5rem 0;
+  font-size: 1.4rem;
+  color: #333;
 }
 
-.card-date {
-  font-size: 20px;
-  font-weight: 600;
+.details p {
+  margin: 0.5rem 0;
+  color: #555;
 }
 
-.card-category,
-.card-description {
-  font-size: 1rem;
-  font-weight: normal;
-  line-height: 1.4;
-  color: #666;
-  overflow: hidden;
-}
-.card-description {
-  max-height: 80px;
-  overflow-y: auto;
-}
-
-
-.search-input {
-  width: 98%;
-  padding: 10px;
-  border: 2px solid pink;
-  border-radius: 8px;
-}
-
-.img-container {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.img-container:hover .card-img {
-  transform: scale(1.05);
-  filter: brightness(70%);
-}
-
-
-.filters {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.webinar-card {
-  background: #fff;
-  margin-right: 1rem;
-  width: 280px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  overflow: hidden;
-}
-
-.webinar-img {
-  width: 100%;
-  height: 140px;
-  object-fit: cover;
-}
-
-.webinar-details {
-  padding: 0.75rem;
-}
-
-.play-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: 8px;
-}
-
-.img-container:hover .play-overlay {
-  opacity: 1;
-}
-
-.play-icon {
-  font-size: 2.5rem;
+.register-btn {
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #ef476f;
   color: white;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-/********** Expanded Cards for Selected Date **********/
-.selected-event-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 20px;
+.register-btn:hover {
+  background-color: #d43d61;
+}
+.fc .fc-daygrid-event {
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-.selected-event-card {
-  width: 500px;
-  height: auto;
-  padding: 20px;
-  border: 3px solid purple;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+.fc .fc-daygrid-event:hover {
+  transform: scale(1.05);
+  background-color: #f0f0f0;
+}
+/* Style for FullCalendar header buttons */
+.fc .fc-button {
+  background-color: #601c4a !important;
+  border: none !important;
+  color: white !important;
+  font-weight: 500;
 }
 
-.selected-event-card .card-img {
-  width: 100%;
-  height: 300px;
+/* Hover effect */
+.fc .fc-button:hover {
+  background-color: #a54287 !important;
 }
 
-/********** Recorded Webinars Always Visible **********/
-.recorded {
-  width: 100%;
-  background: #fff;
-  padding: 20px;
+/* Style for the arrow buttons (previous/next) */
+.fc .fc-button-primary:not(:disabled):hover {
+  background-color: #a54287 !important;
+}
+
+.fc .fc-button-primary {
+  background-color: #601c4a !important;
+  border-color: #601c4a !important;
+  color: white !important;
+}
+
+.video-container {
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/********** Responsive Tweaks **********/
-@media (max-width: 1024px) {
-  .calendar-events-section {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .calendar-container {
-    max-width: 100%;
-    width: 100%;
-  }
-
-  .events-container h2 {
-    font-size: 36px;
-    text-align: center;
-  }
-
-  .card {
-    width: 100%;
-    max-width: 350px;
-  }
-
-  .selected-event-card {
-    width: 100%;
-  }
+.calendar-section {
+  width: 50%; /* Shrink calendar area */
+  color: #601c4a;
+  max-width: 700px;
+  background-image: url('../../Components/Assets/202561-pastel-purple-plain-background.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
+  overflow: hidden;
 }
 
-@media (max-width: 768px) {
-  .categories {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .events-container h2 {
-    font-size: 28px;
-  }
-
-  .card-title {
-    font-size: 1.3rem;
-  }
-
-  .card-mentor,
-  .card-date {
-    font-size: 16px;
-  }
-
-  .search-input {
-    width: 100%;
-  }
-
-  .card-img,
-  .selected-event-card .card-img {
-    height: 200px;
-  }
-
-  .cards-container {
-    justify-content: flex-start;
-    overflow-x: auto;
-  }
-
-  .play-icon {
-    font-size: 2rem;
-  }
+.fc-event-title {
+  white-space: normal ;
+  font-size: 0.85rem;
+}
+.fc-daygrid-day-frame {
+  min-height: 70px !important;
 }
 
-@media (max-width: 480px) {
-  .card {
-    padding: 10px;
-  }
-
-  .card-title {
-    font-size: 1.1rem;
-  }
-
-  .card-mentor,
-  .card-date {
-    font-size: 14px;
-  }
-
-  .selected-event-card {
-    padding: 15px;
-  }
-
-  .events-container h2 {
-    font-size: 24px;
-  }
+/* Optional: reduce day cell padding */
+.fc .fc-daygrid-day-number {
+  padding: 4px;
+  font-size: 0.85rem;
 }
-.marquee-wrapper {
-  margin-top: 20px;
+/* Change event background and text color */
+.fc .fc-event {
+  background-color: #854d72 !important;  /* Purple background */
+  border: none !important;
+  color: white !important;              /* White text */
+  font-size: 0.85rem;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+.featured-event-image {
+  width: 100%;
+  max-height: 150px;   /* or 120px */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+/* Container for the featured event section */
+.featured-events-container {
+  flex: 1;
+  border-left: 2px solid #eee;
+  padding-left: 20px;
+  min-height: 600px; /* Match calendar height */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
-.marquee-wrapper .card {
-  width: 250px;
-  margin: 0 12px;
+/* Each featured event card */
+.featured-event-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Event poster image */
+.featured-event-card img {
+  width: 100%;
+  max-height: 317px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+/* Event title */
+.featured-event-card h4 {
+  font-size: 1.5rem;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+/* Event description */
+.featured-event-card p {
+  padding: 10px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Event date styling */
+.featured-event-date {
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Watch video button */
+.watch-video-button {
+  display: inline-block;
+  color: white;
+  background: linear-gradient(135deg, purple, pink);
+  padding: 8px 14px;
+  border-radius: 5px;
+  text-decoration: none;
+  align-self: flex-start;
 }
