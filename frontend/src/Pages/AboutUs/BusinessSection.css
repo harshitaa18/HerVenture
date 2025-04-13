@@ -48,7 +48,7 @@
   top: 0;
   height: 100%;
   width: 6px;
-  background-color: #9c27b0;
+  background-color:  rgb(195, 85, 158);;
 }
 
 .business-card-content {
@@ -70,11 +70,12 @@
 .business-card h3 {
   font-size: 22px;
   margin-bottom: 15px;
-  color:  #6c1a7b;
+  color:   rgb(195, 85, 158);
 }
 
 .business-card p {
-  color:  #8b219e;
+  color:  rgba(18, 16, 17, 0.82);
+  font-family: 'Arial', sans-serif;
   margin-bottom: 20px;
   flex-grow: 1;
 }
@@ -97,7 +98,7 @@
 }
 
 .business-cta {
-  background: #d987e7;
+  background: linear-gradient(135deg, purple, pink);
   color: white;
   text-align: center;
   padding: 40px;

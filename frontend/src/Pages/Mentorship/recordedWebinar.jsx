@@ -2,7 +2,24 @@ import React, { useState } from "react";
 import Marquee from "react-fast-marquee"
 import { FaSearch } from "react-icons/fa";
 import "./recordedWebinar.css";
-
+import img1 from "../../Components/Assets/market.webp";
+import img2 from "../../Components/Assets/property.jpg";
+import img3 from "../../Components/Assets/tax.webp";
+import img4 from "../../Components/Assets/tech.png";
+import img5 from "../../Components/Assets/leader.jpg";
+import img6 from "../../Components/Assets/market101.jpeg";
+import img7 from "../../Components/Assets/market_social.jpeg";
+import img8 from "../../Components/Assets/market_aff.png";
+import img9 from "../../Components/Assets/legal.webp";
+import img10 from "../../Components/Assets/download1.jpeg";
+import img11 from "../../Components/Assets/invest.jpeg";
+import img12 from "../../Components/Assets/insurance.png";
+import img13 from "../../Components/Assets/risk.jpeg";
+import img14 from "../../Components/Assets/role.png";
+import img15 from "../../Components/Assets/benefits.jpeg";
+import img16 from "../../Components/Assets/comm.jpeg";
+import img17 from "../../Components/Assets/stratergy.jpeg";
+import img18 from "../../Components/Assets/dimensions.png";
 const RecordedWebinars = () => {
   const [categoryFilter, setCategoryFilter] = useState("");
   const [searchFilter, setSearchFilter] = useState("");
@@ -23,7 +40,7 @@ const RecordedWebinars = () => {
       category: "Marketing",
       description: "Discover emerging trends shaping the future of marketing.",
       link: "https://www.youtube.com/watch?v=ZvChhHNTz1g",
-      img: "img1.jpg",
+      img: img1,
     },
     {
       id: 2,
@@ -31,7 +48,7 @@ const RecordedWebinars = () => {
       category: "Legal Compliance",
       description: "Learn and understand how IP protects your business.",
       link: "https://www.youtube.com/watch?v=NrW7mt8gHmI",
-      img: "img3.jpg",
+      img: img2,
     },
     {
       id: 3,
@@ -40,7 +57,7 @@ const RecordedWebinars = () => {
       description:
         "Plan your startup finances to ensure tax compliance and savings.",
       link: "https://www.youtube.com/watch?v=oL6EvSJAVqc",
-      img: "img2.jpg",
+      img: img3,
     },
     {
       id: 4,
@@ -48,7 +65,7 @@ const RecordedWebinars = () => {
       category: "Technology",
       description: "Discover emerging trends shaping the future of marketing.",
       link: "https://www.youtube.com/watch?v=ZvChhHNTz1g",
-      img: "img9.jpg",
+      img: img4,
     },
     {
       id: 5,
@@ -56,7 +73,111 @@ const RecordedWebinars = () => {
       category: "Leadership Skills",
       description: "Discover emerging trends shaping the future of marketing.",
       link: "https://www.youtube.com/watch?v=ZvChhHNTz1g",
-      img: "img10.jpg",
+      img: img5,
+    },
+    {
+      id: 6,
+      title: "Marketing 101",
+      category: "Marketing",
+      description: "Discover emerging trends shaping the future of marketing.",
+      link: "https://www.youtube.com/watch?v=ZvChhHNTz1g",
+      img: img6,
+    },
+    {
+      id: 7,
+      title: "Social Media Marketing",
+      category: "Marketing",
+      description: "Discover emerging trends shaping the future of marketing.",
+      link: "https://www.youtube.com/watch?v=ZvChhHNTz1g",
+      img: img7,
+    },
+    {
+      id: 8,
+      title: "Affiliate Marketing",
+      category: "Marketing",
+      description: "Discover emerging trends shaping the future of marketing.",
+      link: "https://www.youtube.com/watch?v=ZvChhHNTz1g",
+      img: img8,
+    },
+    {
+      id: 9,
+      title: "What is Legal Compliance",
+      category: "Legal Compliance",
+      description: "Discover emerging trends shaping the future of marketing.",
+      link: "https://www.youtube.com/watch?v=ZvChhHNTz1g",
+      img: img9,
+    },
+    {
+      id: 10,
+      title: "Business Management",
+      category: "Legal Compliance",
+      description: "Discover emerging trends shaping the future of marketing.",
+      link: "https://www.google.com/imgres?q=legal%20and%20regulatory%20compliance%20in%20entrepreneurship&imgurl=https%3A%2F%2Fi.ytimg.com%2Fvi%2FOos2hMSrPXM%2Fmaxresdefault.jpg&imgrefurl=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DOos2hMSrPXM&docid=Q_xAHcf-ADvFJM&tbnid=uEOxrOqs0RgzWM&vet=12ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA..i&w=1280&h=720&hcb=2&ved=2ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA",
+      img: img10,
+    },
+    {
+      id: 11,
+      title: "Investment Planninng",
+      category: "Financial Planning",
+      description: "Discover emerging trends shaping the future of marketing.",
+      link: "https://www.google.com/imgres?q=legal%20and%20regulatory%20compliance%20in%20entrepreneurship&imgurl=https%3A%2F%2Fi.ytimg.com%2Fvi%2FOos2hMSrPXM%2Fmaxresdefault.jpg&imgrefurl=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DOos2hMSrPXM&docid=Q_xAHcf-ADvFJM&tbnid=uEOxrOqs0RgzWM&vet=12ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA..i&w=1280&h=720&hcb=2&ved=2ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA",
+      img: img11,
+    },
+    {
+      id: 12,
+      title: "Insurance Planninng",
+      category: "Financial Planning",
+      description: "Discover emerging trends shaping the future of marketing.",
+      link: "https://www.google.com/imgres?q=legal%20and%20regulatory%20compliance%20in%20entrepreneurship&imgurl=https%3A%2F%2Fi.ytimg.com%2Fvi%2FOos2hMSrPXM%2Fmaxresdefault.jpg&imgrefurl=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DOos2hMSrPXM&docid=Q_xAHcf-ADvFJM&tbnid=uEOxrOqs0RgzWM&vet=12ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA..i&w=1280&h=720&hcb=2&ved=2ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA",
+      img: img12,
+    },
+    {
+      id: 13,
+      title: "Risk Management",
+      category: "Financial Planning",
+      description: "Discover emerging trends shaping the future of marketing.",
+      link: "https://www.google.com/imgres?q=legal%20and%20regulatory%20compliance%20in%20entrepreneurship&imgurl=https%3A%2F%2Fi.ytimg.com%2Fvi%2FOos2hMSrPXM%2Fmaxresdefault.jpg&imgrefurl=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DOos2hMSrPXM&docid=Q_xAHcf-ADvFJM&tbnid=uEOxrOqs0RgzWM&vet=12ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA..i&w=1280&h=720&hcb=2&ved=2ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA",
+      img: img13,
+    },
+    {
+      id: 14,
+      title: "Role of Technology",
+      category: "Technology",
+      description: "Discover emerging trends shaping the future of marketing.",
+      link: "https://www.google.com/imgres?q=legal%20and%20regulatory%20compliance%20in%20entrepreneurship&imgurl=https%3A%2F%2Fi.ytimg.com%2Fvi%2FOos2hMSrPXM%2Fmaxresdefault.jpg&imgrefurl=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DOos2hMSrPXM&docid=Q_xAHcf-ADvFJM&tbnid=uEOxrOqs0RgzWM&vet=12ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA..i&w=1280&h=720&hcb=2&ved=2ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA",
+      img: img14,
+    },
+    {
+      id: 15,
+      title: "Benefits of Technology",
+      category: "Technology",
+      description: "Discover emerging trends shaping the future of marketing.",
+      link: "https://www.google.com/imgres?q=legal%20and%20regulatory%20compliance%20in%20entrepreneurship&imgurl=https%3A%2F%2Fi.ytimg.com%2Fvi%2FOos2hMSrPXM%2Fmaxresdefault.jpg&imgrefurl=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DOos2hMSrPXM&docid=Q_xAHcf-ADvFJM&tbnid=uEOxrOqs0RgzWM&vet=12ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA..i&w=1280&h=720&hcb=2&ved=2ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA",
+      img: img15,
+    },
+    {
+      id: 16,
+      title: "Improve you Communication",
+      category: "Leadership Skills",
+      description: "Discover emerging trends shaping the future of marketing.",
+      link: "https://www.google.com/imgres?q=legal%20and%20regulatory%20compliance%20in%20entrepreneurship&imgurl=https%3A%2F%2Fi.ytimg.com%2Fvi%2FOos2hMSrPXM%2Fmaxresdefault.jpg&imgrefurl=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DOos2hMSrPXM&docid=Q_xAHcf-ADvFJM&tbnid=uEOxrOqs0RgzWM&vet=12ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA..i&w=1280&h=720&hcb=2&ved=2ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA",
+      img: img16,
+    },
+    {
+      id: 17,
+      title: "Stratergize your Business",
+      category: "Leadership Skills",
+      description: "Discover emerging trends shaping the future of marketing.",
+      link: "https://www.google.com/imgres?q=legal%20and%20regulatory%20compliance%20in%20entrepreneurship&imgurl=https%3A%2F%2Fi.ytimg.com%2Fvi%2FOos2hMSrPXM%2Fmaxresdefault.jpg&imgrefurl=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DOos2hMSrPXM&docid=Q_xAHcf-ADvFJM&tbnid=uEOxrOqs0RgzWM&vet=12ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA..i&w=1280&h=720&hcb=2&ved=2ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA",
+      img: img17,
+    },
+    {
+      id: 18,
+      title: "Dimensions of Leadership",
+      category: "Leadership Skills",
+      description: "Discover emerging trends shaping the future of marketing.",
+      link: "https://www.google.com/imgres?q=legal%20and%20regulatory%20compliance%20in%20entrepreneurship&imgurl=https%3A%2F%2Fi.ytimg.com%2Fvi%2FOos2hMSrPXM%2Fmaxresdefault.jpg&imgrefurl=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DOos2hMSrPXM&docid=Q_xAHcf-ADvFJM&tbnid=uEOxrOqs0RgzWM&vet=12ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA..i&w=1280&h=720&hcb=2&ved=2ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA",
+      img: img18,
     },
   ];
 

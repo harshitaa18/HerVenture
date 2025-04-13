@@ -3,7 +3,9 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import './TrainingAndWebinar.css'; // Optional custom styles
-import img1 from "../../Components/Assets/market.webp";
+import img1 from "../../Components/Assets/leader2.jpg";
+import img2 from "../../Components/Assets/mindset.webp";
+import img3 from "../../Components/Assets/market.webp";
 import RecordedWebinars from './recordedWebinar';
 
 const TrainingAndWebinars = () => {
@@ -14,28 +16,28 @@ const TrainingAndWebinars = () => {
       title: 'Workshop: Women in Leadership',
       date: '2025-04-15',
       videoPoster: img1,
-      videoLink: 'https://www.youtube.com/watch?v=WCauHgLeqZc',
+      videoLink: 'https://www.youtube.com/watch?v=cma9Y1V9qQg',
       description: 'A deep dive into leadership strategies for aspiring women entrepreneurs.',
     },
     {
       title: 'Marketing Mastery',
       date: '2025-04-22',
-      videoPoster: 'https://via.placeholder.com/300x150.png?text=Marketing+Webinar',
-      videoLink: 'https://example.com/video2',
+      videoPoster: img3,
+      videoLink: 'https://www.youtube.com/watch?v=oWok2ciK3Sk',
       description: 'Grow your business with our expert-led session on marketing tactics.',
     },
     {
       title: 'Entrepreneurship Essentials',
       date: '2025-04-18',
-      videoPoster: 'https://via.placeholder.com/300x150.png?text=Entrepreneurship',
-      videoLink: 'https://example.com/video3',
+      videoPoster: img2,
+      videoLink: 'https://www.youtube.com/watch?v=-De2gxjhvI4',
       description: 'Discover what it takes to build a thriving startup from scratch.',
     },
     {
       title: 'Startup Success Secrets',
       date: '2025-04-25',
       videoPoster: 'https://images.unsplash.com/photo-1590650046871-92c887180603?auto=format&fit=crop&w=800&q=60',
-      videoLink: 'https://example.com/video4',
+      videoLink: 'https://www.youtube.com/watch?v=R_OWrlcjD_s',
       description: 'Join our webinar to uncover the strategies women entrepreneurs use to launch successful startups!',
     },
   ];
