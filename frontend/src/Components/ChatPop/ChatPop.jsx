@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import './ChatPop.css';
 import { useSocket } from '../../Context/SocketContext';
 import { useUser } from '../../Context/UserContext';
+import axios from 'axios';
 
 const ChatPop = ({ recipient, onClose }) => {
   const [message, setMessage] = useState('');
@@ -10,55 +11,82 @@ const ChatPop = ({ recipient, onClose }) => {
   const { user } = useUser();
   const messagesEndRef = useRef(null);
 
-  // Auto-scroll to latest message
+  // Scroll to latest message
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [chat]);
 
-  // Join personal room once
+  // Join personal socket room
   useEffect(() => {
     if (user?._id && socket.current) {
-      console.log('User ID:', user._id); // Log the current user's ID
+      console.log(`Joining room: ${user._id}`);
       socket.current.emit('join-room', user._id);
     }
   }, [user, socket]);
 
-  // Receive message handler
+  // Fetch chat history
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5000/api/messages/${user._id}/${recipient._id}`);
+        setChat(
+          res.data.map((m) => ({
+            ...m,
+            fromMe: m.senderId === user._id,
+          }))
+        );
+      } catch (err) {
+        console.error('Failed to load messages', err);
+      }
+    };
+
+    if (user && recipient?._id) {
+      fetchMessages();
+    }
+  }, [user, recipient]);
+
+  // Handle receiving new messages
   useEffect(() => {
     if (!socket.current) return;
 
     const handleReceive = (data) => {
-        console.log("Received message:", data);
-      setChat((prev) => [...prev, { ...data, fromMe: false }]);
+      // Only process messages from the current chat recipient
+      if (data.senderId === recipient._id) {
+        setChat((prev) => [...prev, { ...data, fromMe: false }]);
+      }
     };
 
     socket.current.on('receive-message', handleReceive);
-    return () => socket.current.off('receive-message', handleReceive);
-  }, [socket]);
+    
+    return () => {
+      socket.current.off('receive-message', handleReceive);
+    };
+  }, [socket, recipient._id]);
 
   // Send message
-  const sendMessage = () => {
-    if (!user?._id) {
-        console.error('User ID is missing');
-        return;
-      }
-      if (!recipient?._id) {
-        console.error('Recipient ID is missing');
-        return;
-      }
-    if (message.trim()) {
-      const msg = {
-        senderId: user._id,
-        receiverId: recipient._id,
-        text: message,
-      };
+  const sendMessage = async () => {
+    if (!user?._id || !recipient?._id || !message.trim()) return;
 
-      console.log('Sending message from:', user._id); // Log the sender ID
-      console.log('Sending message to:', recipient._id, recipient.name); // Log the recipient ID and name
+    const msgData = {
+      senderId: user._id,
+      receiverId: recipient._id,
+      message: message.trim(),
+      timestamp: new Date().toISOString(),
+    };
 
-      socket.current.emit('send-message', msg);
-      setChat((prev) => [...prev, { ...msg, fromMe: true }]);
+    try {
+      // Add to local chat immediately for better UX
+      setChat((prev) => [...prev, { ...msgData, fromMe: true }]);
       setMessage('');
+      
+      // Save to backend
+      const res = await axios.post('http://localhost:5000/api/messages/', msgData);
+      
+      // Emit to socket
+      socket.current.emit('send-message', res.data);
+    } catch (err) {
+      console.error('Failed to send message', err);
+      // Optionally remove the message from chat if it failed to send
     }
   };
 
@@ -70,14 +98,19 @@ const ChatPop = ({ recipient, onClose }) => {
       </div>
 
       <div className="chat-messages">
-        {chat.map((msg, index) => (
-          <div key={index} className={`message ${msg.fromMe ? 'me' : 'them'}`}>
-            <div className="text">{msg.text}</div>
-            <small className="meta">
-              {msg.fromMe ? 'You' : recipient.name}
-            </small>
-          </div>
-        ))}
+        {chat.length === 0 ? (
+          <div className="empty-chat">Start a conversation with {recipient.name}</div>
+        ) : (
+          chat.map((msg, index) => (
+            <div key={msg._id || index} className={`message ${msg.fromMe ? 'me' : 'them'}`}>
+              <div className="text">{msg.message}</div>
+              <small className="meta">
+                {msg.fromMe ? 'You' : recipient.name}
+                {msg.timestamp && ` • ${new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`}
+              </small>
+            </div>
+          ))
+        )}
         <div ref={messagesEndRef} />
       </div>
 
@@ -89,7 +122,7 @@ const ChatPop = ({ recipient, onClose }) => {
           onChange={(e) => setMessage(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
         />
-        <button onClick={sendMessage}>Send</button>
+        <button onClick={sendMessage} disabled={!message.trim()}>Send</button>
       </div>
     </div>
   );
