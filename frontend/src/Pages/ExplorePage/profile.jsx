@@ -69,7 +69,6 @@ const Profile = () => {
       }
 
       try {
-        console.log("endpoint ", endpoint, "ID ", user._id, "token ", token)
         const res = await axios.get(`http://localhost:5000/api/${endpoint}/${user._id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });

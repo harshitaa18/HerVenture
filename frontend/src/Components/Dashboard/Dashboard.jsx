@@ -133,8 +133,8 @@ const UserDashboard = () => {
             <small>{post.tags?.join(", ")}</small>
             <p>{post.contact}</p>
             <button className="delete-btn" onClick={() => handleDelete(post._id)}>
-  <FiTrash2 className="delete-icon" />
-</button>
+              <FiTrash2 className="delete-icon" />
+            </button>
 
           </div>
         ))

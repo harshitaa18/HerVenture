@@ -7,6 +7,53 @@
   --card-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   --button-color: purple;
   --button-hover: #5a4ce2;
+  --animation-timing: 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(128, 0, 128, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(128, 0, 128, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(128, 0, 128, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes borderPulse {
+  0% {
+    border-color: purple;
+  }
+  50% {
+    border-color: pink;
+  }
+  100% {
+    border-color: purple;
+  }
 }
 
 body {
@@ -15,6 +62,7 @@ body {
   margin: 0;
   padding: 0;
   color: var(--text-color);
+  transition: background-color 0.5s ease;
 }
 
 /* ===== Profile Container ===== */
@@ -26,11 +74,13 @@ body {
   padding: 25px;
   border-radius: 15px;
   box-shadow: var(--card-shadow);
-  transition: all 0.3s ease-in-out;
+  transition: all var(--animation-timing);
+  animation: fadeIn 0.8s ease-out;
 }
 
 .profilee-container:hover {
   transform: translateY(-5px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* ===== Profile Card ===== */
@@ -41,18 +91,27 @@ body {
   color: white;
   border-radius: 15px;
   position: relative;
+  animation: fadeIn 1s ease-out;
+  transition: all 0.5s ease;
+}
+
+.profilee-card:hover {
+  background: linear-gradient(135deg, #800080, #ff69b4);
+  transform: translateY(-3px);
 }
 
 .profilee-card h2 {
   font-size: 27px;
   margin: 10px 0;
   color: black;
+  animation: slideIn 0.5s ease-out 0.3s both;
 }
 
 .profilee-card p {
   font-size: 16px;
   color: black;
   opacity: 0.9;
+  animation: slideIn 0.5s ease-out 0.5s both;
 }
 
 /* ===== Filters Section ===== */
@@ -63,6 +122,7 @@ body {
   gap: 15px;
   margin-bottom: 20px;
   flex-wrap: wrap;
+  animation: fadeIn 0.8s ease-out 0.6s both;
 }
 
 .filters input,
@@ -81,6 +141,7 @@ body {
   border-color: purple;
   outline: none;
   box-shadow: 0 0 5px rgba(128, 0, 128, 0.4);
+  animation: pulse 1.5s infinite;
 }
 
 /* ===== Tabs ===== */
@@ -90,6 +151,7 @@ body {
   margin: 30px 0;
   border-bottom: 2px solid #ddd;
   flex-wrap: wrap;
+  animation: fadeIn 0.8s ease-out 0.7s both;
 }
 
 .tabs button {
@@ -100,7 +162,7 @@ body {
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   color: var(--text-color);
   position: relative;
 }
@@ -115,7 +177,7 @@ body {
   bottom: -2px;
   left: 50%;
   transform: translateX(-50%);
-  transition: width 0.3s ease-in-out;
+  transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .tabs button:hover::after,
@@ -123,9 +185,19 @@ body {
   width: 100%;
 }
 
+.tabs button:hover {
+  color: purple;
+  transform: translateY(-2px);
+}
+
+.tabs .active {
+  color: purple;
+}
+
 /* ===== Sections ===== */
 .section {
   margin-top: 20px;
+  animation: fadeIn 0.8s ease-out;
 }
 
 .section h3 {
@@ -134,30 +206,72 @@ body {
   border-bottom: 3px solid purple;
   display: inline-block;
   padding-bottom: 5px;
+  position: relative;
+  animation: slideIn 0.5s ease-out;
 }
 
-/* ===== Cards (Workers, Landowners, Suppliers) ===== */
+.section h3::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: pink;
+  animation: expandWidth 2s infinite alternate;
+}
+
+@keyframes expandWidth {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
 /* ===== Cards (Workers, Landowners, Suppliers) ===== */
 .car {
   background: white;
   padding: 18px;
   margin: 12px 0;
-  border: 2px solid purple; /* Added border */
+  border: 2px solid purple;
   border-radius: 12px;
-  box-shadow: var(--card-shadow); /* Corrected from var(purple) to actual shadow */
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-shadow: var(--card-shadow);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   display: flex;
-  flex-direction: column; /* Ensures content stacks nicely if it's large */
+  flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   cursor: pointer;
-  word-wrap: break-word; /* Makes sure long text breaks properly */
+  word-wrap: break-word;
   overflow-wrap: break-word;
+  animation: fadeIn 0.6s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.car::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  transform: skewX(-25deg);
+  transition: all 0.75s;
+}
+
+.car:hover::before {
+  left: 125%;
 }
 
 .car:hover {
-  transform: scale(1.03);
-  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2);
+  border-color: pink;
+  animation: borderPulse 2s infinite;
 }
 
 .car p {
@@ -167,8 +281,12 @@ body {
   margin: 0;
   margin-bottom: 8px;
   width: 100%;
+  transition: color 0.3s ease;
 }
 
+.car:hover p {
+  color: purple;
+}
 
 /* ===== Contact/Inquire Buttons ===== */
 .contact-btn,
@@ -182,12 +300,68 @@ body {
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-btn::before,
+.inquire-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: all 0.5s;
+}
+
+.contact-btn:hover::before,
+.inquire-btn:hover::before {
+  left: 100%;
 }
 
 .contact-btn:hover,
 .inquire-btn:hover {
   background: var(--button-hover);
   transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(90, 76, 226, 0.4);
+}
+
+.contact-btn:active,
+.inquire-btn:active {
+  transform: scale(0.95);
+}
+
+/* ===== Animation for Tab Content ===== */
+.tab-content {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.tab-content.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Loading Animation ===== */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+  height: 100px;
+  margin: 10px 0;
 }
 
 /* ===== Responsive Design ===== */
@@ -220,5 +394,37 @@ body {
     flex-direction: column;
     text-align: center;
     padding: 20px;
+  }
+  
+  /* Animation adjustments for mobile */
+  .profilee-container {
+    animation-duration: 0.5s;
+  }
+  
+  .car:hover {
+    transform: translateY(-5px) scale(1.01);
+  }
+}
+
+/* ===== Dark Mode Transition ===== */
+@media (prefers-color-scheme: dark) {
+  body.dark-mode {
+    background: var(--bg-dark);
+    color: white;
+    transition: all 0.5s ease;
+  }
+  
+  body.dark-mode .profilee-container {
+    background: #2d3748;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  body.dark-mode .car {
+    background: #2d3748;
+    border-color: #6b46c1;
+  }
+  
+  body.dark-mode .car p {
+    color: #e2e8f0;
   }
 }
