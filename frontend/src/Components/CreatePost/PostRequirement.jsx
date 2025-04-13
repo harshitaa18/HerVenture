@@ -37,7 +37,7 @@ const PostRequirement = () => {
         role,
       });
 
-      console.log("Post created:", res.data);
+      
       navigate("/dashboard"); // Redirect or show success message
     } catch (err) {
       console.error("Post creation failed:", err.response?.data || err.message);

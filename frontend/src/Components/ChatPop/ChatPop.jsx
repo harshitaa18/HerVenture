@@ -19,7 +19,7 @@ const ChatPop = ({ recipient, onClose }) => {
   // Join personal socket room
   useEffect(() => {
     if (user?._id && socket.current) {
-      console.log(`Joining room: ${user._id}`);
+      
       socket.current.emit('join-room', user._id);
     }
   }, [user, socket]);

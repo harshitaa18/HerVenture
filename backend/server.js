@@ -43,11 +43,10 @@ function setupSocket(server) {
   const users = {};
 
   io.on('connection', (socket) => {
-    console.log('New client connected:', socket.id);
 
     // When a user joins their personal room
     socket.on('join-room', (userId) => {
-      console.log(`User ${userId} joined their room`);
+    
       users[userId] = socket.id;
       socket.join(userId); // Join personal room with userId as room name
     });
@@ -55,7 +54,6 @@ function setupSocket(server) {
     // Send message
     socket.on('send-message', (data) => {
       const { senderId, receiverId, message } = data;
-      console.log(`Message from ${senderId} to ${receiverId}: ${message}`);
       
       // Send to receiver's room if they're online
       if (users[receiverId]) {
@@ -65,7 +63,6 @@ function setupSocket(server) {
 
     // Disconnect
     socket.on('disconnect', () => {
-      console.log('Client disconnected:', socket.id);
       // Remove user from online users
       const userId = Object.keys(users).find(key => users[key] === socket.id);
       if (userId) {
