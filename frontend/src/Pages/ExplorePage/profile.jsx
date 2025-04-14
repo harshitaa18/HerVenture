@@ -121,7 +121,7 @@ const Profile = () => {
       landowner: (
         <div className="user-details-grid">
           <div className="detail-item">
-            <span className="detail-label">Land Size</span>
+            <span className="detail-label">Property Size</span>
             <span className="detail-value">{fullUser.landSize || "N/A"}</span>
           </div>
           <div className="detail-item">
@@ -188,10 +188,10 @@ const Profile = () => {
   };
   
   const tabs = [
-    { key: "land", label: "Buy Land", data: landownersData, filterKey: "landSize" },
-    { key: "entrepreneurs", label: "See Entrepreneurs", data: entrepreneurs, filterKey: "aboutBusiness" },
-    { key: "labor", label: "Find Skilled Labor", data: laborData, filterKey: "skillset" },
-    { key: "suppliers", label: "Find Suppliers", data: suppliers, filterKey: "industry" },
+    { key: "land", label: "Properties", data: landownersData, filterKey: "landSize" },
+    { key: "entrepreneurs", label: "Entrepreneurs", data: entrepreneurs, filterKey: "aboutBusiness" },
+    { key: "labor", label: "Professionals", data: laborData, filterKey: "skillset" },
+    { key: "suppliers", label: "Suppliers", data: suppliers, filterKey: "industry" },
   ];
 
   const filterData = (data) => {
@@ -228,9 +228,8 @@ const Profile = () => {
   return (
     <div className="profile-wrapper">
       <div className="profile-header">
-      <h1>Grow Your Network</h1>
-      <p>Collaborate with entrepreneurs, hire skilled laborers, and connect with suppliers</p>
-
+        <h1>Grow Your Network</h1>
+        <p>Connect with fellow entrepreneurs, professionals, and business resources</p>
       </div>
 
       <div className="profile-container">
@@ -263,7 +262,7 @@ const Profile = () => {
         )}
 
         <div className="network-section">
-          <h2 className="network-title">Your Agricultural Network</h2>
+          <h2 className="network-title">Your Professional Network</h2>
           
           <div className="tabs">
             <button 
@@ -316,12 +315,12 @@ const Profile = () => {
 
           {tab === "overview" ? (
             <div className="overview-section">
-              <p>Select a tab above to explore your agricultural network.</p>
+              <p>Select a category to explore your professional network</p>
               <div className="stats-cards">
                 {tabs.map(tab => (
                   <div key={tab.key} className="stat-card" onClick={() => setTab(tab.key)}>
                     <h3>{tab.label}</h3>
-                    <p>{tab.data.length} {tab.key} available</p>
+                    <p>{tab.data.length} available</p>
                   </div>
                 ))}
               </div>
@@ -353,34 +352,29 @@ const Profile = () => {
                             </div>
                             <div className="card-body">
                               <div className="card-detail">
-                                <span className="detail-icon">📍</span>
                                 <span>{item.location || "N/A"}</span>
                               </div>
                               
                               {key === "entrepreneurs" && (
                                 <div className="card-detail">
-                                  <span className="detail-icon">💼</span>
                                   <span>{item.aboutBusiness || "N/A"}</span>
                                 </div>
                               )}
                               
                               {key === "land" && (
                                 <div className="card-detail">
-                                  <span className="detail-icon">🌱</span>
                                   <span>{item.landSize || "N/A"}</span>
                                 </div>
                               )}
                               
                               {key === "labor" && (
                                 <div className="card-detail">
-                                  <span className="detail-icon">🛠️</span>
                                   <span>{item.skillset || "N/A"}</span>
                                 </div>
                               )}
                               
                               {key === "suppliers" && (
                                 <div className="card-detail">
-                                  <span className="detail-icon">🏭</span>
                                   <span>{item.industry || "N/A"}</span>
                                 </div>
                               )}
