@@ -46,14 +46,14 @@
     margin-bottom: 1rem;
     font-size: 2.5rem;
     font-weight: bold;
-    color: white;
+    color: #b3418d;
     text-align: center;
 }
 .headerr_content p {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     text-align: center;
     margin-bottom: 1rem;
-    color: white; /* Ensure the text appears white */
+    color: rgba(0, 0, 0, 0.74); /* Ensure the text appears white */
 }
 
 h2, p {
@@ -65,6 +65,8 @@ p{
 }
 .team{
     /* background: #f5f5f5; */
+    padding: 3rem 0 5rem;
+    background: linear-gradient(to bottom, #fff, #f8f0fc);
     box-shadow: inset 0 0 3rem rgba(255, 255, 255, 0.5);
     margin-bottom: 4rem;
 }
@@ -74,28 +76,31 @@ p{
     margin-top: 4rem;
     font-weight: bold;
     margin-bottom: 3rem;
+    color: rgb(195, 85, 158);
 }
 .team_contain{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
     margin: 0 auto;
     padding: 0 2rem;
     max-width: 1200px;
+    justify-items: center;
 }
 .team-member{
     background: linear-gradient(135deg, #550a83, #bc75d0);;
-    padding: 1rem;
+    /* padding: 1rem; */
     border: 1px solid transparent;
     transition: all 400ms ease;
     position: relative;
     overflow: hidden;
-    height: 300px;
+    height: 390px;
+    width: 325px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 430px;
+    /* height: 430px; */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .team-member:hover{
@@ -120,6 +125,7 @@ p{
     text-align: center;
     margin-top: auto;
     margin-top: -35px;
+    color: white;
 }
 
 .team-members_info h4, .team-members_info p {
@@ -146,15 +152,20 @@ p{
     transition: all 400ms ease;
 }
 .team-member:hover .team-members_socials{
-    right: 0;
+   right:0;
 }
 .team-members_socials a{
-    padding: 1rem;
+    padding: 0.7rem;
     color: white;
     font-size: 1rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .team-members_socials a:hover {
-    color: white; /* Keep the icon color white on hover */
+    color: #f0c4ff;
+    transform: scale(1.15);/* Keep the icon color white on hover */
 }
 /* ui */
 .container-2 {

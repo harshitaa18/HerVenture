@@ -1,27 +1,27 @@
-import { createContext, useContext, useEffect, useRef } from 'react';
-import { io } from 'socket.io-client';
-import { useUser } from './UserContext';
+// Context/SocketContext.js
+import React, { createContext, useContext, useEffect, useRef } from 'react';
+import io from 'socket.io-client';
 
 const SocketContext = createContext();
 
 export const useSocket = () => useContext(SocketContext);
 
 export const SocketProvider = ({ children }) => {
-  const socket = useRef();
-  const { user } = useUser();
+  const socket = useRef(null);
 
   useEffect(() => {
-    if (user) {
-      socket.current = io('http://localhost:5000');
-      socket.current.emit('join-room', user._id);
-    }
+    // Initialize socket connection
+    socket.current = io('http://localhost:5000', {
+      withCredentials: true,
+    });
 
+    // Clean up on unmount
     return () => {
       if (socket.current) {
         socket.current.disconnect();
       }
     };
-  }, [user]);
+  }, []);
 
   return (
     <SocketContext.Provider value={socket}>

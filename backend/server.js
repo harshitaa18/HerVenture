@@ -6,8 +6,10 @@ const path = require('path');
 const cors = require("cors");
 const http = require('http');
 const { Server } = require('socket.io');
+const Message = require("./models/message");
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
@@ -15,51 +17,66 @@ mongoose.connect(process.env.MONGO_URI)
   .catch((err) => console.error("MongoDB Connection Error:", err));
 
 // Middlewares
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors({
+  origin: "http://localhost:3000",
+  credentials: true
+}));
 
 app.use(express.json());
-// Test Route
 
+// Create HTTP server
 const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:3000", // Your frontend URL
-    methods: ['GET', 'POST']
-  }
-});
 
-// Socket.IO connection
-io.on('connection', (socket) => {
-  console.log('A user connected:', socket.id);
+// server.js or socket.js in your backend
+const socketIo = require('socket.io');
 
-  socket.on('send-message', (data) => {
-    io.to(data.receiverId).emit('receive-message', data);
+function setupSocket(server) {
+  const io = socketIo(server, {
+    cors: {
+      origin: "http://localhost:3000", // Your React app URL
+      methods: ["GET", "POST"],
+      credentials: true
+    }
   });
 
-  socket.on('join-room', (userId) => {
-    socket.join(userId); // Join personal room based on userId
+  // Store online users
+  const users = {};
+
+  io.on('connection', (socket) => {
+
+    // When a user joins their personal room
+    socket.on('join-room', (userId) => {
+    
+      users[userId] = socket.id;
+      socket.join(userId); // Join personal room with userId as room name
+    });
+
+    // Send message
+    socket.on('send-message', (data) => {
+      const { senderId, receiverId, message } = data;
+      
+      // Send to receiver's room if they're online
+      if (users[receiverId]) {
+        io.to(receiverId).emit('receive-message', data);
+      }
+    });
+
+    // Disconnect
+    socket.on('disconnect', () => {
+      // Remove user from online users
+      const userId = Object.keys(users).find(key => users[key] === socket.id);
+      if (userId) {
+        delete users[userId];
+      }
+    });
   });
 
-  socket.on('disconnect', () => {
-    console.log('User disconnected:', socket.id);
-  });
-});
+  return io;
+}
 
+module.exports = setupSocket;
 
-app.get("/", (req, res) => {
-  res.send("Backend is running");
-});
-
-app.use("/api/auth", require("./routes/authRoutes"));
-app.use("/api/entrepreneur", require("./routes/entrepreneurRoutes"));
-app.use("/api/labor", require("./routes/laborRoutes"));
-app.use("/api/landowner", require("./routes/landownerRoutes"));
-app.use("/api/post",require("./routes/postRoutes"));
-// Start server
-const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-
+// Configure multer for file uploads
 const storage = multer.diskStorage({
   destination: './uploads/',
   filename: (req, file, cb) => {
@@ -76,12 +93,12 @@ const upload = multer({
   }
 }).single('image'); // 'image' is the name attribute in your HTML form
 
-// Check file type
+// Check file type function
 function checkFileType(file, cb) {
   const filetypes = /jpeg|jpg|png|gif/;
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
   const mimetype = filetypes.test(file.mimetype);
-
+  
   if (mimetype && extname) {
     return cb(null, true);
   } else {
@@ -89,6 +106,15 @@ function checkFileType(file, cb) {
   }
 }
 
+// Serve static files from uploads directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Test Route
+app.get("/", (req, res) => {
+  res.send("Backend is running");
+});
+
+// File upload route
 app.post('/upload', (req, res) => {
   upload(req, res, (err) => {
     if (err) {
@@ -103,7 +129,15 @@ app.post('/upload', (req, res) => {
   });
 });
 
+// API Routes
+app.use("/api/messages", require("./routes/messageRoutes.js"));
+app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/entrepreneur", require("./routes/entrepreneurRoutes"));
+app.use("/api/labor", require("./routes/laborRoutes"));
+app.use("/api/landowner", require("./routes/landownerRoutes"));
+app.use("/api/post", require("./routes/postRoutes"));
 
-
-
-
+// Start server
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
