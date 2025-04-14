@@ -18,11 +18,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Middlewares
 app.use(cors({
-<<<<<<< HEAD
   origin: "https://herventure.vercel.app", 
-=======
-  origin: "*",
->>>>>>> 835d19af456d5a5726c33b7dba834237da93ca7c
   credentials: true
 }));
 
