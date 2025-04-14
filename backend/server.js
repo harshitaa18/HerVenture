@@ -23,7 +23,7 @@ app.use(express.json());
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:3000", "http://localhost:3001"], // Your frontend URL
+    origin: "http://localhost:3000", // Your frontend URL
     methods: ['GET', 'POST']
   }
 });
@@ -56,10 +56,9 @@ app.use("/api/labor", require("./routes/laborRoutes"));
 app.use("/api/landowner", require("./routes/landownerRoutes"));
 app.use("/api/post",require("./routes/postRoutes"));
 // Start server
-httpServer.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-server.listen(5000, () => console.log("Server running on port 5000"));
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
 
 const storage = multer.diskStorage({
   destination: './uploads/',
