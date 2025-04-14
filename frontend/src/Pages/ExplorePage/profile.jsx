@@ -228,8 +228,9 @@ const Profile = () => {
   return (
     <div className="profile-wrapper">
       <div className="profile-header">
-        <h1>Your AgriNetwork</h1>
-        <p>Connect with farmers, entrepreneurs, laborers and suppliers</p>
+      <h1>Grow Your Network</h1>
+      <p>Collaborate with entrepreneurs, hire skilled laborers, and connect with suppliers</p>
+
       </div>
 
       <div className="profile-container">
