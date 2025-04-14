@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Middlewares
 app.use(cors({
-  origin: ["https://herventure.vercel.app", "http://localhost:3000"],
+  origin: "*",
   credentials: true
 }));
 
