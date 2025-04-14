@@ -47,7 +47,7 @@ const UserDashboard = () => {
       }
 
       try {
-        const res = await axios.get(`http://localhost:5000/api/${endpoint}/${user._id}`, {
+        const res = await axios.get(`https://herventure.onrender.com/api/${endpoint}/${user._id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 

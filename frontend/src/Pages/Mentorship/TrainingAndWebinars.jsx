@@ -4,8 +4,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import './TrainingAndWebinar.css'; // Optional custom styles
 import img1 from "../../Components/Assets/leader2.jpg";
-import img2 from "../../Components/Assets/mindset.webp";
-import img3 from "../../Components/Assets/market.webp";
+import img2 from "../../Components/Assets/entre.jpg";
+import img3 from "../../Components/Assets/market_calender.webp";
 import RecordedWebinars from './recordedWebinar';
 
 const TrainingAndWebinars = () => {
@@ -67,7 +67,7 @@ const TrainingAndWebinars = () => {
         </div>
 
         {/* Featured Events Section */}
-        <div className="featured-events-container">
+        <div  className={`featured-events-container ${selectedEvents.length === 0 ? "no-events" : ""}`}>
   {selectedEvents.length > 0 ? (
     selectedEvents.map((event, index) => (
       <div className="featured-event-card" key={index}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import './AboutUs.css';
-import HeaderImage from '../../Components/Assets/about-us7.jpg';
+import HeaderImage from '../../Components/Assets/about-us3.png';
 import Header from '../../Components/Header';
 import { Team } from './Team';
 import Experience from './caseStudy';

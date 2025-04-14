@@ -19,7 +19,7 @@ const ProfileDetail = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/auth/profile/${role}/${id}`);
+        const response = await axios.get(`https://herventure.onrender.com/api/auth/profile/${role}/${id}`);
         setUserDetails(response.data);
       } catch (err) {
         setError(err.response?.data?.error || err.message);

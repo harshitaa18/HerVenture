@@ -33,9 +33,9 @@ const Profile = () => {
     const fetchAllUsers = async () => {
       try {
         const [entrepreneurRes, landRes, laborRes] = await Promise.all([
-          axios.get("http://localhost:5000/api/entrepreneur"),
-          axios.get("http://localhost:5000/api/landowner"),
-          axios.get("http://localhost:5000/api/labor"),
+          axios.get("https://herventure.onrender.com/api/entrepreneur"),
+          axios.get("https://herventure.onrender.com/api/landowner"),
+          axios.get("https://herventure.onrender.com/api/labor"),
         ]);
   
         setEntrepreneurs(entrepreneurRes.data);
@@ -68,7 +68,7 @@ const Profile = () => {
       }
 
       try {
-        const res = await axios.get(`http://localhost:5000/api/${endpoint}/${user._id}`, {
+        const res = await axios.get(`https://herventure.onrender.com/api/${endpoint}/${user._id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
