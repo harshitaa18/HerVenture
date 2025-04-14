@@ -52,14 +52,14 @@ router.get("/", async (req, res) => {
   }
 });
 
-// router.get("/profile", async (req, res) => {
-//   try {
-//     const allEntrepreneurs = await Entrepreneur.find().populate('userId', 'name');
-//     res.json(allEntrepreneurs);
-//   } catch (err) {
-//     res.status(500).json({ error: "Error fetching entrepreneurs", details: err.message });
-//   }
-// });
+router.get("/profile", async (req, res) => {
+  try {
+    const allEntrepreneurs = await Entrepreneur.find().populate('userId', 'name');
+    res.json(allEntrepreneurs);
+  } catch (err) {
+    res.status(500).json({ error: "Error fetching entrepreneurs", details: err.message });
+  }
+});
 
 
 module.exports = router;
