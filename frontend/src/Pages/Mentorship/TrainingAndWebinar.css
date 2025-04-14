@@ -207,3 +207,11 @@
   text-decoration: none;
   align-self: flex-start;
 }
+.featured-events-container:empty,
+.featured-events-container.no-events {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #888;
+}

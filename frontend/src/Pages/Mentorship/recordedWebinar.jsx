@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Marquee from "react-fast-marquee"
 import { FaSearch } from "react-icons/fa";
 import "./recordedWebinar.css";
@@ -23,6 +23,11 @@ import img18 from "../../Components/Assets/dimensions.png";
 const RecordedWebinars = () => {
   const [categoryFilter, setCategoryFilter] = useState("");
   const [searchFilter, setSearchFilter] = useState("");
+  const [shouldScroll, setShouldScroll] = useState(false);
+
+  
+  const containerRef = useRef(null);
+  const contentRef = useRef(null);
 
   const categories = [
     "All",
@@ -189,6 +194,19 @@ const RecordedWebinars = () => {
 
   const loopedWebinars = [...filteredWebinars];
 
+  useEffect(() => {
+    const checkOverflow = () => {
+      if (!containerRef.current || !contentRef.current) return;
+      const containerWidth = containerRef.current.offsetWidth;
+      const contentWidth = contentRef.current.scrollWidth;
+      setShouldScroll(contentWidth > containerWidth);
+    };
+
+    checkOverflow();
+    window.addEventListener("resize", checkOverflow);
+    return () => window.removeEventListener("resize", checkOverflow);
+  }, [filteredWebinars]);
+
   return (
     <div className="webinar-section">
       {/* Topic Categories */}
@@ -223,31 +241,59 @@ const RecordedWebinars = () => {
 
 
         {/* Webinar Marquee */}
-        {filteredWebinars.length > 0 ? (
-          <div className="marquee-wrapper">
-            <Marquee gradient={false} speed={80} pauseOnHover={true}>
-              {loopedWebinars.map((webinar, index) => (
-                <div key={`${webinar.id}-${index}`} className="card">
-                  <div className="card-inner">
-                    <div className="card-front">
-                      <a href={webinar.link} target="_blank" rel="noopener noreferrer">
-                        <div className="img-container">
-                          <img className="card-img" src={webinar.img} alt={webinar.title} />
-                          <div className="play-overlay">
-                            <i className="play-icon">▶</i>
-                          </div>
+       {filteredWebinars.length > 0 ? (
+          <div className="marquee-wrapper" ref={containerRef}>
+            {shouldScroll ? (
+              <Marquee gradient={false} speed={80} pauseOnHover={true}>
+                <div className="marquee-content" ref={contentRef} style={{ display: "flex", gap: "1rem" }}>
+                  {loopedWebinars.map((webinar, index) => (
+                    <div key={`${webinar.id}-${index}`} className="card">
+                      <div className="card-inner">
+                        <div className="card-front">
+                          <a href={webinar.link} target="_blank" rel="noopener noreferrer">
+                            <div className="img-container">
+                              <img className="card-img" src={webinar.img} alt={webinar.title} />
+                              <div className="play-overlay">
+                                <i className="play-icon">▶</i>
+                              </div>
+                            </div>
+                          </a>
+                          <h3 className="card-title">{webinar.title}</h3>
+                          <p className="card-mentor">{webinar.category}</p>
                         </div>
-                      </a>
-                      <h3 className="card-title">{webinar.title}</h3>
-                      <p className="card-mentor">{webinar.category}</p>
+                        <div className="card-back">
+                          <p className="card-description">{webinar.description}</p>
+                        </div>
+                      </div>
                     </div>
-                    <div className="card-back">
-                      <p className="card-description">{webinar.description}</p>
+                  ))}
+                </div>
+              </Marquee>
+            ) : (
+              <div className="marquee-static" ref={contentRef} style={{ display: "flex", gap: "1rem" }}>
+                {loopedWebinars.map((webinar, index) => (
+                  <div key={`${webinar.id}-${index}`} className="card">
+                    <div className="card-inner">
+                      <div className="card-front">
+                        <a href={webinar.link} target="_blank" rel="noopener noreferrer">
+                          <div className="img-container">
+                            <img className="card-img" src={webinar.img} alt={webinar.title} />
+                            <div className="play-overlay">
+                              <i className="play-icon">▶</i>
+                            </div>
+                          </div>
+                        </a>
+                        <h3 className="card-title">{webinar.title}</h3>
+                        <p className="card-mentor">{webinar.category}</p>
+                      </div>
+                      <div className="card-back">
+                        <p className="card-description">{webinar.description}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </Marquee>
+                ))}
+              </div>
+            )}
           </div>
         ) : (
           <p className="no-results">No webinars match your search.</p>
