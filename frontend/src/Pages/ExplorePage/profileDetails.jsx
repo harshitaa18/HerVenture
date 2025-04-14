@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
 import "./profileDetail.css";
 import { MdEmail, MdPhone, MdLocationOn, MdBusiness, MdWork, MdLandscape, MdInventory } from "react-icons/md";
 import ChatPop from "../../Components/ChatPop/ChatPop";
 import { useUser } from "../../Context/UserContext";
+import API from "../../utils/api";
 
 const ProfileDetail = () => {
   const { user } = useUser();
@@ -21,7 +21,7 @@ const ProfileDetail = () => {
       setIsLoading(true);
       setError(null);
       try {
-        const response = await axios.get(`https://herventure.onrender.com/api/${role}/${id}`);
+        const response = await API.get(`/${role}/${id}`);
         setUserDetails(response.data);
       } catch (err) {
         setError(err.response?.data?.error || "Failed to fetch profile details");
