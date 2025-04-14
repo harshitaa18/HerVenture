@@ -11,7 +11,7 @@ export const SocketProvider = ({ children }) => {
 
   useEffect(() => {
     // Initialize socket connection
-    socket.current = io('http://localhost:5000', {
+    socket.current = io('https://herventure.onrender.com', {
       withCredentials: true,
     });
 

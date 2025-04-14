@@ -28,7 +28,7 @@ const ChatPop = ({ recipient, onClose }) => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/messages/${user._id}/${recipient._id}`);
+        const res = await axios.get(`https://herventure.onrender.com/api/messages/${user._id}/${recipient._id}`);
         setChat(
           res.data.map((m) => ({
             ...m,
@@ -80,7 +80,7 @@ const ChatPop = ({ recipient, onClose }) => {
       setMessage('');
       
       // Save to backend
-      const res = await axios.post('http://localhost:5000/api/messages/', msgData);
+      const res = await axios.post('https://herventure.onrender.com/api/messages/', msgData);
       
       // Emit to socket
       socket.current.emit('send-message', res.data);
