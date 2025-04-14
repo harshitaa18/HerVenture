@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../../../Context/UserContext";
 import { motion } from "framer-motion";
 import "./EntrepreneurialSignup.css";
-import api from "../../../utils/api";
+import API from "../../../utils/api";
 
 const EntrepreneurSignup = () => {
   const { setUser } = useUser();
@@ -96,7 +96,7 @@ const EntrepreneurSignup = () => {
     setIsLoading(true);
 
     try {
-      const signupRes = await api.post("/auth/signup", {
+      const signupRes = await API.post("/auth/signup", {
         name: formData.name,
         email: formData.email,
         password: formData.password,
@@ -107,7 +107,7 @@ const EntrepreneurSignup = () => {
       const { token, user } = signupRes.data;
       localStorage.setItem("token", token);
 
-      const profileRes = await api.post("/entrepreneur",
+      const profileRes = await API.post("/entrepreneur",
         {
           userId: user._id,
           contact: formData.contact,

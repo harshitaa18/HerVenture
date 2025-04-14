@@ -1,561 +1,186 @@
-/* ===== Global Styles ===== */
-:root {
-  --primary-color: #8e44ad; /* Purple */
-  --secondary-color: #d26ecf; /* Pink */
-  --primary-gradient: linear-gradient(135deg, #8e44ad, #d26ecf);
-  --accent-gradient: linear-gradient(to right, #8e44ad, #d26ecf);
-  --text-color: #333;
-  --text-light: #666;
-  --bg-light: #f8f9fa;
-  --bg-dark: #212529;
-  --card-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  --button-color: purple;
-  --button-hover: #5a4ce2;
-  --animation-timing: 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(128, 0, 128, 0.4);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(128, 0, 128, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(128, 0, 128, 0);
-  }
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateX(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes borderPulse {
-  0% {
-    border-color: purple;
-  }
-  50% {
-    border-color: pink;
-  }
-  100% {
-    border-color: purple;
-  }
-}
-
+/* profile.css */
 body {
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--bg-light);
+  font-family: 'Inter', sans-serif;
+  background: #f9f9fb;
   margin: 0;
   padding: 0;
-  color: var(--text-color);
-  transition: background-color 0.5s ease;
+  color: #333;
 }
 
-/* ===== Page Wrapper ===== */
-.profile-wrapper {
-  min-height: 100vh;
-  background: linear-gradient(135deg, rgba(142, 68, 173, 0.1) 0%, rgba(210, 110, 207, 0.05) 100%);
-  padding: 40px 20px;
-}
-
-/* ===== Header Section ===== */
-.profile-header {
-  text-align: center;
-  margin-bottom: 40px;
-  position: relative;
-}
-
-.profile-header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-  background: var(--primary-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  display: inline-block;
-}
-
-.profile-header p {
-  font-size: 1.1rem;
-  color: var(--text-light);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* ===== Main Container ===== */
+/* Profile Container */
 .profile-container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: var(--bg-white);
-  border-radius: var(--border-radius);
-  box-shadow: var(--card-shadow);
-  transition: all var(--animation-timing);
-  animation: fadeIn 0.8s ease-out;
-}
-
-.profilee-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-/* ===== Profile Card ===== */
-.profile-card {
-  padding: 40px;
-  background: var(--primary-gradient);
-  color: white;
-  text-align: center;
-  position: relative;
-  animation: fadeIn 1s ease-out;
-  transition: all 0.5s ease;
-}
-
-.profilee-card:hover {
-  background: linear-gradient(135deg, #800080, #ff69b4);
-  transform: translateY(-3px);
-}
-
-.profilee-card h2 {
-  font-size: 27px;
-  margin: 10px 0;
-  color: black;
-  animation: slideIn 0.5s ease-out 0.3s both;
-}
-
-.profilee-card p {
-  font-size: 16px;
-  color: black;
-  opacity: 0.9;
-  animation: slideIn 0.5s ease-out 0.5s both;
-}
-
-/* ===== Filters Section ===== */
-.filters {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-  animation: fadeIn 0.8s ease-out 0.6s both;
-}
-
-.profile-avatar span {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--primary-color);
-}
-
-.profile-card h2 {
-  margin: 0;
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: white;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.profile-role {
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 25px;
-  backdrop-filter: blur(5px);
-}
-
-/* ===== User Details Grid ===== */
-.user-details-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  width: 100%;
-  max-width: 800px;
-}
-
-.filters input:focus,
-.filters select:focus {
-  border-color: purple;
-  outline: none;
-  box-shadow: 0 0 5px rgba(128, 0, 128, 0.4);
-  animation: pulse 1.5s infinite;
-}
-
-/* ===== Tabs ===== */
-.tabs {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 2px solid #eee;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
-  animation: fadeIn 0.8s ease-out 0.7s both;
-}
-
-.tabs button {
-  padding: 12px 20px;
-  border: none;
-  background: none;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-light);
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  color: var(--text-color);
-  position: relative;
-  transition: var(--transition);
-  margin-bottom: -2px;
-}
-
-.tabs button::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  transform: translateX(-50%);
-  transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.tabs button:hover::after {
-  width: 100%;
-}
-
-.tabs button.active {
-  color: var(--primary-color);
-}
-
-.tabs button.active::after {
-  width: 100%;
-}
-
-.tabs button:hover {
-  color: purple;
-  transform: translateY(-2px);
-}
-
-.tabs .active {
-  color: purple;
-}
-
-/* ===== Sections ===== */
-.section {
-  margin-top: 20px;
-  animation: fadeIn 0.8s ease-out;
-}
-
-.section h3 {
-  font-size: 22px;
-  color: purple;
-  border-bottom: 3px solid purple;
-  display: inline-block;
-  padding-bottom: 5px;
-  position: relative;
-  animation: slideIn 0.5s ease-out;
-}
-
-.section h3::after {
-  content: '';
-  position: absolute;
-  bottom: -3px;
-  left: 0;
-  width: 0;
-  height: 3px;
-  background: pink;
-  animation: expandWidth 2s infinite alternate;
-}
-
-@keyframes expandWidth {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-/* ===== Cards (Workers, Landowners, Suppliers) ===== */
-.car {
-  background: white;
-  padding: 18px;
-  margin: 12px 0;
-  border: 2px solid purple;
-  border-radius: 12px;
-  box-shadow: var(--card-shadow);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  cursor: pointer;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  animation: fadeIn 0.6s ease-out;
-  position: relative;
-  overflow: hidden;
-}
-
-.car::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.3) 100%
-  );
-  transform: skewX(-25deg);
-  transition: all 0.75s;
-}
-
-.car:hover::before {
-  left: 125%;
-}
-
-.car:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2);
-  border-color: pink;
-  animation: borderPulse 2s infinite;
-}
-
-.card-header {
-  padding: 20px;
-  display: flex;
   align-items: center;
-  gap: 15px;
-  border-bottom: 1px solid #f0f0f0;
 }
 
-.card-avatar {
-  width: 40px;
-  height: 40px;
-  background: var(--primary-gradient);
+/* Profile Card */
+.profile-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease;
+}
+.profile-card:hover {
+  transform: scale(1.02);
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #8e44ad, #d26ecf);
+  color: white;
+  font-size: 2.2rem;
+  font-weight: bold;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  margin: 0 auto 1rem;
 }
 
-.card-avatar span {
-  color: white;
+.profile-name {
+  font-size: 1.5rem;
   font-weight: 600;
+}
+
+.profile-email {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tabs button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 999px;
+  background: #f0f0f0;
+  color: #333;
+  font-weight: 500;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.tabs button:hover {
+  background: #d26ecf;
+  color: white;
+}
+
+.tabs .active {
+  background: #8e44ad;
+  color: white;
+}
+
+/* Search Box */
+.search-box {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 2rem;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.8rem 2.5rem 0.8rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.search-box input:focus {
+  border-color: #8e44ad;
+  box-shadow: 0 0 0 2px rgba(142, 68, 173, 0.2);
+}
+
+/* Cards Grid */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+/* Card Styling */
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.card-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8e44ad, #d26ecf);
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 1.2rem;
 }
 
-.card-header h4 {
-  margin: 0;
-  font-size: 1.1rem;
-  color: var(--text-color);
-  margin: 0;
-  margin-bottom: 8px;
-  width: 100%;
-  transition: color 0.3s ease;
+.card-body {
+  padding: 1rem;
+  font-size: 0.95rem;
+  color: #444;
 }
 
-.car:hover p {
-  color: purple;
+.card-detail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
-/* ===== Contact/Inquire Buttons ===== */
-.contact-btn,
-.inquire-btn {
-  padding: 10px 20px;
-  background: var(--button-color);
+.card-footer {
+  text-align: center;
+  padding: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.view-details-btn {
+  background: #8e44ad;
   color: white;
+  padding: 0.5rem 1.2rem;
   border: none;
   border-radius: 8px;
-  font-size: 14px;
-  font-weight: bold;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  position: relative;
-  overflow: hidden;
+  transition: background 0.3s;
 }
 
-.contact-btn::before,
-.inquire-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  transition: all 0.5s;
-}
-
-.contact-btn:hover::before,
-.inquire-btn:hover::before {
-  left: 100%;
-}
-
-.contact-btn:hover,
-.inquire-btn:hover {
-  background: var(--button-hover);
-  transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(90, 76, 226, 0.4);
-}
-
-.contact-btn:active,
-.inquire-btn:active {
-  transform: scale(0.95);
-}
-
-/* ===== Animation for Tab Content ===== */
-.tab-content {
-  opacity: 0;
-  transform: translateY(10px);
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-.tab-content.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ===== Loading Animation ===== */
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-.loading {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-  border-radius: 8px;
-  height: 100px;
-  margin: 10px 0;
-}
-
-/* ===== Responsive Design ===== */
-@media (max-width: 992px) {
-  .user-details-grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  }
-  
-  .network-section {
-    padding: 30px;
-  }
-}
-
-@media (max-width: 768px) {
-  .profile-header h1 {
-    font-size: 2rem;
-  }
-  
-  .profile-card {
-    padding: 30px 20px;
-  }
-  
-  .profile-avatar {
-    width: 80px;
-    height: 80px;
-  }
-  
-  .network-section {
-    padding: 20px;
-  }
-  
-  .tabs {
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 5px;
-  }
-  
-  .tabs button {
-    flex: 1 1 calc(50% - 5px);
-    text-align: center;
-  }
-  
-  .filters {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .search-box {
-    max-width: 100%;
-  }
-  
-  .cards-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .profile-wrapper {
-    padding: 20px 10px;
-  }
-  
-  .profile-container {
-    width: 100%;
-  }
-  
-  .profile-header h1 {
-    font-size: 1.8rem;
-  }
-  
-  .user-details-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .tabs button {
-    flex: 1 1 100%;
-    margin-bottom: 5px;
-  }
-  
-  /* Animation adjustments for mobile */
-  .profilee-container {
-    animation-duration: 0.5s;
-  }
-  
-  .car:hover {
-    transform: translateY(-5px) scale(1.01);
-  }
-}
-
-/* ===== Dark Mode Transition ===== */
-@media (prefers-color-scheme: dark) {
-  body.dark-mode {
-    background: var(--bg-dark);
-    color: white;
-    transition: all 0.5s ease;
-  }
-  
-  body.dark-mode .profilee-container {
-    background: #2d3748;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
-  }
-  
-  body.dark-mode .car {
-    background: #2d3748;
-    border-color: #6b46c1;
-  }
-  
-  body.dark-mode .car p {
-    color: #e2e8f0;
-  }
+.view-details-btn:hover {
+  background: #732d91;
 }

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useUser } from "../../Context/UserContext";
-import axios from "axios";
 import API from "../../utils/api";
 import './Dashboard.css';
 import { useNavigate } from "react-router-dom";
@@ -47,7 +46,7 @@ const UserDashboard = () => {
       }
 
       try {
-        const res = await axios.get(`https://herventure.onrender.com/api/${endpoint}/${user._id}`, {
+        const res = await API.get(`/${endpoint}/${user._id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 

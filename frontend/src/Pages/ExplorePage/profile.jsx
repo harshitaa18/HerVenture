@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useUser } from "../../Context/UserContext";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import "./profile.css";
 import { suppliers } from "./data";
+import API from "../../utils/api";
 
 const Profile = () => {
   const { user } = useUser();
@@ -14,6 +14,8 @@ const Profile = () => {
   const [entrepreneurs, setEntrepreneurs] = useState([]);
   const [landownersData, setLandownersData] = useState([]);
   const [laborData, setLaborData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
@@ -24,25 +26,32 @@ const Profile = () => {
     suppliers: "supplier",
   };
 
-  const handleClick = (Key, id) => {
-    const role = roleMap[Key];
-    if (role) navigate(`/profile/${role}/${id}`);
+  const handleClick = (key, id) => {
+    const role = roleMap[key];
+    if (role) {
+      navigate(`/profile/${role}/${id}`);
+    }
   };
   
   useEffect(() => {
     const fetchAllUsers = async () => {
+      setLoading(true);
+      setError(null);
       try {
         const [entrepreneurRes, landRes, laborRes] = await Promise.all([
-          axios.get("https://herventure.onrender.com/api/entrepreneur"),
-          axios.get("https://herventure.onrender.com/api/landowner"),
-          axios.get("https://herventure.onrender.com/api/labor"),
+          API.get("/entrepreneur"),
+          API.get("/landowner"),
+          API.get("/labor"),
         ]);
   
-        setEntrepreneurs(entrepreneurRes.data);
-        setLandownersData(landRes.data);
-        setLaborData(laborRes.data);
+        setEntrepreneurs(entrepreneurRes.data || []);
+        setLandownersData(landRes.data || []);
+        setLaborData(laborRes.data || []);
       } catch (err) {
         console.error("Failed to fetch users by role:", err);
+        setError("Failed to load network data. Please try again later.");
+      } finally {
+        setLoading(false);
       }
     };
   
@@ -52,6 +61,8 @@ const Profile = () => {
   useEffect(() => {
     const fetchFullProfile = async () => {
       if (!user) return;
+      
+      setLoading(true);
       const token = localStorage.getItem("token");
 
       const validRoles = {
@@ -64,18 +75,21 @@ const Profile = () => {
       const endpoint = validRoles[user.role?.toLowerCase()];
       if (!endpoint) {
         console.error("Invalid or unsupported role:", user.role);
+        setLoading(false);
         return;
       }
 
       try {
-        const res = await axios.get(`https://herventure.onrender.com/api/${endpoint}/${user._id}`, {
+        const res = await API.get(`/${endpoint}/${user._id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
         setFullUser({ ...user, ...res.data });
-
       } catch (err) {
         console.error("Error fetching full profile:", err);
+        setError("Failed to load your profile. Please try again later.");
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -83,7 +97,9 @@ const Profile = () => {
   }, [user]);
 
   const renderUserDetails = () => {
-    if (!user || !fullUser) return <p className="loading-text">Loading profile...</p>;
+    if (loading) return <p className="loading-text">Loading profile...</p>;
+    if (error) return <p className="error-text">{error}</p>;
+    if (!user || !fullUser) return <p className="loading-text">No profile data available</p>;
   
     const userDetails = {
       entrepreneur: (
@@ -168,7 +184,7 @@ const Profile = () => {
       )
     };
   
-    return userDetails[fullUser.role?.toLowerCase()] || <p>Role not recognized</p>;
+    return userDetails[fullUser.role?.toLowerCase()] || <p>Role details not available</p>;
   };
   
   const tabs = [
@@ -178,11 +194,36 @@ const Profile = () => {
     { key: "suppliers", label: "Find Suppliers", data: suppliers, filterKey: "industry" },
   ];
 
-  const filterData = (data) =>
-    data.filter(item =>
-      (!selectedFilter || Object.values(item).includes(selectedFilter)) &&
-      item.location.toLowerCase().includes(searchQuery)
-    );
+  const filterData = (data) => {
+    if (!data || !Array.isArray(data)) return [];
+    
+    return data.filter(item => {
+      const matchesFilter = !selectedFilter || 
+        (item[tabs.find(t => t.key === tab)?.filterKey] === selectedFilter);
+      
+      const matchesSearch = !searchQuery || 
+        (item.location && item.location.toLowerCase().includes(searchQuery.toLowerCase()));
+      
+      return matchesFilter && matchesSearch;
+    });
+  };
+
+  // Get unique filter values for the current tab
+  const getFilterOptions = () => {
+    const currentTab = tabs.find(t => t.key === tab);
+    if (!currentTab || !currentTab.data || !Array.isArray(currentTab.data)) return [];
+    
+    const filterKey = currentTab.filterKey;
+    const uniqueValues = new Set();
+    
+    currentTab.data.forEach(item => {
+      if (item[filterKey]) {
+        uniqueValues.add(item[filterKey]);
+      }
+    });
+    
+    return Array.from(uniqueValues);
+  };
 
   return (
     <div className="profile-wrapper">
@@ -192,7 +233,17 @@ const Profile = () => {
       </div>
 
       <div className="profile-container">
-        {user ? (
+        {loading ? (
+          <div className="profile-loading">
+            <div className="loading-spinner"></div>
+            <p>Loading user data...</p>
+          </div>
+        ) : error ? (
+          <div className="profile-error">
+            <p>{error}</p>
+            <button onClick={() => window.location.reload()}>Try Again</button>
+          </div>
+        ) : user ? (
           <div className="profile-card">
             <div className="profile-avatar">
               <span>{user.name ? user.name.charAt(0).toUpperCase() : "U"}</span>
@@ -204,9 +255,9 @@ const Profile = () => {
             {renderUserDetails()}
           </div>
         ) : (
-          <div className="profile-loading">
-            <div className="loading-spinner"></div>
-            <p>Loading user data...</p>
+          <div className="profile-card">
+            <p>No user data available. Please log in again.</p>
+            <button onClick={() => navigate('/login')}>Go to Login</button>
           </div>
         )}
 
@@ -214,8 +265,22 @@ const Profile = () => {
           <h2 className="network-title">Your Agricultural Network</h2>
           
           <div className="tabs">
+            <button 
+              className={tab === "overview" ? "active" : ""} 
+              onClick={() => setTab("overview")}
+            >
+              Overview
+            </button>
             {tabs.map(({ key, label }) => (
-              <button key={key} className={tab === key ? "active" : ""} onClick={() => setTab(key)}>
+              <button 
+                key={key} 
+                className={tab === key ? "active" : ""} 
+                onClick={() => {
+                  setTab(key);
+                  setSelectedFilter("");
+                  setSearchQuery("");
+                }}
+              >
                 {label}
               </button>
             ))}
@@ -227,85 +292,112 @@ const Profile = () => {
                 <input
                   type="text"
                   placeholder="Search by Location..."
-                  onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                <svg className="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
               </div>
               
-              {tabs.find(t => t.key === tab) && (
-                <select onChange={(e) => setSelectedFilter(e.target.value)}>
-                  <option value="">Filter by {tabs.find(t => t.key === tab).filterKey}</option>
-                  {Array.from(new Set(tabs.find(t => t.key === tab).data.map(item => item[tabs.find(t => t.key === tab).filterKey]))).map((value, index) => (
-                    <option key={index} value={value}>{value}</option>
-                  ))}
-                </select>
-              )}
+              <select 
+                value={selectedFilter} 
+                onChange={(e) => setSelectedFilter(e.target.value)}
+              >
+                <option value="">
+                  Filter by {tabs.find(t => t.key === tab)?.filterKey || "property"}
+                </option>
+                {getFilterOptions().map((value, index) => (
+                  <option key={index} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
             </div>
           )}
 
-          {tabs.map(({ key, data, label }) => 
-            tab === key && (
-              <div key={key} className="section">
-                <h3>{label}</h3>
-                <div className="cards-grid">
-                  {filterData(data).length > 0 ? (
-                    filterData(data).map((item, index) => (
-                      <div key={item._id || index} className="card" onClick={() => handleClick(key, item._id)}>
-                        <div className="card-header">
-                          <div className="card-avatar">
-                            <span>{item.name ? item.name.charAt(0).toUpperCase() : "U"}</span>
-                          </div>
-                          <h4>{item.name || "N/A"}</h4>
-                        </div>
-                        <div className="card-body">
-                          <div className="card-detail">
-                            <span className="detail-icon">📍</span>
-                            <span>{item.location || "N/A"}</span>
-                          </div>
-                          
-                          {key === "entrepreneurs" && (
-                            <div className="card-detail">
-                              <span className="detail-icon">💼</span>
-                              <span>{item.aboutBusiness || "N/A"}</span>
-                            </div>
-                          )}
-                          
-                          {key === "land" && (
-                            <div className="card-detail">
-                              <span className="detail-icon">🌱</span>
-                              <span>{item.landSize || "N/A"}</span>
-                            </div>
-                          )}
-                          
-                          {key === "labor" && (
-                            <div className="card-detail">
-                              <span className="detail-icon">🛠️</span>
-                              <span>{item.skillset || "N/A"}</span>
-                            </div>
-                          )}
-                          
-                          {key === "suppliers" && (
-                            <div className="card-detail">
-                              <span className="detail-icon">🏭</span>
-                              <span>{item.industry || "N/A"}</span>
-                            </div>
-                          )}
-                        </div>
-                        <div className="card-footer">
-                          <button className="view-details-btn">View Details</button>
-                        </div>
-                      </div>
-                    ))
+          {tab === "overview" ? (
+            <div className="overview-section">
+              <p>Select a tab above to explore your agricultural network.</p>
+              <div className="stats-cards">
+                {tabs.map(tab => (
+                  <div key={tab.key} className="stat-card" onClick={() => setTab(tab.key)}>
+                    <h3>{tab.label}</h3>
+                    <p>{tab.data.length} {tab.key} available</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            tabs.map(({ key, data, label }) => 
+              tab === key && (
+                <div key={key} className="section">
+                  <h3>{label}</h3>
+                  {loading ? (
+                    <div className="loading-container">
+                      <div className="loading-spinner"></div>
+                      <p>Loading data...</p>
+                    </div>
                   ) : (
-                    <div className="no-results">
-                      <p>No results found</p>
+                    <div className="cards-grid">
+                      {filterData(data).length > 0 ? (
+                        filterData(data).map((item, index) => (
+                          <div 
+                            key={item._id || index} 
+                            className="card" 
+                            onClick={() => handleClick(key, item._id)}
+                          >
+                            <div className="card-header">
+                              <div className="card-avatar">
+                                <span>{item.name ? item.name.charAt(0).toUpperCase() : "U"}</span>
+                              </div>
+                              <h4>{item.name || "N/A"}</h4>
+                            </div>
+                            <div className="card-body">
+                              <div className="card-detail">
+                                <span className="detail-icon">📍</span>
+                                <span>{item.location || "N/A"}</span>
+                              </div>
+                              
+                              {key === "entrepreneurs" && (
+                                <div className="card-detail">
+                                  <span className="detail-icon">💼</span>
+                                  <span>{item.aboutBusiness || "N/A"}</span>
+                                </div>
+                              )}
+                              
+                              {key === "land" && (
+                                <div className="card-detail">
+                                  <span className="detail-icon">🌱</span>
+                                  <span>{item.landSize || "N/A"}</span>
+                                </div>
+                              )}
+                              
+                              {key === "labor" && (
+                                <div className="card-detail">
+                                  <span className="detail-icon">🛠️</span>
+                                  <span>{item.skillset || "N/A"}</span>
+                                </div>
+                              )}
+                              
+                              {key === "suppliers" && (
+                                <div className="card-detail">
+                                  <span className="detail-icon">🏭</span>
+                                  <span>{item.industry || "N/A"}</span>
+                                </div>
+                              )}
+                            </div>
+                            <div className="card-footer">
+                              <button className="view-details-btn">View Details</button>
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="no-results">
+                          <p>No results found. Try adjusting your filters.</p>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
-              </div>
+              )
             )
           )}
         </div>
