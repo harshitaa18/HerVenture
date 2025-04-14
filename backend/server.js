@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Middlewares
 app.use(cors({
-  origin: "https://herventure.vercel.app",
+  origin: ["https://herventure.vercel.app", "http://localhost:3000"],
   credentials: true
 }));
 
@@ -33,7 +33,7 @@ const socketIo = require('socket.io');
 function setupSocket(server) {
   const io = socketIo(server, {
     cors: {
-      origin: "https://herventure.vercel.app", // Your React app URL
+      origin: ["https://herventure.vercel.app", "http://localhost:3000"],// Your React app URL
       methods: ["GET", "POST"],
       credentials: true
     }
