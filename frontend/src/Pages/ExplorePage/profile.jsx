@@ -97,88 +97,129 @@ const Profile = () => {
   }, [user]);
 
   const renderUserDetails = () => {
-    if (loading) return <p className="loading-text">Loading profile...</p>;
-    if (error) return <p className="error-text">{error}</p>;
-    if (!user || !fullUser) return <p className="loading-text">No profile data available</p>;
+    if (loading) return <div className="loader"></div>;
+    if (error) return <p className="error-message">{error}</p>;
+    if (!user || !fullUser) return <p className="no-data-message">No profile data available</p>;
   
     const userDetails = {
       entrepreneur: (
-        <div className="user-details-grid">
+        <div className="profile-details">
           <div className="detail-item">
-            <span className="detail-label">Business</span>
-            <span className="detail-value">{fullUser.aboutBusiness || "N/A"}</span>
+            <span className="detail-icon">💼</span>
+            <div>
+              <h4>Business</h4>
+              <p>{fullUser.aboutBusiness || "Not specified"}</p>
+            </div>
           </div>
           <div className="detail-item">
-            <span className="detail-label">Contact No.</span>
-            <span className="detail-value">{fullUser.contact || "N/A"}</span>
+            <span className="detail-icon">📞</span>
+            <div>
+              <h4>Contact</h4>
+              <p>{fullUser.contact || "Not specified"}</p>
+            </div>
           </div>
           <div className="detail-item">
-            <span className="detail-label">Location</span>
-            <span className="detail-value">{fullUser.location || "N/A"}</span>
+            <span className="detail-icon">📍</span>
+            <div>
+              <h4>Location</h4>
+              <p>{fullUser.location || "Not specified"}</p>
+            </div>
           </div>
         </div>
       ),
       landowner: (
-        <div className="user-details-grid">
+        <div className="profile-details">
           <div className="detail-item">
-            <span className="detail-label">Property Size</span>
-            <span className="detail-value">{fullUser.landSize || "N/A"}</span>
+            <span className="detail-icon">📏</span>
+            <div>
+              <h4>Property Size</h4>
+              <p>{fullUser.landSize || "Not specified"}</p>
+            </div>
           </div>
           <div className="detail-item">
-            <span className="detail-label">Location</span>
-            <span className="detail-value">{fullUser.location || "N/A"}</span>
+            <span className="detail-icon">📍</span>
+            <div>
+              <h4>Location</h4>
+              <p>{fullUser.location || "Not specified"}</p>
+            </div>
           </div>
           <div className="detail-item">
-            <span className="detail-label">For</span>
-            <span className="detail-value">{fullUser.rentOrSell || "N/A"}</span>
+            <span className="detail-icon">🔄</span>
+            <div>
+              <h4>Availability</h4>
+              <p>{fullUser.rentOrSell || "Not specified"}</p>
+            </div>
           </div>
           <div className="detail-item">
-            <span className="detail-label">Expected Payment</span>
-            <span className="detail-value">{fullUser.expectedPayment || "N/A"}</span>
+            <span className="detail-icon">💰</span>
+            <div>
+              <h4>Expected Payment</h4>
+              <p>{fullUser.expectedPayment || "Not specified"}</p>
+            </div>
           </div>
         </div>
       ),
       labor: (
-        <div className="user-details-grid">
+        <div className="profile-details">
           <div className="detail-item">
-            <span className="detail-label">Skillset</span>
-            <span className="detail-value">{fullUser.skillset || "N/A"}</span>
+            <span className="detail-icon">🛠️</span>
+            <div>
+              <h4>Skillset</h4>
+              <p>{fullUser.skillset || "Not specified"}</p>
+            </div>
           </div>
           <div className="detail-item">
-            <span className="detail-label">Certifications</span>
-            <span className="detail-value">{fullUser.certifications || "N/A"}</span>
+            <span className="detail-icon">🏆</span>
+            <div>
+              <h4>Certifications</h4>
+              <p>{fullUser.certifications || "Not specified"}</p>
+            </div>
           </div>
           <div className="detail-item">
-            <span className="detail-label">Experience</span>
-            <span className="detail-value">{fullUser.experience || "N/A"} years</span>
+            <span className="detail-icon">⏱️</span>
+            <div>
+              <h4>Experience</h4>
+              <p>{fullUser.experience ? `${fullUser.experience} years` : "Not specified"}</p>
+            </div>
           </div>
           <div className="detail-item">
-            <span className="detail-label">Expected Salary</span>
-            <span className="detail-value">₹{fullUser.expectedSalary || "N/A"}</span>
-          </div>
-          <div className="detail-item">
-            <span className="detail-label">Location</span>
-            <span className="detail-value">{fullUser.location || "N/A"}</span>
+            <span className="detail-icon">💰</span>
+            <div>
+              <h4>Expected Salary</h4>
+              <p>{fullUser.expectedSalary ? `₹${fullUser.expectedSalary}` : "Not specified"}</p>
+            </div>
           </div>
         </div>
       ),
       supplier: (
-        <div className="user-details-grid">
+        <div className="profile-details">
           <div className="detail-item">
-            <span className="detail-label">Industry</span>
-            <span className="detail-value">{fullUser.industry || "N/A"}</span>
+            <span className="detail-icon">🏭</span>
+            <div>
+              <h4>Industry</h4>
+              <p>{fullUser.industry || "Not specified"}</p>
+            </div>
           </div>
           <div className="detail-item">
-            <span className="detail-label">Company Name</span>
-            <span className="detail-value">{fullUser.name || "N/A"}</span>
+            <span className="detail-icon">🏢</span>
+            <div>
+              <h4>Company Name</h4>
+              <p>{fullUser.name || "Not specified"}</p>
+            </div>
           </div>
           <div className="detail-item">
-            <span className="detail-label">Location</span>
-            <span className="detail-value">{fullUser.location || "N/A"}</span>
+            <span className="detail-icon">📍</span>
+            <div>
+              <h4>Location</h4>
+              <p>{fullUser.location || "Not specified"}</p>
+            </div>
           </div>
           <div className="detail-item">
-            <span className="detail-label">Contact</span>
-            <span className="detail-value">{fullUser.contact || "N/A"}</span>
+            <span className="detail-icon">📞</span>
+            <div>
+              <h4>Contact</h4>
+              <p>{fullUser.contact || "Not specified"}</p>
+            </div>
           </div>
         </div>
       )
@@ -188,10 +229,10 @@ const Profile = () => {
   };
   
   const tabs = [
-    { key: "land", label: "Properties", data: landownersData, filterKey: "landSize" },
-    { key: "entrepreneurs", label: "Entrepreneurs", data: entrepreneurs, filterKey: "aboutBusiness" },
-    { key: "labor", label: "Professionals", data: laborData, filterKey: "skillset" },
-    { key: "suppliers", label: "Suppliers", data: suppliers, filterKey: "industry" },
+    { key: "land", label: "Properties", data: landownersData, filterKey: "landSize", icon: "🏠" },
+    { key: "entrepreneurs", label: "Entrepreneurs", data: entrepreneurs, filterKey: "aboutBusiness", icon: "💼" },
+    { key: "labor", label: "Professionals", data: laborData, filterKey: "skillset", icon: "👨‍💼" },
+    { key: "suppliers", label: "Suppliers", data: suppliers, filterKey: "industry", icon: "🏭" },
   ];
 
   const filterData = (data) => {
@@ -226,175 +267,211 @@ const Profile = () => {
   };
 
   return (
-    <div className="profile-wrapper">
-      <div className="profile-header">
-        <h1>Grow Your Network</h1>
-        <p>Connect with fellow entrepreneurs, professionals, and business resources</p>
+    <div className="profile-page">
+      <div className="profile-hero">
+        <div className="hero-content">
+          <h1>Grow Your Professional Network</h1>
+          <p>Connect with entrepreneurs, specialists, and resources to expand your business</p>
+        </div>
       </div>
 
-      <div className="profile-container">
-        {loading ? (
-          <div className="profile-loading">
-            <div className="loading-spinner"></div>
-            <p>Loading user data...</p>
-          </div>
-        ) : error ? (
-          <div className="profile-error">
-            <p>{error}</p>
-            <button onClick={() => window.location.reload()}>Try Again</button>
-          </div>
-        ) : user ? (
-          <div className="profile-card">
-            <div className="profile-avatar">
-              <span>{user.name ? user.name.charAt(0).toUpperCase() : "U"}</span>
+      <div className="profile-content">
+        <div className="sidebar">
+          {loading ? (
+            <div className="loading-container">
+              <div className="loader"></div>
+              <p>Loading profile...</p>
             </div>
-            <h2>{user.name || "No Name"}</h2>
-            <div className="profile-role">
-              {user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : "No Role"}
+          ) : error ? (
+            <div className="error-container">
+              <div className="error-icon">!</div>
+              <p>{error}</p>
+              <button className="retry-button" onClick={() => window.location.reload()}>Try Again</button>
             </div>
-            {renderUserDetails()}
-          </div>
-        ) : (
-          <div className="profile-card">
-            <p>No user data available. Please log in again.</p>
-            <button onClick={() => navigate('/login')}>Go to Login</button>
-          </div>
-        )}
-
-        <div className="network-section">
-          <h2 className="network-title">Your Professional Network</h2>
-          
-          <div className="tabs">
-            <button 
-              className={tab === "overview" ? "active" : ""} 
-              onClick={() => setTab("overview")}
-            >
-              Overview
-            </button>
-            {tabs.map(({ key, label }) => (
-              <button 
-                key={key} 
-                className={tab === key ? "active" : ""} 
-                onClick={() => {
-                  setTab(key);
-                  setSelectedFilter("");
-                  setSearchQuery("");
-                }}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-
-          {tab !== "overview" && (
-            <div className="filters">
-              <div className="search-box">
-                <input
-                  type="text"
-                  placeholder="Search by Location..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </div>
-              
-              <select 
-                value={selectedFilter} 
-                onChange={(e) => setSelectedFilter(e.target.value)}
-              >
-                <option value="">
-                  Filter by {tabs.find(t => t.key === tab)?.filterKey || "property"}
-                </option>
-                {getFilterOptions().map((value, index) => (
-                  <option key={index} value={value}>
-                    {value}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
-
-          {tab === "overview" ? (
-            <div className="overview-section">
-              <p>Select a category to explore your professional network</p>
-              <div className="stats-cards">
-                {tabs.map(tab => (
-                  <div key={tab.key} className="stat-card" onClick={() => setTab(tab.key)}>
-                    <h3>{tab.label}</h3>
-                    <p>{tab.data.length} available</p>
-                  </div>
-                ))}
+          ) : user ? (
+            <div className="profile-card">
+              <div className="profile-info">
+                <div className="profile-avatar">
+                  <span>{user.name ? user.name.charAt(0).toUpperCase() : "U"}</span>
+                </div>
+                <h2 className="profile-name">{user.name || "No Name"}</h2>
+                <div className="profile-badge">
+                  {user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : "No Role"}
+                </div>
+                
+                {renderUserDetails()}
+                
               </div>
             </div>
           ) : (
-            tabs.map(({ key, data, label }) => 
-              tab === key && (
-                <div key={key} className="section">
-                  <h3>{label}</h3>
-                  {loading ? (
-                    <div className="loading-container">
-                      <div className="loading-spinner"></div>
-                      <p>Loading data...</p>
-                    </div>
-                  ) : (
-                    <div className="cards-grid">
-                      {filterData(data).length > 0 ? (
-                        filterData(data).map((item, index) => (
-                          <div 
-                            key={item._id || index} 
-                            className="card" 
-                            onClick={() => handleClick(key, item._id)}
-                          >
-                            <div className="card-header">
-                              <div className="card-avatar">
-                                <span>{item.name ? item.name.charAt(0).toUpperCase() : "U"}</span>
-                              </div>
-                              <h4>{item.name || "N/A"}</h4>
-                            </div>
-                            <div className="card-body">
-                              <div className="card-detail">
-                                <span>{item.location || "N/A"}</span>
-                              </div>
-                              
-                              {key === "entrepreneurs" && (
-                                <div className="card-detail">
-                                  <span>{item.aboutBusiness || "N/A"}</span>
-                                </div>
-                              )}
-                              
-                              {key === "land" && (
-                                <div className="card-detail">
-                                  <span>{item.landSize || "N/A"}</span>
-                                </div>
-                              )}
-                              
-                              {key === "labor" && (
-                                <div className="card-detail">
-                                  <span>{item.skillset || "N/A"}</span>
-                                </div>
-                              )}
-                              
-                              {key === "suppliers" && (
-                                <div className="card-detail">
-                                  <span>{item.industry || "N/A"}</span>
-                                </div>
-                              )}
-                            </div>
-                            <div className="card-footer">
-                              <button className="view-details-btn">View Details</button>
-                            </div>
-                          </div>
-                        ))
-                      ) : (
-                        <div className="no-results">
-                          <p>No results found. Try adjusting your filters.</p>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              )
-            )
+            <div className="profile-card not-logged">
+              <div className="not-logged-message">
+                <h3>Account Required</h3>
+                <p>Please log in to view your profile</p>
+                <button className="login-button" onClick={() => navigate('/login')}>Log In</button>
+              </div>
+            </div>
           )}
+        </div>
+
+        <div className="main-content">
+          <div className="network-section">
+            <h2>Your Professional Network</h2>
+            
+            <div className="tabs-container">
+              <button 
+                className={`tab-button ${tab === "overview" ? "active" : ""}`}
+                onClick={() => setTab("overview")}
+              >
+                <span className="tab-icon">📊</span>
+                Overview
+              </button>
+              
+              {tabs.map(({ key, label, icon }) => (
+                <button 
+                  key={key} 
+                  className={`tab-button ${tab === key ? "active" : ""}`}
+                  onClick={() => {
+                    setTab(key);
+                    setSelectedFilter("");
+                    setSearchQuery("");
+                  }}
+                >
+                  <span className="tab-icon">{icon}</span>
+                  {label}
+                </button>
+              ))}
+            </div>
+
+            {tab !== "overview" && (
+              <div className="filter-container">
+                <div className="search-box">
+                  <input
+                    type="text"
+                    placeholder="Search by location..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                  <span className="search-icon">🔍</span>
+                </div>
+                
+                <select 
+                  className="filter-dropdown"
+                  value={selectedFilter} 
+                  onChange={(e) => setSelectedFilter(e.target.value)}
+                >
+                  <option value="">
+                    Filter by {tabs.find(t => t.key === tab)?.filterKey || "property"}
+                  </option>
+                  {getFilterOptions().map((value, index) => (
+                    <option key={index} value={value}>
+                      {value}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+            {tab === "overview" ? (
+              <div className="overview-grid">
+                <div className="overview-message">
+                  <h3>Explore Your Network</h3>
+                  <p>Select a category below to discover connections</p>
+                </div>
+                
+                <div className="category-cards">
+                  {tabs.map(({ key, label, data, icon }) => (
+                    <div key={key} className="category-card" onClick={() => setTab(key)}>
+                        <div><div className="category-icon">{icon}</div>
+                        <h3>{label}</h3>
+                      </div>
+                      <p><span className="highlight">{data.length}</span> available</p>
+                      <button className="view-button">View All</button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              tabs.map(({ key, data, label }) => 
+                tab === key && (
+                  <div key={key} className="connection-section">
+                    <div className="section-header">
+                      <h3>{label}</h3>
+                      <span className="count-badge">{filterData(data).length} results</span>
+                    </div>
+                    
+                    {loading ? (
+                      <div className="loading-container">
+                        <div className="loader"></div>
+                        <p>Loading data...</p>
+                      </div>
+                    ) : (
+                      <div className="cards-container">
+                        {filterData(data).length > 0 ? (
+                          filterData(data).map((item, index) => (
+                            <div 
+                              key={item._id || index} 
+                              className="connection-card" 
+                              onClick={() => handleClick(key, item._id)}
+                            >
+                              
+                              
+                              <div className="connection-details">
+                                <h4>{item.name || "No Name"}</h4>
+                                
+                                <div className="tag-container">
+                                  <span className="location-tag">
+                                    <span className="tag-icon">📍</span>
+                                    {item.location || "Unknown Location"}
+                                  </span>
+                                  
+                                  {key === "entrepreneurs" && (
+                                    <span className="business-tag">
+                                      <span className="tag-icon">💼</span>
+                                      {item.aboutBusiness || "No Business Info"}
+                                    </span>
+                                  )}
+                                  
+                                  {key === "land" && (
+                                    <span className="property-tag">
+                                      <span className="tag-icon">🏠</span>
+                                      {item.landSize || "Size N/A"}
+                                    </span>
+                                  )}
+                                  
+                                  {key === "labor" && (
+                                    <span className="skill-tag">
+                                      <span className="tag-icon">🛠️</span>
+                                      {item.skillset || "No Skills Listed"}
+                                    </span>
+                                  )}
+                                  
+                                  {key === "suppliers" && (
+                                    <span className="industry-tag">
+                                      <span className="tag-icon">🏭</span>
+                                      {item.industry || "No Industry Info"}
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                              
+                              <button className="connect-button">View Profile</button>
+                            </div>
+                          ))
+                        ) : (
+                          <div className="no-results">
+                            <div className="no-results-icon">🔍</div>
+                            <h3>No Results Found</h3>
+                            <p>Try changing your search or filters</p>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )
+              )
+            )}
+          </div>
         </div>
       </div>
     </div>
