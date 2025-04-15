@@ -5,8 +5,6 @@ const mongoose = require("mongoose");
 
 const router = express.Router();
 
-// Get single landowner profile (protected)
-
 
 
 // Create new landowner profile (protected)

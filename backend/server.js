@@ -24,58 +24,6 @@ app.use(cors({
 
 app.use(express.json());
 
-// // Create HTTP server
-// const server = http.createServer(app);
-
-// // server.js or socket.js in your backend
-// const socketIo = require('socket.io');
-
-// function setupSocket(server) {
-//   const io = socketIo(server, {
-//     cors: {
-//       origin: "http://localhost:3000",// Your React app URL
-//       methods: ["GET", "POST"],
-//       credentials: true
-//     }
-//   });
-
-//   // Store online users
-//   const users = {};
-
-//   io.on('connection', (socket) => {
-
-//     // When a user joins their personal room
-//     socket.on('join-room', (userId) => {
-    
-//       users[userId] = socket.id;
-//       socket.join(userId); // Join personal room with userId as room name
-//     });
-
-//     // Send message
-//     socket.on('send-message', (data) => {
-//       const { senderId, receiverId, message } = data;
-      
-//       // Send to receiver's room if they're online
-//       if (users[receiverId]) {
-//         io.to(receiverId).emit('receive-message', data);
-//       }
-//     });
-
-//     // Disconnect
-//     socket.on('disconnect', () => {
-//       // Remove user from online users
-//       const userId = Object.keys(users).find(key => users[key] === socket.id);
-//       if (userId) {
-//         delete users[userId];
-//       }
-//     });
-//   });
-
-//   return io;
-// }
-
-// module.exports = setupSocket;
-
 // Configure multer for file uploads
 const storage = multer.diskStorage({
   destination: './uploads/',

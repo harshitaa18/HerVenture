@@ -1,132 +1,91 @@
-// import React, { useEffect, useRef, useState } from 'react';
-// import './ChatPop.css';
-// import { useSocket } from '../../Context/SocketContext';
-// import { useUser } from '../../Context/UserContext';
-// import axios from 'axios';
-// import API from "../../utils/api";
+import React, { useEffect, useRef, useState } from 'react';
+import './ChatPop.css';
 
-// const ChatPop = ({ recipient, onClose }) => {
-//   const [message, setMessage] = useState('');
-//   const [chat, setChat] = useState([]);
-//   const socket = useSocket();
-//   const { user } = useUser();
-//   const messagesEndRef = useRef(null);
+const ChatPop = ({ recipient = { name: "Jane Doe", _id: "recipient-id" }, onClose }) => {
+  const [message, setMessage] = useState('');
+  const [chat, setChat] = useState([]);
+  const messagesEndRef = useRef(null);
+  const prevChatLength = useRef(0);
 
-//   // Scroll to latest message
-//   useEffect(() => {
-//     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-//   }, [chat]);
+  // Simulated logged-in user
+  const user = { _id: 'user-id', name: 'You' };
 
-//   // Join personal socket room
-//   useEffect(() => {
-//     if (user?._id && socket.current) {
-      
-//       socket.current.emit('join-room', user._id);
-//     }
-//   }, [user, socket]);
+  // Load messages from localStorage or use dummy
+  useEffect(() => {
+    const storedChat = localStorage.getItem(`chat_${recipient._id}`);
+    if (storedChat) {
+      setChat(JSON.parse(storedChat));
+    } else {
+      const dummy = [
+        { senderId: 'user-id', receiverId: 'recipient-id', message: 'Hey!', timestamp: new Date().toISOString(), fromMe: true },
+        { senderId: 'recipient-id', receiverId: 'user-id', message: 'Hello! How are you?', timestamp: new Date().toISOString(), fromMe: false },
+      ];
+      setChat(dummy);
+      localStorage.setItem(`chat_${recipient._id}`, JSON.stringify(dummy));
+    }
+  }, [recipient._id]);
 
-//   // Fetch chat history
-//   useEffect(() => {
-//     const fetchMessages = async () => {
-//       try {
-//         const res =  await API.get(`/messages/${user._id}/${recipient._id}`);
-//         setChat(
-//           res.data.map((m) => ({
-//             ...m,
-//             fromMe: m.senderId === user._id,
-//           }))
-//         );
-//       } catch (err) {
-//         console.error('Failed to load messages', err);
-//       }
-//     };
+  // Scroll to bottom only when a new message is added
+  useEffect(() => {
+    if (chat.length > prevChatLength.current) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+    prevChatLength.current = chat.length;
+  }, [chat]);
 
-//     if (user && recipient?._id) {
-//       fetchMessages();
-//     }
-//   }, [user, recipient]);
+  const sendMessage = () => {
+    if (!message.trim()) return;
 
-//   // Handle receiving new messages
-//   useEffect(() => {
-//     if (!socket.current) return;
+    const msgData = {
+      senderId: user._id,
+      receiverId: recipient._id,
+      message: message.trim(),
+      timestamp: new Date().toISOString(),
+      fromMe: true,
+    };
 
-//     const handleReceive = (data) => {
-//       // Only process messages from the current chat recipient
-//       if (data.senderId === recipient._id) {
-//         setChat((prev) => [...prev, { ...data, fromMe: false }]);
-//       }
-//     };
+    const updatedChat = [...chat, msgData];
+    setChat(updatedChat);
+    setMessage('');
+    localStorage.setItem(`chat_${recipient._id}`, JSON.stringify(updatedChat));
+  };
 
-//     socket.current.on('receive-message', handleReceive);
-    
-//     return () => {
-//       socket.current.off('receive-message', handleReceive);
-//     };
-//   }, [socket, recipient._id]);
+  return (
+    <div className="chat-popup">
+      <div className="chat-header">
+        <span>Chat with {recipient.name}</span>
+        <button className="close-btn" onClick={onClose}>×</button>
+      </div>
 
-//   // Send message
-//   const sendMessage = async () => {
-//     if (!user?._id || !recipient?._id || !message.trim()) return;
+      <div className="chat-messages">
+        {chat.length === 0 ? (
+          <div className="empty-chat">Start a conversation with {recipient.name}</div>
+        ) : (
+          chat.map((msg, index) => (
+            <div key={index} className={`message ${msg.fromMe ? 'me' : 'them'}`}>
+              <div className="text">{msg.message}</div>
+              <small className="meta">
+                {msg.fromMe ? 'You' : recipient.name}
+                {msg.timestamp && ` • ${new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`}
+              </small>
+            </div>
+          ))
+        )}
+        <div ref={messagesEndRef} />
+      </div>
 
-//     const msgData = {
-//       senderId: user._id,
-//       receiverId: recipient._id,
-//       message: message.trim(),
-//       timestamp: new Date().toISOString(),
-//     };
+      <div className="chat-input">
+        <input
+          type="text"
+          value={message}
+          placeholder="Type a message..."
+          onChange={(e) => setMessage(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+        />
+        <button onClick={sendMessage} disabled={!message.trim()}>Send</button>
+      </div>
+    </div>
+  );
+};
 
-//     try {
-//       // Add to local chat immediately for better UX
-//       setChat((prev) => [...prev, { ...msgData, fromMe: true }]);
-//       setMessage('');
-      
-//       // Save to backend
-//       const res = await axios.post('https://herventure.onrender.com/api/messages/', msgData);
-      
-//       // Emit to socket
-//       socket.current.emit('send-message', res.data);
-//     } catch (err) {
-//       console.error('Failed to send message', err);
-//       // Optionally remove the message from chat if it failed to send
-//     }
-//   };
-
-//   return (
-//     <div className="chat-popup">
-//       <div className="chat-header">
-//         <span>Chat with {recipient.name}</span>
-//         <button className="close-btn" onClick={onClose}>×</button>
-//       </div>
-
-//       <div className="chat-messages">
-//         {chat.length === 0 ? (
-//           <div className="empty-chat">Start a conversation with {recipient.name}</div>
-//         ) : (
-//           chat.map((msg, index) => (
-//             <div key={msg._id || index} className={`message ${msg.fromMe ? 'me' : 'them'}`}>
-//               <div className="text">{msg.message}</div>
-//               <small className="meta">
-//                 {msg.fromMe ? 'You' : recipient.name}
-//                 {msg.timestamp && ` • ${new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`}
-//               </small>
-//             </div>
-//           ))
-//         )}
-//         <div ref={messagesEndRef} />
-//       </div>
-
-//       <div className="chat-input">
-//         <input
-//           type="text"
-//           value={message}
-//           placeholder="Type a message..."
-//           onChange={(e) => setMessage(e.target.value)}
-//           onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
-//         />
-//         <button onClick={sendMessage} disabled={!message.trim()}>Send</button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ChatPop;
+export default ChatPop;

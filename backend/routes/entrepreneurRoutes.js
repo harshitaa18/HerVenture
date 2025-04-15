@@ -29,27 +29,31 @@ router.get("/:id", authMiddleware, async (req, res) => {
   const { id } = req.params;
 
   try {
-    const query = {
-      $or: [
-        { _id: mongoose.Types.ObjectId.isValid(id) ? new mongoose.Types.ObjectId(id) : null },
-        { userId: mongoose.Types.ObjectId.isValid(id) ? new mongoose.Types.ObjectId(id) : null }
-      ]
-    };
+    // Build query to match either _id or userId (if valid ObjectId)
+    const orConditions = [];
 
-    // Remove nulls from query if ObjectId conversion failed
-    query.$or = query.$or.filter(q => q[Object.keys(q)[0]] !== null);
+    if (mongoose.Types.ObjectId.isValid(id)) {
+      orConditions.push({ _id: new mongoose.Types.ObjectId(id) });
+      orConditions.push({ userId: new mongoose.Types.ObjectId(id) });
+    }
 
-    const entrepreneur = await Entrepreneur.findOne(query);
+    if (orConditions.length === 0) {
+      return res.status(400).json({ error: "Invalid ID format" });
+    }
+
+    const entrepreneur = await Entrepreneur.findOne({ $or: orConditions });
 
     if (!entrepreneur) {
-      return res.status(404).json({ error: "entrepreneur profile not found" });
+      return res.status(404).json({ error: "Entrepreneur profile not found" });
     }
 
     res.json(entrepreneur);
   } catch (err) {
+    console.error("❌ Error in entrepreneur profile route:", err);
     res.status(500).json({ error: "Error fetching entrepreneur profile", details: err.message });
   }
 });
+
 
 router.get("/", async (req, res) => {
   try {

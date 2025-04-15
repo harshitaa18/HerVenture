@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./profileDetail.css";
 import { MdEmail, MdPhone, MdLocationOn, MdBusiness, MdWork, MdLandscape, MdInventory } from "react-icons/md";
-// import ChatPop from "../../Components/ChatPop/ChatPop";
+import ChatPop from "../../Components/ChatPop/ChatPop";
 import { useUser } from "../../Context/UserContext";
 import API from "../../utils/api";
 
@@ -14,7 +14,7 @@ const ProfileDetail = () => {
   const [userDetails, setUserDetails] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  // const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -33,13 +33,13 @@ const ProfileDetail = () => {
     fetchProfile();
   }, [role, id]);
 
-  // const handleCloseChat = () => {
-  //   setIsChatOpen(false);
-  // };
+  const handleCloseChat = () => {
+    setIsChatOpen(false);
+  };
 
-  // const handleOpenChat = () => {
-  //   setIsChatOpen(true);
-  // };
+  const handleOpenChat = () => {
+    setIsChatOpen(true);
+  };
 
   if (isLoading) {
     return (
@@ -182,15 +182,15 @@ const ProfileDetail = () => {
           <h2>{userDetails.name}</h2>
           <p className="role">{role.toUpperCase()}</p>
 
-          {/* {user && user._id !== userDetails._id && (
+          {user && user._id !== userDetails._id && (
             <button onClick={handleOpenChat} className="chat-button">
               Message
             </button>
-          )} */}
+          )}
 
-          {/* {isChatOpen && (
+           {isChatOpen && (
             <ChatPop recipient={userDetails} onClose={handleCloseChat} />
-          )} */}
+          )}
         </div>
 
         <div className="profile-right">
