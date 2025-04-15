@@ -4,9 +4,9 @@ require("dotenv").config();
 const multer = require('multer');
 const path = require('path');
 const cors = require("cors");
-const http = require('http');
-const { Server } = require('socket.io');
-const Message = require("./models/message");
+// const http = require('http');
+// const { Server } = require('socket.io');
+// const Message = require("./models/message");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -18,63 +18,63 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Middlewares
 app.use(cors({
-  origin: "https://herventure.vercel.app", 
+  origin: "http://localhost:3000",
   credentials: true
 }));
 
 app.use(express.json());
 
-// Create HTTP server
-const server = http.createServer(app);
+// // Create HTTP server
+// const server = http.createServer(app);
 
-// server.js or socket.js in your backend
-const socketIo = require('socket.io');
+// // server.js or socket.js in your backend
+// const socketIo = require('socket.io');
 
-function setupSocket(server) {
-  const io = socketIo(server, {
-    cors: {
-      origin: ["https://herventure.vercel.app", "http://localhost:3000"],// Your React app URL
-      methods: ["GET", "POST"],
-      credentials: true
-    }
-  });
+// function setupSocket(server) {
+//   const io = socketIo(server, {
+//     cors: {
+//       origin: "http://localhost:3000",// Your React app URL
+//       methods: ["GET", "POST"],
+//       credentials: true
+//     }
+//   });
 
-  // Store online users
-  const users = {};
+//   // Store online users
+//   const users = {};
 
-  io.on('connection', (socket) => {
+//   io.on('connection', (socket) => {
 
-    // When a user joins their personal room
-    socket.on('join-room', (userId) => {
+//     // When a user joins their personal room
+//     socket.on('join-room', (userId) => {
     
-      users[userId] = socket.id;
-      socket.join(userId); // Join personal room with userId as room name
-    });
+//       users[userId] = socket.id;
+//       socket.join(userId); // Join personal room with userId as room name
+//     });
 
-    // Send message
-    socket.on('send-message', (data) => {
-      const { senderId, receiverId, message } = data;
+//     // Send message
+//     socket.on('send-message', (data) => {
+//       const { senderId, receiverId, message } = data;
       
-      // Send to receiver's room if they're online
-      if (users[receiverId]) {
-        io.to(receiverId).emit('receive-message', data);
-      }
-    });
+//       // Send to receiver's room if they're online
+//       if (users[receiverId]) {
+//         io.to(receiverId).emit('receive-message', data);
+//       }
+//     });
 
-    // Disconnect
-    socket.on('disconnect', () => {
-      // Remove user from online users
-      const userId = Object.keys(users).find(key => users[key] === socket.id);
-      if (userId) {
-        delete users[userId];
-      }
-    });
-  });
+//     // Disconnect
+//     socket.on('disconnect', () => {
+//       // Remove user from online users
+//       const userId = Object.keys(users).find(key => users[key] === socket.id);
+//       if (userId) {
+//         delete users[userId];
+//       }
+//     });
+//   });
 
-  return io;
-}
+//   return io;
+// }
 
-module.exports = setupSocket;
+// module.exports = setupSocket;
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -130,7 +130,7 @@ app.post('/upload', (req, res) => {
 });
 
 // API Routes
-app.use("/api/messages", require("./routes/messageRoutes.js"));
+// app.use("/api/messages", require("./routes/messageRoutes.js"));
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/entrepreneur", require("./routes/entrepreneurRoutes"));
 app.use("/api/labor", require("./routes/laborRoutes"));
@@ -138,6 +138,6 @@ app.use("/api/landowner", require("./routes/landownerRoutes"));
 app.use("/api/post", require("./routes/postRoutes"));
 
 // Start server
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
