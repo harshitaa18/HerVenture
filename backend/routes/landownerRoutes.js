@@ -33,8 +33,20 @@ router.post("/", authMiddleware, async (req, res) => {
 });
 
 router.get("/:id", authMiddleware, async (req, res) => {
+  const { id } = req.params;
+
   try {
-    const landowner = await Landowner.findOne({ userId: new mongoose.Types.ObjectId(req.params.id) });
+    const query = {
+      $or: [
+        { _id: mongoose.Types.ObjectId.isValid(id) ? new mongoose.Types.ObjectId(id) : null },
+        { userId: mongoose.Types.ObjectId.isValid(id) ? new mongoose.Types.ObjectId(id) : null }
+      ]
+    };
+
+    // Remove nulls from query if ObjectId conversion failed
+    query.$or = query.$or.filter(q => q[Object.keys(q)[0]] !== null);
+
+    const landowner = await Landowner.findOne(query);
 
     if (!landowner) {
       return res.status(404).json({ error: "Landowner profile not found" });
@@ -45,6 +57,8 @@ router.get("/:id", authMiddleware, async (req, res) => {
     res.status(500).json({ error: "Error fetching landowner profile", details: err.message });
   }
 });
+
+
 
 router.get("/", async (req, res) => {
   try {

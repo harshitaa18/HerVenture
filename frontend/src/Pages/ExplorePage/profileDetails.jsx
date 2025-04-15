@@ -21,7 +21,7 @@ const ProfileDetail = () => {
       setIsLoading(true);
       setError(null);
       try {
-        const response = await API.get(`/profile${role}/${id}`);
+        const response = await API.get(`/${role}/${id}`);
         setUserDetails(response.data);
       } catch (err) {
         setError(err.response?.data?.error || "Failed to fetch profile details");
