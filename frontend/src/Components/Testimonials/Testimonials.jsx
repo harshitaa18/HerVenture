@@ -67,7 +67,7 @@ const Testimonials = () => {
 
   return (
     <div className="testimonials-wrapper">
-      <h1 className="testimonials-title">Testimonial</h1>
+      <h1 className="testimonials-title">Testimonials</h1>
       <div className="testimonials-container">
         <div className="testimonial-card">
           <div className="testimonial-left">

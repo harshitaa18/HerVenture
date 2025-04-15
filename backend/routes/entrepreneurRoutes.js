@@ -26,33 +26,32 @@ router.post("/", authMiddleware, async (req, res) => {
 });
 
 router.get("/:id", authMiddleware, async (req, res) => {
-  console.log(req.params.id, typeof req.params.id);
+  const { id } = req.params;
+
   try {
-    const entrepreneur = await Entrepreneur.findOne({ userId: req.params.id
-    });
+    const query = {
+      $or: [
+        { _id: mongoose.Types.ObjectId.isValid(id) ? new mongoose.Types.ObjectId(id) : null },
+        { userId: mongoose.Types.ObjectId.isValid(id) ? new mongoose.Types.ObjectId(id) : null }
+      ]
+    };
+
+    // Remove nulls from query if ObjectId conversion failed
+    query.$or = query.$or.filter(q => q[Object.keys(q)[0]] !== null);
+
+    const entrepreneur = await Entrepreneur.findOne(query);
 
     if (!entrepreneur) {
-      console.log("Sorry no one found")
-      return res.status(404).json({ error: "Landowner profile not found" });
+      return res.status(404).json({ error: "entrepreneur profile not found" });
     }
 
     res.json(entrepreneur);
   } catch (err) {
-    console.log("Error here")
-    res.status(500).json({ error: "Error fetching landowner profile", details: err.message });
+    res.status(500).json({ error: "Error fetching entrepreneur profile", details: err.message });
   }
 });
 
 router.get("/", async (req, res) => {
-  try {
-    const allEntrepreneurs = await Entrepreneur.find().populate('userId', 'name');
-    res.json(allEntrepreneurs);
-  } catch (err) {
-    res.status(500).json({ error: "Error fetching entrepreneurs", details: err.message });
-  }
-});
-
-router.get("/profile", async (req, res) => {
   try {
     const allEntrepreneurs = await Entrepreneur.find().populate('userId', 'name');
     res.json(allEntrepreneurs);

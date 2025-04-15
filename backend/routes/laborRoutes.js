@@ -36,16 +36,28 @@ router.post("/", authMiddleware, async (req, res) => {
 });
 
 router.get("/:id", authMiddleware, async (req, res) => {
+  const { id } = req.params;
+
   try {
-    const labor = await newLabour.findOne({ userId: new mongoose.Types.ObjectId(req.params.id) });
+    const query = {
+      $or: [
+        { _id: mongoose.Types.ObjectId.isValid(id) ? new mongoose.Types.ObjectId(id) : null },
+        { userId: mongoose.Types.ObjectId.isValid(id) ? new mongoose.Types.ObjectId(id) : null }
+      ]
+    };
+
+    // Remove nulls from query if ObjectId conversion failed
+    query.$or = query.$or.filter(q => q[Object.keys(q)[0]] !== null);
+
+    const labor = await Labor.findOne(query);
 
     if (!labor) {
-      return res.status(404).json({ error: "Landowner profile not found" });
+      return res.status(404).json({ error: "labor profile not found" });
     }
 
     res.json(labor);
   } catch (err) {
-    res.status(500).json({ error: "Error fetching landowner profile", details: err.message });
+    res.status(500).json({ error: "Error fetching labor profile", details: err.message });
   }
 });
 
