@@ -19,8 +19,10 @@ const PostDetailsPage = () => {
         const res = await API.get(`/post/${id}`);
         setPost(res.data);
 
-        if (res.data.userId?._id) {
-          const userRes = await API.get(`/post/user/${res.data.userId._id}`);
+        const uid = res.data.userId?._id || res.data.userId;
+if (uid) {
+  const userRes = await API.get(`/post/user/${uid}`);
+
           const otherPosts = userRes.data.filter(p => p._id !== id); // exclude current post
           setUserPosts(otherPosts);
         }

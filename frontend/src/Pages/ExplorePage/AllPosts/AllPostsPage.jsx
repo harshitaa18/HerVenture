@@ -85,13 +85,15 @@ const AllPosts = () => {
       </div>
 
       <div className="post-list">
-        <button className="create-post-btn" onClick={() => user ? navigate("/post") : navigate("/login")}>
+        <div className="btn-row">
+        <button className="create-post-btn2" onClick={() => user ? navigate("/profile") : navigate("/login")}>Go to Network</button>
+        <button className="create-post-btn1" onClick={() => user ? navigate("/post") : navigate("/login")}>
           + Create Post
         </button>
+        </div>
 
         {filteredPosts.map((post) => (
           <div className="post-card" key={post._id}>
-            <img src={post.imageUrl || "/placeholder.jpg"} alt="Post" />
             <div className="post-card-content">
               <div className="post-card-header">
                 <h2>{post.title}</h2>

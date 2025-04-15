@@ -76,9 +76,30 @@
   flex-direction: column;
   gap: 30px;
 }
-
-.create-post-btn {
+.button-row {
+  display: flex;
+  /* justify-content: space-between; /* puts one button at start and one at end 
+  align-items: center; */
+  width: 100%;
+  margin-bottom: 20px; /* optional spacing below buttons */
+}
+.create-post-btn2{
+  align-self: flex-start;
+  background: linear-gradient(to right, purple, hotpink);
+  color: #fff;
+  border: none;
+  padding: 12px 22px;
+  margin-right: 300px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 1.05rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(128, 0, 128, 0.2);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.create-post-btn1 {
   align-self: flex-end;
+  margin-left: 380px;
   background: linear-gradient(to right, purple, hotpink);
   color: #fff;
   border: none;
