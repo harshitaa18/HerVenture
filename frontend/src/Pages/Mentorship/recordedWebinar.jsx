@@ -20,6 +20,13 @@ import img15 from "../../Components/Assets/benefits.jpeg";
 import img16 from "../../Components/Assets/comm.jpeg";
 import img17 from "../../Components/Assets/stratergy.jpeg";
 import img18 from "../../Components/Assets/dimensions.png";
+import img20 from "../../Components/Assets/compliance.jpg";
+import img22 from "../../Components/Assets/comp.jpg";
+import img21 from "../../Components/Assets/law.jpg";
+import img23 from "../../Components/Assets/finance.jpg";
+import img24 from "../../Components/Assets/technology.jpg";
+import img25 from "../../Components/Assets/technology1.png";
+import img26 from "../../Components/Assets/leader3.jpg";
 const RecordedWebinars = () => {
   const [categoryFilter, setCategoryFilter] = useState("");
   const [searchFilter, setSearchFilter] = useState("");
@@ -183,6 +190,71 @@ const RecordedWebinars = () => {
       description: "Discover emerging trends shaping the future of marketing.",
       link: "https://www.google.com/imgres?q=legal%20and%20regulatory%20compliance%20in%20entrepreneurship&imgurl=https%3A%2F%2Fi.ytimg.com%2Fvi%2FOos2hMSrPXM%2Fmaxresdefault.jpg&imgrefurl=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DOos2hMSrPXM&docid=Q_xAHcf-ADvFJM&tbnid=uEOxrOqs0RgzWM&vet=12ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA..i&w=1280&h=720&hcb=2&ved=2ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA",
       img: img18,
+    },
+    {
+      id: 19,
+      title: "Marketing on a Budget",
+      category: "Marketing",
+      description: "Discover emerging trends shaping the future of marketing.",
+      link: "https://www.youtube.com/watch?v=ZvChhHNTz1g",
+      img: img7,
+    },
+    {
+      id: 20,
+      title: "GST Registration",
+      category: "Legal Compliance",
+      description: "Learn and understand how IP protects your business.",
+      link: "https://www.youtube.com/watch?v=NrW7mt8gHmI",
+      img: img20,
+    },
+    {
+      id: 21,
+      title: "Labor Law Compliance",
+      category: "Legal Compliance",
+      description: "Learn and understand how IP protects your business.",
+      link: "https://www.youtube.com/watch?v=NrW7mt8gHmI",
+      img: img21,
+    },
+    {
+      id: 22,
+      title: "Trademark & IP Protection",
+      category: "Legal Compliance",
+      description: "Learn and understand how IP protects your business.",
+      link: "https://www.youtube.com/watch?v=NrW7mt8gHmI",
+      img: img22,
+    },
+    {
+      id: 23,
+      title: "Budgeting & Forecasting",
+      category: "Financial Planning",
+      description:
+        "Plan your startup finances to ensure tax compliance and savings.",
+      link: "https://www.youtube.com/watch?v=oL6EvSJAVqc",
+      img: img23,
+    },
+    {
+      id: 24,
+      title: "Customer & Inventory Management",
+      category: "Technology",
+      description: "Discover emerging trends shaping the future of marketing.",
+      link: "https://www.google.com/imgres?q=legal%20and%20regulatory%20compliance%20in%20entrepreneurship&imgurl=https%3A%2F%2Fi.ytimg.com%2Fvi%2FOos2hMSrPXM%2Fmaxresdefault.jpg&imgrefurl=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DOos2hMSrPXM&docid=Q_xAHcf-ADvFJM&tbnid=uEOxrOqs0RgzWM&vet=12ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA..i&w=1280&h=720&hcb=2&ved=2ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA",
+      img: img24,
+    },
+    {
+      id: 25,
+      title: "Digital Presence (Website & Social Media)",
+      category: "Technology",
+      description: "Discover emerging trends shaping the future of marketing.",
+      link: "https://www.google.com/imgres?q=legal%20and%20regulatory%20compliance%20in%20entrepreneurship&imgurl=https%3A%2F%2Fi.ytimg.com%2Fvi%2FOos2hMSrPXM%2Fmaxresdefault.jpg&imgrefurl=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DOos2hMSrPXM&docid=Q_xAHcf-ADvFJM&tbnid=uEOxrOqs0RgzWM&vet=12ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA..i&w=1280&h=720&hcb=2&ved=2ahUKEwjfmtn-ytSMAxWyzDgGHQxKISwQM3oECEgQAA",
+      img: img25,
+    },
+    {
+      id: 26,
+      title: "Decision-Making",
+      category: "Leadership Skills",
+      description: "Discover emerging trends shaping the future of marketing.",
+      link: "https://www.youtube.com/watch?v=ZvChhHNTz1g",
+      img: img26,
     },
   ];
 
