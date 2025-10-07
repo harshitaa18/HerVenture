@@ -1,0 +1,131 @@
+/* Explore.css */
+
+/* Main container with gradient background */
+.price-container {
+  display: flex;
+  height: 100vh;
+  color: linear-gradient(135deg, purple, pink);
+  align-items: center;
+  justify-content: center;
+}
+
+  
+  /* Left section */
+  .price-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .deal-image {
+    width: 75%; 
+    height: 75%;
+  
+    object-fit: cover;
+  }
+  
+
+  /* Right section */
+  .price-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding: 40px;
+  }
+  
+  /* Heading in right section */
+  .price-right h2 {
+    font-size: 56px;
+    color: rgb(195, 85, 158);
+    /* margin-bottom: 20px; */
+  }
+  
+  /* Paragraph in right section */
+  .price-right p {
+    font-size: 21px;
+    /* line-height: 1.5; */
+    font-weight: 400;
+    margin-bottom: 50px;
+  }
+  
+  /* Button in right section */
+  .price-button {
+    padding: 20px 25px;
+    height: 70px;
+    width: 265.31px;
+    font-size: 16px;
+    color: white;
+    background: linear-gradient(135deg, purple, pink);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: larger;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .price-button:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+  }
+  
+  /* ===== Responsive Styles ===== */
+
+@media (max-width: 1024px) {
+  .price-container {
+    flex-direction: column;
+    height: auto;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .price-left,
+  .price-right {
+    flex: none;
+    width: 100%;
+  }
+
+
+  .price-right {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .price-right h2 {
+    font-size: 2.5rem;
+  }
+
+  .price-right p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+
+  .price-button {
+    width: 80%;
+    height: 60px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .price-right h2 {
+    font-size: 2rem;
+  }
+
+  .price-right p {
+    font-size: 1rem;
+  }
+
+  .price-button {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.95rem;
+  }
+/* 
+  .scrolling-image-container {
+    height: 40vh;
+  } */
+}

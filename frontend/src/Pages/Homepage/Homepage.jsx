@@ -8,6 +8,7 @@ import Feedback from '../../Components/Feedback/Feedback';
 import Fab from '@mui/material/Fab';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import './home.css';
+import PriceComparator from '../../Components/PriceComparator/PriceComparator';
 
 function Homepage() {
   const [openFeedback, setOpenFeedback] = useState(false);
@@ -20,6 +21,7 @@ function Homepage() {
     <div>
       <MainHeader />
       <Explore />
+      <PriceComparator/>
       {/* <FeatureCards/> */}
       <Testimonials />
       <Faqs />
