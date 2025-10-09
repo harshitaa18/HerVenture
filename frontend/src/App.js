@@ -18,6 +18,7 @@ import ProfileDetail from './Pages/ExplorePage/profileDetails';
 import PostRequirement from './Components/CreatePost/PostRequirement';
 import AllPostsPage from './Pages/ExplorePage/AllPosts/AllPostsPage';
 import PostDetailsPage from './Components/CreatePost/PostDetailsPage';
+import PriceComparator from './Components/PriceComparator/PriceComparator';
 function App() {
 
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route path='/profile' element = {<Profile/>}/>
           <Route path="/profile/:role/:id" element={<ProfileDetail />} />
           <Route path="/dashboard" element={<UserDashboard/>} />
+          <Route path="/price-comparator" element={<PriceComparator/>} />
         </Routes>
       <Footer/>
       </BrowserRouter>

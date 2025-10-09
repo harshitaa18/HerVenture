@@ -84,6 +84,7 @@ app.use("/api/entrepreneur", require("./routes/entrepreneurRoutes"));
 app.use("/api/labor", require("./routes/laborRoutes"));
 app.use("/api/landowner", require("./routes/landownerRoutes"));
 app.use("/api/post", require("./routes/postRoutes"));
+app.use("/api/price-comparator", require("./routes/priceComparatorRoutes"));
 
 // Start server
 app.listen(PORT, () => {
