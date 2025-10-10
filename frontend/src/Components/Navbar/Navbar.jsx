@@ -52,6 +52,7 @@ export const Navbar = () => {
         <li><Link to='/aboutUs' onClick={toggleMenu}>About</Link></li>
         <li><Link to='/mentorship' onClick={toggleMenu}>Mentorship</Link></li>
         <li><Link to='/policy' onClick={toggleMenu}>Schemes and Policies</Link></li>
+        <li><Link to='/compare' onClick={toggleMenu}>Price Comparator</Link></li>
 
         {user ? (
           <li className='profile-icon'>
