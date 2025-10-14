@@ -1,0 +1,93 @@
+.price-poster-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 80px;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.price-poster-text-section {
+  flex: 1;
+  min-width: 320px;
+}
+
+.price-poster-heading {
+    font-size: 56px;
+    color: rgb(195, 85, 158);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.price-poster-description {
+        font-size: 19px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    font-weight: 400;
+    margin-bottom: 50px;
+}
+
+.price-poster-button {
+    padding: 20px 25px;
+    height: 70px;
+    width: 265.31px;
+    font-size: 16px;
+    color: white;
+    background: linear-gradient(135deg, purple, pink);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: larger;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.price-poster-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 65, 108, 0.3);
+}
+
+.price-poster-image-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.price-poster-image-wrapper {
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease;
+}
+
+.price-poster-image-wrapper:hover {
+  transform: scale(1.05);
+}
+
+.price-poster-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .price-poster-container {
+    flex-direction: column-reverse;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .price-poster-text-section {
+    margin-top: 20px;
+  }
+
+  .price-poster-heading {
+    font-size: 2rem;
+  }
+
+  .price-poster-description {
+    font-size: 1rem;
+  }
+}
