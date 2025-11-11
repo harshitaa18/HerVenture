@@ -2,10 +2,10 @@ import React from 'react';
 import './Explore.css';
 import img2 from "../../Components/Assets/explore_comp.png";
 import { Link } from 'react-router-dom';
-import { useUser } from '../../Context/UserContext'; // ✅ import your context
+ // ✅ import your context
 
 const Explore = () => {
-  const { user } = useUser(); // ✅ access current user
+   // ✅ access current user
 
   return (
     <div className="explore-container">

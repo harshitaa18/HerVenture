@@ -31,7 +31,7 @@ const PostRequirement = () => {
     e.preventDefault();
 
     try {
-      const res = await API.post("/post", {
+       await API.post("/post", {
         ...formData,
         tags: formData.tags.split(",").map((tag) => tag.trim()),
         role,

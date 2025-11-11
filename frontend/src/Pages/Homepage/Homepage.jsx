@@ -9,7 +9,6 @@ import Fab from '@mui/material/Fab';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import './home.css';
 import Poster2 from '../../Components/Poster2/Poster2';
-import { Link } from 'react-router-dom';
 import ScrollTriggeredBanner from '../../Components/Scroll/ScrollTriggeredBanner';
 
 function Homepage() {

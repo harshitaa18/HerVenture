@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import "./PriceComparator.css";
 import { Search, ExternalLink, Star, TrendingUp, AlertCircle } from "lucide-react";
 import { searchProducts, formatPrice, findBestDeal, sortByPrice, getPriceStats } from "../../utils/priceComparatorAPI";
