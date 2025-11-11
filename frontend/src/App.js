@@ -19,6 +19,7 @@ import PostRequirement from './Components/CreatePost/PostRequirement';
 import AllPostsPage from './Pages/ExplorePage/AllPosts/AllPostsPage';
 import PostDetailsPage from './Components/CreatePost/PostDetailsPage';
 import Price from './Components/PriceComparator/PriceComparator';
+import Social from './Components/SocialMediaAdvisor/SocialMediaAdvisor';
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
           <Route path="/profile/:role/:id" element={<ProfileDetail />} />
           <Route path="/dashboard" element={<UserDashboard/>} />
           <Route path='/compare' element = {<Price/>}/>
+          <Route path='/social' element = {<Social/>}/>
         </Routes>
       <Footer/>
       </BrowserRouter>

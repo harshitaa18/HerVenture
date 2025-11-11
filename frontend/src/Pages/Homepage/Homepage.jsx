@@ -9,7 +9,7 @@ import Fab from '@mui/material/Fab';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import './home.css';
 import Poster2 from '../../Components/Poster2/Poster2';
-import Social from '../../Components/Social/Social';
+import { Link } from 'react-router-dom';
 
 function Homepage() {
   const [openFeedback, setOpenFeedback] = useState(false);
@@ -21,10 +21,10 @@ function Homepage() {
   return (
     <div>
       <MainHeader />
+      <Link to='/social'><button>GO</button></Link>
       <Explore />
       {/* <FeatureCards/> */}
       <Poster2/>
-      <Social/>
       <Testimonials />
       <Faqs />
 

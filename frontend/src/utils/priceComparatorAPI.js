@@ -8,7 +8,14 @@
 // - Snapdeal API
 // - Myntra API
 // - Other e-commerce APIs
-
+import mixer from '../Components/Assets/mixer.jpg';
+import cakeBox from '../Components/Assets/cake.jpg';
+import microwave from '../Components/Assets/microo.jpeg';
+import ribbon from '../Components/Assets/ribb.jpeg';
+import needle from '../Components/Assets/nee.jpg';
+import sewingMachine from '../Components/Assets/swee.jpg';
+import paint from '../Components/Assets/pa.jpeg';
+import rack from '../Components/Assets/rack.jpg';
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 export const searchProducts = async (query) => {
@@ -34,163 +41,69 @@ const generateMockResults = (query) => {
     { name: 'Amazon', domain: 'amazon.in', searchUrl: 'https://www.amazon.in/s?k=' },
     { name: 'Flipkart', domain: 'flipkart.com', searchUrl: 'https://www.flipkart.com/search?q=' },
     { name: 'Snapdeal', domain: 'snapdeal.com', searchUrl: 'https://www.snapdeal.com/search?keyword=' },
-    { name: 'Myntra', domain: 'myntra.com', searchUrl: 'https://www.myntra.com/' },
-    { name: 'Paytm Mall', domain: 'paytmmall.com', searchUrl: 'https://paytmmall.com/search?q=' }
+    { name: 'Myntra', domain: 'myntra.com', searchUrl: 'https://www.myntra.com/' }
+    
   ];
   
   // Product images based on query - using reliable image sources
   const getProductImage = (query, platform) => {
     const queryLower = query.toLowerCase();
-    
-    // iPhone specific images
-    if (queryLower.includes('iphone')) {
-      return 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=300&h=300&fit=crop&crop=center';
-    }
-    
-    // MacBook specific images
-    if (queryLower.includes('macbook') || (queryLower.includes('laptop') && queryLower.includes('apple'))) {
-      return 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=300&h=300&fit=crop&crop=center';
-    }
-    
-    // AirPods specific images
-    if (queryLower.includes('airpods')) {
-      return 'https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=300&h=300&fit=crop&crop=center';
-    }
-    
-    // Apple Watch specific images
-    if (queryLower.includes('apple watch') || queryLower.includes('applewatch')) {
-      return 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=300&fit=crop&crop=center';
-    }
-    
-    // Samsung Galaxy specific images
-    if (queryLower.includes('samsung') || queryLower.includes('galaxy')) {
-      return 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&h=300&fit=crop&crop=center';
-    }
-    
-    // OnePlus specific images
-    if (queryLower.includes('oneplus')) {
-      return 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&h=300&fit=crop&crop=center';
-    }
-    
-    // Kitchen & Baking items - specific images
+
     if (queryLower.includes('mixer') || queryLower.includes('mixer grinder')) {
-      return 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300&h=300&fit=crop&crop=center'; // Mixer grinder
+      return mixer;
     } else if (queryLower.includes('oven') || queryLower.includes('microwave')) {
-      return 'https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=300&h=300&fit=crop&crop=center'; // Oven
-    } else if (queryLower.includes('mold') || queryLower.includes('mould')) {
-      return 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300&h=300&fit=crop&crop=center'; // Baking molds
-    } else if (queryLower.includes('tray') || queryLower.includes('baking tray')) {
-      return 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300&h=300&fit=crop&crop=center'; // Baking tray
+      return microwave;
     } else if (queryLower.includes('cake box') || queryLower.includes('cake boxes')) {
-      return 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300&h=300&fit=crop&crop=center'; // Cake box
-    }
-    
-    // Craft & Sewing items - specific images
-    else if (queryLower.includes('ribbon') || queryLower.includes('ribbons')) {
-      return 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=300&fit=crop&crop=center'; // Ribbons
+      return cakeBox;
+    } else if (queryLower.includes('ribbon') || queryLower.includes('ribbons')) {
+      return ribbon;
     } else if (queryLower.includes('needle') || queryLower.includes('needles')) {
-      return 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=300&fit=crop&crop=center'; // Sewing needles
-    } else if (queryLower.includes('mannequin') || queryLower.includes('mannequins')) {
-      return 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=300&h=300&fit=crop&crop=center'; // Mannequin
+      return needle;
     } else if (queryLower.includes('sewing machine') || queryLower.includes('sewing')) {
-      return 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=300&fit=crop&crop=center'; // Sewing machine
-    }
-    
-    // Beauty & Hair items - specific images
-    else if (queryLower.includes('hair dryer') || queryLower.includes('hairdryer')) {
-      return 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300&h=300&fit=crop&crop=center'; // Hair dryer
-    } else if (queryLower.includes('straightener') || queryLower.includes('hair straightener')) {
-      return 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300&h=300&fit=crop&crop=center'; // Hair straightener
-    } else if (queryLower.includes('wax') || queryLower.includes('waxing')) {
-      return 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300&h=300&fit=crop&crop=center'; // Wax
-    } else if (queryLower.includes('serum') || queryLower.includes('serums')) {
-      return 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300&h=300&fit=crop&crop=center'; // Beauty serum
-    }
-    
-    // Art & Craft items - specific images
-    else if (queryLower.includes('paint') || queryLower.includes('paints')) {
-      return 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=300&h=300&fit=crop&crop=center'; // Paint tubes
-    } else if (queryLower.includes('brush') || queryLower.includes('brushes')) {
-      return 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=300&h=300&fit=crop&crop=center'; // Paint brushes
-    }
-    
-    // Jewelry & Accessories - specific images
-    else if (queryLower.includes('jewelry') || queryLower.includes('jewellery')) {
-      return 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=300&h=300&fit=crop&crop=center'; // Jewelry
-    } else if (queryLower.includes('box') || queryLower.includes('boxes')) {
-      return 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=300&h=300&fit=crop&crop=center'; // Storage boxes
-    }
-    
-    // Electronics & Lighting - specific images
-    else if (queryLower.includes('led') || queryLower.includes('light') || queryLower.includes('lights')) {
-      return 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=300&fit=crop&crop=center'; // LED lights
+      return sewingMachine;
+    } else if (queryLower.includes('paint') || queryLower.includes('paints')) {
+      return paint;
     } else if (queryLower.includes('rack') || queryLower.includes('racks')) {
-      return 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=300&fit=crop&crop=center'; // Display racks
-    } else if (queryLower.includes('printer') || queryLower.includes('printers')) {
-      return 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=300&h=300&fit=crop&crop=center'; // Printers
-    }
-    
-    // Generic category images with reliable URLs
-    else if (queryLower.includes('phone') || queryLower.includes('mobile') || queryLower.includes('smartphone')) {
-      return 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&h=300&fit=crop&crop=center';
-    } else if (queryLower.includes('laptop') || queryLower.includes('computer')) {
-      return 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=300&h=300&fit=crop&crop=center';
-    } else if (queryLower.includes('headphone') || queryLower.includes('earphone') || queryLower.includes('audio')) {
-      return 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop&crop=center';
-    } else if (queryLower.includes('watch') || queryLower.includes('smartwatch')) {
-      return 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=300&fit=crop&crop=center';
-    } else if (queryLower.includes('camera') || queryLower.includes('dslr')) {
-      return 'https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=300&h=300&fit=crop&crop=center';
-    } else if (queryLower.includes('dress') || queryLower.includes('clothing') || queryLower.includes('fashion')) {
-      return 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=300&h=300&fit=crop&crop=center';
-    } else if (queryLower.includes('book') || queryLower.includes('novel')) {
-      return 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=300&fit=crop&crop=center';
-    } else if (queryLower.includes('shoes') || queryLower.includes('footwear')) {
-      return 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=300&h=300&fit=crop&crop=center';
-    } else if (queryLower.includes('bag') || queryLower.includes('handbag') || queryLower.includes('backpack')) {
-      return 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=300&h=300&fit=crop&crop=center';
+      return rack;
     } else {
-      return 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=300&h=300&fit=crop&crop=center';
+      return null; // fallback if no match
     }
   };
   
   // Generate realistic product titles based on query
-  const generateProductTitle = (query, platform) => {
-    const queryLower = query.toLowerCase();
-    const brands = ['Samsung', 'Apple', 'Sony', 'Boat', 'JBL', 'OnePlus', 'Xiaomi', 'Realme', 'HP', 'Dell', 'Lenovo', 'Asus'];
-    const randomBrand = brands[Math.floor(Math.random() * brands.length)];
-    
-    if (queryLower.includes('phone') || queryLower.includes('mobile') || queryLower.includes('smartphone')) {
-      return `${randomBrand} ${query} - 128GB Storage, 6GB RAM, 48MP Camera`;
-    } else if (queryLower.includes('laptop') || queryLower.includes('computer')) {
-      return `${randomBrand} ${query} - Intel i5, 8GB RAM, 512GB SSD, Windows 11`;
-    } else if (queryLower.includes('headphone') || queryLower.includes('earphone') || queryLower.includes('audio')) {
-      return `${randomBrand} ${query} - Wireless Bluetooth, 30hrs Battery, Noise Cancellation`;
-    } else if (queryLower.includes('watch') || queryLower.includes('smartwatch')) {
-      return `${randomBrand} ${query} - Fitness Tracker, Heart Rate Monitor, Water Resistant`;
-    } else if (queryLower.includes('camera') || queryLower.includes('dslr')) {
-      return `${randomBrand} ${query} - 24MP, 4K Video, WiFi, Bluetooth`;
-    } else if (queryLower.includes('dress') || queryLower.includes('clothing') || queryLower.includes('fashion')) {
-      return `Premium ${query} - Cotton Blend, Machine Washable, Multiple Colors`;
-    } else if (queryLower.includes('book') || queryLower.includes('novel')) {
-      return `${query} - Paperback Edition, 300+ Pages, Best Seller`;
-    } else if (queryLower.includes('shoes') || queryLower.includes('footwear')) {
-      return `Comfortable ${query} - Breathable Material, Cushioned Sole, Multiple Sizes`;
-    } else if (queryLower.includes('bag') || queryLower.includes('handbag') || queryLower.includes('backpack')) {
-      return `Stylish ${query} - Durable Material, Multiple Compartments, Water Resistant`;
-    } else {
-      return `Premium ${query} - High Quality, Best Value, Fast Delivery`;
-    }
-  };
+ const generateProductTitle = (query, platform) => {
+  const queryLower = query.toLowerCase();
+
+  if (queryLower.includes('mixer') || queryLower.includes('mixer grinder')) {
+    return `Premium ${query} - 750W Powerful Motor, 3 Stainless Steel Jars, 2-Year Warranty`;
+  } else if (queryLower.includes('oven') || queryLower.includes('microwave')) {
+    return `${query} - 30L Capacity, Convection Mode, Auto-Cook Menu, Energy Efficient`;
+  } else if (queryLower.includes('cake box') || queryLower.includes('cake boxes')) {
+    return `${query} - Food Grade Material, Transparent Lid, Ideal for Gifting and Storage`;
+  } else if (queryLower.includes('ribbon') || queryLower.includes('ribbons')) {
+    return `${query} - Decorative Satin Finish, Multiple Colors, 10m Roll for Craft & Gift Wrap`;
+  } else if (queryLower.includes('needle') || queryLower.includes('needles')) {
+    return `${query} - Stainless Steel, Sharp Pointed, Perfect for Hand & Machine Sewing`;
+  } else if (queryLower.includes('sewing machine') || queryLower.includes('sewing')) {
+    return `${query} - Electric, 12 Built-in Stitches, Compact & Portable Design`;
+  } else if (queryLower.includes('paint') || queryLower.includes('paints')) {
+    return `${query} Set - Vibrant Colors, Smooth Texture, Ideal for Art & Craft Projects`;
+  } else if (queryLower.includes('rack') || queryLower.includes('racks')) {
+    return `${query} - Multi-Layer Storage Organizer, Durable Metal Frame, Space Saver`;
+  } else {
+    return `Premium ${query} - High Quality, Durable Build, Great Value on ${platform}`;
+  }
+};
+
   
   // Generate realistic prices based on actual market prices
   const generateRealisticPrice = (query) => {
     const queryLower = query.toLowerCase();
     
     // iPhone pricing - based on actual iPhone prices in India
-    if (queryLower.includes('iphone')) {
+    if (queryLower.includes('microwave')) {
       const iphonePrices = [
-        { price: 79900, originalPrice: 89900 }, // iPhone 15
+        { price: 1199, originalPrice: 3939 }, // iPhone 15
         { price: 89900, originalPrice: 99900 }, // iPhone 15 Plus
         { price: 134900, originalPrice: 149900 }, // iPhone 15 Pro
         { price: 159900, originalPrice: 179900 }, // iPhone 15 Pro Max
