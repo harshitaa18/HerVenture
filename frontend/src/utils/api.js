@@ -1,8 +1,15 @@
 // utils/api.js
 import axios from "axios";
 
+const envBase = process.env.REACT_APP_API_BASE_URL;
+const normalizedBase = (() => {
+  if (!envBase || envBase.trim() === "") return "https://herventure.onrender.com/api";
+  const trimmed = envBase.replace(/\/$/, "");
+  return trimmed.endsWith("/api") ? trimmed : `${trimmed}/api`;
+})();
+
 const API = axios.create({
-  baseURL: "https://herventure.onrender.com/api",
+  baseURL: normalizedBase,
   withCredentials: true,
 });
 
