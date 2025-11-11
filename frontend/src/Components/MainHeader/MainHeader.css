@@ -1,4 +1,4 @@
-.mainpage_header {
+.mainnpage_header {
     position: relative;
     width: 100%;
     height: 50vh;
@@ -10,13 +10,13 @@
 }
 
 /* Override global .container spacing inside header to remove side gaps */
-.mainpage_header .container {
+.mainnpage_header .containerr {
     max-width: none;
     margin: 0;
     padding: 1rem;
 }
 
-.mainpage_header-container {
+.mainnpage_header-container {
     position: relative;
     z-index: 2;
     text-align: left;
@@ -26,7 +26,7 @@
     max-width: 800px;
 }
 
-.mainpage_header-overlay {
+.mainnpage_header-overlay {
     background: rgba(0, 0, 0, 0); /* Semi-transparent overlay for readability */
     width: 100%;
     height: 100%;
@@ -35,7 +35,7 @@
     left: 0;
 }
 
-.mainpage_header-text h4 {
+.mainnpage_header-text h4 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
     margin-top: 0;
@@ -43,19 +43,19 @@
     ; /* Optional: Highlight text */
 }
 
-.mainpage_header-text h1 {
+.mainnpage_header-text h1 {
     font-size: 2.5rem;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
 
-.mainpage_header-text p {
+.mainnpage_header-text p {
     font-size: 1.25rem;
     margin-bottom: 2rem;
     line-height: 1.6;
 }
 
-.mainpage_header-btn {
+.mainnpage_header-btn {
     background-color: purple;
     color: white;
     text-decoration: none;
@@ -65,7 +65,7 @@
     transition: all 0.3s ease-in-out;
 }
 
-.mainpage_header-btn:hover {
+.mainnpage_header-btn:hover {
     background-color: rgb(192, 94, 192);
 }
 .headerr img {
@@ -76,53 +76,53 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 @media (max-width: 1024px) {
-    .mainpage_header {
+    .mainnpage_header {
       height: 60vh; /* Slightly taller for tablet view */
       justify-content: center; /* Center content on smaller screens */
       align-items: center;
       padding: 1rem;
     }
   
-    .mainpage_header-container {
+    .mainnpage_header-container {
       text-align: center;
       padding: 1.5rem;
     }
   
-    .mainpage_header-text h1 {
+    .mainnpage_header-text h1 {
       font-size: 2rem;
     }
   
-    .mainpage_header-text p {
+    .mainnpage_header-text p {
       font-size: 1.1rem;
     }
   }
   
   @media (max-width: 600px) {
-    .mainpage_header {
+    .mainnpage_header {
       height: auto; /* Allow flexible height */
       flex-direction: column;
       justify-content: center;
       padding: 2rem 1rem;
     }
   
-    .mainpage_header-container {
+    .mainnpage_header-container {
       max-width: 100%;
       padding: 1rem;
     }
   
-    .mainpage_header-text h1 {
+    .mainnpage_header-text h1 {
       font-size: 1.6rem;
     }
   
-    .mainpage_header-text h4 {
+    .mainnpage_header-text h4 {
       font-size: 1.1rem;
     }
   
-    .mainpage_header-text p {
+    .mainnpage_header-text p {
       font-size: 1rem;
     }
   
-    .mainpage_header-btn {
+    .mainnpage_header-btn {
       font-size: 0.95rem;
       padding: 0.6rem 1.2rem;
     }
