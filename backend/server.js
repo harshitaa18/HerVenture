@@ -18,21 +18,8 @@ mongoose.connect(process.env.MONGO_URI)
   .catch((err) => console.error("MongoDB Connection Error:", err));
 
 
-// CORS allowlist for dev and prod
-const corsAllowlist = [
-  "http://localhost:3000",
-  "http://127.0.0.1:3000",
-  "http://localhost:5173",
-  "http://127.0.0.1:5173",
-  "https://her-venture.vercel.app"
-];
-
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true); // allow non-browser or same-origin
-    if (corsAllowlist.includes(origin)) return callback(null, true);
-    return callback(null, true); // fallback: allow temporarily to avoid dev CORS blocks
-  },
+  origin: "https://her-venture.vercel.app",
   credentials: true
 }));
 
@@ -98,3 +85,8 @@ app.use("/api/entrepreneur", require("./routes/entrepreneurRoutes"));
 app.use("/api/labor", require("./routes/laborRoutes"));
 app.use("/api/landowner", require("./routes/landownerRoutes"));
 app.use("/api/post", require("./routes/postRoutes"));
+// Start server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
