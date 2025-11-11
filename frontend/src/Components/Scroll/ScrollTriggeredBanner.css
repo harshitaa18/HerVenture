@@ -1,0 +1,149 @@
+/* ---------- Container Animations ---------- */
+.scroll-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  transition: all 0.5s ease;
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.scroll-banner.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.scroll-banner.hidden {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+/* ---------- Wrapper ---------- */
+.scroll-banner-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* ---------- Outer Gradient Border ---------- */
+.scroll-banner-border {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background-color: #b343b3 ; /* Purple */
+  padding: 2px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------- Inner Content ---------- */
+.scroll-banner-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+}
+
+@media (min-width: 640px) {
+  .scroll-banner-content {
+    flex-direction: row;
+  }
+}
+
+/* ---------- Close Button ---------- */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---------- Left Section (Icons + Text) ---------- */
+.banner-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.banner-icons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.icon-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-circle.purple {
+  background-color: #9f1eab;
+}
+
+.icon-circle.pink {
+  background-color:#c540d1;
+}
+
+.icon-circle.indigo {
+  background-color: #f695ff;
+}
+
+.icon-inner {
+  color: white;
+  width: 20px;
+  height: 20px;
+}
+
+/* ---------- Text ---------- */
+.banner-text h3 {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #1f2937;
+  margin: 0;
+}
+
+.banner-text p {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ---------- CTA Button ---------- */
+.banner-btn {
+  background-color: rgb(192, 94, 192);; /* Purple */
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.banner-btn:hover {
+  background-color:rgb(166, 93, 166);;
+  transform: translateY(-2px);
+}

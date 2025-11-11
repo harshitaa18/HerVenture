@@ -85,8 +85,8 @@ app.use("/api/entrepreneur", require("./routes/entrepreneurRoutes"));
 app.use("/api/labor", require("./routes/laborRoutes"));
 app.use("/api/landowner", require("./routes/landownerRoutes"));
 app.use("/api/post", require("./routes/postRoutes"));
-
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
