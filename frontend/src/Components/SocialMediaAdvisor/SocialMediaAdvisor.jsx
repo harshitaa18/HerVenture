@@ -152,7 +152,7 @@ export default function SocialMediaAdvisor() {
 
   return (
     <div className="advisor-container">
-      <h1>✨ Social Media Advisor ✨</h1>
+      <h1 className="adv">✨ Social Media Advisor ✨</h1>
 
       {!submitted ? (
         <form onSubmit={handleSubmit} className="advisor-form">
