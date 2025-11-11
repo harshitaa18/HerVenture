@@ -10,6 +10,7 @@ import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import './home.css';
 import Poster2 from '../../Components/Poster2/Poster2';
 import { Link } from 'react-router-dom';
+import ScrollTriggeredBanner from '../../Components/Scroll/ScrollTriggeredBanner';
 
 function Homepage() {
   const [openFeedback, setOpenFeedback] = useState(false);
@@ -21,7 +22,7 @@ function Homepage() {
   return (
     <div>
       <MainHeader />
-      <Link to='/social'><button>GO</button></Link>
+      {/* <Link to='/social'><button>GO</button></Link> */}
       <Explore />
       {/* <FeatureCards/> */}
       <Poster2/>
@@ -41,6 +42,7 @@ function Homepage() {
       </div>
 
       <Feedback open={openFeedback} onClose={() => setOpenFeedback(false)} />
+        <ScrollTriggeredBanner />
     </div>
   );
 }

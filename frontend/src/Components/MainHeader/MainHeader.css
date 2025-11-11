@@ -1,15 +1,32 @@
-.main_header {
+.mainpage_header {
     position: relative;
     width: 100%;
-    height: 50vh; /* Half screen height */
+    height: 50vh;
     background: url("../Assets/background2.jpg") no-repeat center center;
-    background-size: cover; /* Make the image cover the container */
+    background-size: cover;
     display: flex;
-    align-items: flex-start; /* Align content to the top */
-    justify-content: flex-end; /* Align content to the right */
+    align-items: flex-start;
+    justify-content: flex-start; /* left-aligned text */
 }
 
-.main_header-overlay {
+/* Override global .container spacing inside header to remove side gaps */
+.mainpage_header .container {
+    max-width: none;
+    margin: 0;
+    padding: 1rem;
+}
+
+.mainpage_header-container {
+    position: relative;
+    z-index: 2;
+    text-align: left;
+    color: #282C34;
+    padding: 2rem 2rem 2rem 0; /* ✅ removed left padding */
+    margin-left: 0;             /* ✅ ensure no extra margin */
+    max-width: 800px;
+}
+
+.mainpage_header-overlay {
     background: rgba(0, 0, 0, 0); /* Semi-transparent overlay for readability */
     width: 100%;
     height: 100%;
@@ -18,16 +35,7 @@
     left: 0;
 }
 
-.main_header-container {
-    position: relative; /* To keep the text above the overlay */
-    z-index: 2; /* Ensure it appears on top */
-    text-align: left;
-    color: #282C34;
-    padding: 2rem;
-    max-width: 800px; /* Restrict text width */
-}
-
-.main_header-text h4 {
+.mainpage_header-text h4 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
     margin-top: 0;
@@ -35,19 +43,19 @@
     ; /* Optional: Highlight text */
 }
 
-.main_header-text h1 {
+.mainpage_header-text h1 {
     font-size: 2.5rem;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
 
-.main_header-text p {
+.mainpage_header-text p {
     font-size: 1.25rem;
     margin-bottom: 2rem;
     line-height: 1.6;
 }
 
-.main_header-btn {
+.mainpage_header-btn {
     background-color: purple;
     color: white;
     text-decoration: none;
@@ -57,7 +65,7 @@
     transition: all 0.3s ease-in-out;
 }
 
-.main_header-btn:hover {
+.mainpage_header-btn:hover {
     background-color: rgb(192, 94, 192);
 }
 .headerr img {
@@ -68,53 +76,53 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 @media (max-width: 1024px) {
-    .main_header {
+    .mainpage_header {
       height: 60vh; /* Slightly taller for tablet view */
       justify-content: center; /* Center content on smaller screens */
       align-items: center;
       padding: 1rem;
     }
   
-    .main_header-container {
+    .mainpage_header-container {
       text-align: center;
       padding: 1.5rem;
     }
   
-    .main_header-text h1 {
+    .mainpage_header-text h1 {
       font-size: 2rem;
     }
   
-    .main_header-text p {
+    .mainpage_header-text p {
       font-size: 1.1rem;
     }
   }
   
   @media (max-width: 600px) {
-    .main_header {
+    .mainpage_header {
       height: auto; /* Allow flexible height */
       flex-direction: column;
       justify-content: center;
       padding: 2rem 1rem;
     }
   
-    .main_header-container {
+    .mainpage_header-container {
       max-width: 100%;
       padding: 1rem;
     }
   
-    .main_header-text h1 {
+    .mainpage_header-text h1 {
       font-size: 1.6rem;
     }
   
-    .main_header-text h4 {
+    .mainpage_header-text h4 {
       font-size: 1.1rem;
     }
   
-    .main_header-text p {
+    .mainpage_header-text p {
       font-size: 1rem;
     }
   
-    .main_header-btn {
+    .mainpage_header-btn {
       font-size: 0.95rem;
       padding: 0.6rem 1.2rem;
     }
