@@ -342,11 +342,11 @@ const generateMockResults = (query) => {
       return mannequinPrices[Math.floor(Math.random() * mannequinPrices.length)];
     } else if (queryLower.includes('sewing machine') || queryLower.includes('sewing')) {
       const sewingPrices = [
-        { price: 8999, originalPrice: 11999 },
-        { price: 14999, originalPrice: 19999 },
-        { price: 24999, originalPrice: 29999 },
-        { price: 5999, originalPrice: 7999 },
-        { price: 39999, originalPrice: 49999 }
+        { price: 1599, originalPrice: 11999 },
+        { price: 10113, originalPrice: 19999 },
+        { price: 9967, originalPrice: 29999 },
+        { price: 5001, originalPrice: 7999 },
+        { price: 21000, originalPrice: 49999 }
       ];
       return sewingPrices[Math.floor(Math.random() * sewingPrices.length)];
     }
